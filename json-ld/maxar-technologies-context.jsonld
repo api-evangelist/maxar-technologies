@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab":  "https://schema.org/",
+    "maxar":   "https://raw.githubusercontent.com/api-evangelist/maxar-technologies/main/vocabulary/maxar-technologies-vocabulary.yml#",
+    "stac":    "https://stac-extensions.github.io/version/v1.0.0/schema.json#",
+    "geo":     "http://www.opengis.net/ont/geosparql#",
+    "dct":     "http://purl.org/dc/terms/",
+
+    "Organization":             "schema:Organization",
+    "Corporation":              "schema:Corporation",
+    "Owner":                    "schema:owns",
+    "parentOrganization":       "schema:parentOrganization",
+    "subOrganization":          "schema:subOrganization",
+    "Acquisition":              "maxar:Acquisition",
+    "RebrandedAs":              "maxar:rebrandedAs",
+    "AcquiredBy":               "maxar:acquiredBy",
+    "Successor":                "maxar:successor",
+
+    "Satellite":                "maxar:Satellite",
+    "Constellation":            "maxar:Constellation",
+    "SatelliteImagery":         "maxar:SatelliteImagery",
+    "Basemap":                  "maxar:Basemap",
+
+    "Item":         "stac:Item",
+    "Collection":   "stac:Collection",
+    "Catalog":      "stac:Catalog",
+    "geometry":     "geo:hasGeometry",
+    "bbox":         "geo:hasBoundingBox",
+    "datetime":     "dct:issued",
+    "platform":     "maxar:platform",
+    "gsd":          "maxar:groundSampleDistance",
+    "cloud_cover":  "maxar:cloudCover",
+    "off_nadir":    "maxar:offNadirAngle",
+
+    "Order":        "maxar:Order",
+    "Task":         "maxar:Task",
+    "Monitor":      "maxar:Monitor",
+    "Delivery":     "maxar:Delivery",
+    "ApiKey":       "maxar:ApiKey"
+  }
+}

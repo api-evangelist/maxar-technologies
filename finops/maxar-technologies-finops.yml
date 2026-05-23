@@ -1,0 +1,102 @@
+finopsFrameworkVersion: '2025.06'
+focusVersion: '1.2'
+provider: maxar-technologies
+generated: '2026-05-23'
+notes: >-
+  Vantor / Maxar Hub does not publish a public FOCUS-conformant billing CSV
+  or itemised price book; commercial pricing is quoted by sales. The FinOps
+  surface modelled here reflects what a Vantor customer can reasonably
+  reconstruct from the Account Services API (credit balance, plan, API keys)
+  plus the Ordering API (per-order cost, currency) and Tasking API (priority
+  tier). Maxar Open Data has no cost surface (free under CC-BY-NC 4.0).
+
+services:
+  - id: vantor-hub-discovery
+    serviceName: Vantor Hub Discovery
+    serviceCategory: Analytics
+    billingModel: subscription
+    chargeCategory: Usage
+    pricingUnit: subscription-tier
+    publishedPriceUrl: null
+    source: contact-sales
+
+  - id: vantor-hub-admin
+    serviceName: Vantor Hub Account Services
+    serviceCategory: ManagementGovernance
+    billingModel: subscription
+    chargeCategory: Usage
+    pricingUnit: subscription-tier
+    publishedPriceUrl: null
+    source: contact-sales
+
+  - id: mgp-streaming
+    serviceName: Maxar Geospatial Platform Streaming
+    serviceCategory: Media
+    billingModel: subscription+usage
+    chargeCategory: Usage
+    pricingUnit: km2-streamed
+    publishedPriceUrl: null
+    source: contact-sales
+
+  - id: mgp-ordering
+    serviceName: Maxar Geospatial Platform Ordering
+    serviceCategory: Storage
+    billingModel: pay-as-you-go
+    chargeCategory: Usage
+    pricingUnit: km2-delivered
+    publishedPriceUrl: null
+    source: ordering-api-cost-field
+    observability:
+      costField: cost
+      currencyField: currency
+      orderIdField: id
+      api: openapi/ordering-openapi.yml#/paths/~1orders~1{orderId}/get
+
+  - id: mgp-tasking
+    serviceName: Maxar Geospatial Platform Tasking
+    serviceCategory: Analytics
+    billingModel: pay-as-you-go-by-priority
+    chargeCategory: Usage
+    pricingUnit: km2-collected
+    publishedPriceUrl: null
+    source: contact-sales
+    notes: Per-km^2 rates vary by priority tier (Standard/Priority/Rush/Select).
+
+  - id: mgp-monitoring
+    serviceName: Maxar Geospatial Platform Monitoring
+    serviceCategory: ManagementGovernance
+    billingModel: subscription
+    chargeCategory: Usage
+    pricingUnit: monitor-month
+    publishedPriceUrl: null
+    source: contact-sales
+
+  - id: maxar-open-data
+    serviceName: Maxar Open Data Program
+    serviceCategory: Analytics
+    billingModel: free
+    chargeCategory: Free
+    pricingUnit: none
+    publishedPriceUrl: https://github.com/opengeos/maxar-open-data
+    source: aws-open-data
+    license: CC-BY-NC 4.0
+
+allocation:
+  tags:
+    - aoi-name
+    - mission-id
+    - cost-center
+    - priority-tier
+  notes: Customers typically tag Vantor orders and tasks with internal mission/AOI identifiers for chargeback; these are not enforced by the Hub APIs.
+
+reporting:
+  source-of-truth:
+    - api: admin
+      capability: get-credits
+      url: /accounts/{accountId}/credits
+    - api: ordering
+      capability: get-order
+      url: /orders/{orderId}
+    - api: tasking
+      capability: get-task
+      url: /tasks/{taskId}

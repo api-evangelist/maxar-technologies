@@ -1,0 +1,16 @@
+{
+  "name": "San Francisco Bay Q2 Refresh",
+  "aoi": {
+    "type": "Polygon",
+    "coordinates": [[[-122.48,37.72],[-122.32,37.72],[-122.32,37.88],[-122.48,37.88],[-122.48,37.72]]]
+  },
+  "items": [
+    { "catalog_id": "104001008A4F2300", "collection": "WorldView-3" },
+    { "catalog_id": "108001000B113500", "collection": "WorldView-Legion" }
+  ],
+  "delivery": {
+    "type": "s3",
+    "destination": "s3://acme-imagery/incoming/"
+  },
+  "output_format": "geotiff"
+}

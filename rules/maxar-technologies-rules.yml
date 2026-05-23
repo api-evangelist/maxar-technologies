@@ -1,0 +1,63 @@
+extends: spectral:oas
+rules:
+  maxar-info-contact:
+    description: Every Maxar API spec must declare an info.contact
+    given: $.info
+    severity: warn
+    then:
+      field: contact
+      function: truthy
+  maxar-info-license:
+    description: Every Maxar API spec must declare an info.license
+    given: $.info
+    severity: warn
+    then:
+      field: license
+      function: truthy
+  maxar-servers-https:
+    description: Maxar server URLs must use https
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  maxar-bearer-auth:
+    description: Maxar APIs (other than the token endpoint) require bearer auth
+    given: $.components.securitySchemes
+    severity: warn
+    then:
+      function: truthy
+  maxar-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    given: $.paths.*.*.summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$"
+  maxar-operation-id-camel:
+    description: Operation IDs must be camelCase
+    given: $.paths.*.*.operationId
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  maxar-tag-title-case:
+    description: Tags must use Title Case
+    given: $.tags[*].name
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$"
+  maxar-error-schema:
+    description: Operations should declare 400/401 error responses
+    given: $.paths.*.*.responses
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object

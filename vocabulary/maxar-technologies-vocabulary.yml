@@ -1,0 +1,105 @@
+name: Maxar Technologies Vocabulary
+description: >-
+  Controlled vocabulary covering Maxar's corporate history (DigitalGlobe → MDA
+  → Maxar → Advent → Vantor/Lanteris), satellite platforms, imagery products
+  and the public API surface area (Vantor Hub + MGP).
+url: https://raw.githubusercontent.com/api-evangelist/maxar-technologies/main/vocabulary/maxar-technologies-vocabulary.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+
+terms:
+
+  # Corporate
+  - term: DigitalGlobe
+    definition: Earth-imaging company founded 1992 in Oakland, California; merged with MDA in 2017 to form Maxar Technologies.
+    type: Corporation
+  - term: MDA
+    definition: MacDonald, Dettwiler and Associates — Canadian space-systems company that acquired DigitalGlobe in 2017.
+    type: Corporation
+  - term: Maxar Technologies
+    definition: Publicly traded Earth-imaging and space-systems company (NYSE/TSX MAXR) formed 2017 from MDA + DigitalGlobe; taken private by Advent International in May 2023.
+    type: Corporation
+  - term: Advent International
+    definition: Boston-based private-equity firm; acquired Maxar in May 2023 for USD 6.4 billion and split it into Maxar Intelligence and Maxar Space Systems.
+    type: PrivateEquity
+  - term: Maxar Intelligence
+    definition: Imagery and spatial-intelligence operating unit of Maxar after the September 2023 split; rebranded Vantor on 1 October 2025.
+    type: BusinessUnit
+  - term: Maxar Space Systems
+    definition: Satellite-manufacturing operating unit of Maxar after the September 2023 split; rebranded Lanteris Space Systems on 1 October 2025; acquired by Intuitive Machines for ~USD 800 million on 13 January 2026.
+    type: BusinessUnit
+  - term: Vantor
+    definition: Spatial-intelligence company that succeeded Maxar Intelligence on 1 October 2025; headquartered in Westminster, Colorado; remains an Advent International portfolio company.
+    type: Corporation
+  - term: Lanteris Space Systems
+    definition: Satellite-manufacturing company that succeeded Maxar Space Systems on 1 October 2025; headquartered in Palo Alto, California; acquired by Intuitive Machines in January 2026.
+    type: Corporation
+  - term: Intuitive Machines
+    definition: NASDAQ-listed space-services company that acquired Lanteris from Advent in January 2026 for approximately USD 800 million.
+    type: Corporation
+
+  # Satellites & constellations
+  - term: WorldView-1
+    definition: High-resolution panchromatic Earth-imaging satellite launched 2007.
+    type: Satellite
+  - term: WorldView-2
+    definition: High-resolution multispectral Earth-imaging satellite launched 2009.
+    type: Satellite
+  - term: WorldView-3
+    definition: 30 cm-class super-spectral Earth-imaging satellite launched 2014.
+    type: Satellite
+  - term: GeoEye-1
+    definition: Half-meter resolution Earth-imaging satellite launched 2008.
+    type: Satellite
+  - term: WorldView Legion
+    definition: Six-satellite next-generation Earth-imaging constellation launched 2024-2026, providing 30 cm-class native resolution and 15× the capacity of the legacy fleet.
+    type: Constellation
+  - term: Vantor Constellation
+    definition: Combined operational fleet under Vantor — WorldView-1/2/3, GeoEye-1 and WorldView Legion.
+    type: Constellation
+
+  # Products
+  - term: Vivid
+    definition: Maxar's cloud-free, color-balanced global basemap product.
+    type: Product
+  - term: Tensorglobe
+    definition: Vantor's multi-sensor data-fusion software platform spanning space, air and ground.
+    type: Product
+  - term: SecureWatch
+    definition: Maxar imagery streaming service exposed via WMS/WMTS/WFS at securewatch.maxar.com.
+    type: Product
+  - term: Maxar Open Data Program
+    definition: Free public STAC catalog of pre-/post-event high-resolution imagery hosted on AWS Open Data under CC-BY-NC 4.0.
+    type: Program
+  - term: MGP
+    definition: Maxar Geospatial Platform — the umbrella platform exposing Streaming, Discovery, Ordering, Tasking, Monitoring and Account services via SDKs (Python, Java, R).
+    type: Platform
+  - term: Vantor Hub
+    definition: Vantor developer portal (hub.vantor.com / pro.maxar.com) exposing Authentication, Discovery and Account Services APIs plus integrations and SDKs.
+    type: Platform
+
+  # API concepts
+  - term: STAC
+    definition: SpatioTemporal Asset Catalog specification — the industry-standard JSON format for indexing geospatial assets.
+    type: Standard
+  - term: WMS
+    definition: OGC Web Map Service — standardised HTTP interface for requesting georeferenced map images.
+    type: Standard
+  - term: WMTS
+    definition: OGC Web Map Tile Service — standardised HTTP interface for fetching pre-rendered map tiles.
+    type: Standard
+  - term: WFS
+    definition: OGC Web Feature Service — standardised HTTP interface for querying vector features.
+    type: Standard
+  - term: COG
+    definition: Cloud Optimized GeoTIFF — a GeoTIFF organised for HTTP range-read access from object storage.
+    type: Format
+  - term: Tasking
+    definition: Commissioning a new satellite collection over a specific area of interest within a time window.
+    type: Concept
+  - term: AOI
+    definition: Area of Interest — a polygon geometry that scopes a search, order, monitor or tasking request.
+    type: Concept
+  - term: GSD
+    definition: Ground Sample Distance — the distance between pixel centres measured on the ground, in metres.
+    type: Concept

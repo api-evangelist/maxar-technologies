@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/maxar-technologies/main/json-schema/maxar-technologies-task-schema.json",
+  "title": "Maxar Tasking Request",
+  "description": "Tasking request submitted to the Vantor Constellation via the MGP Tasking API.",
+  "type": "object",
+  "required": ["id", "status"],
+  "properties": {
+    "id":         { "type": "string" },
+    "name":       { "type": "string" },
+    "status":     { "type": "string", "enum": ["submitted", "planned", "in_progress", "complete", "cancelled", "failed"] },
+    "priority":   { "type": "string", "enum": ["Standard", "Priority", "Rush", "Select"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "windows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start":    { "type": "string", "format": "date-time" },
+          "end":      { "type": "string", "format": "date-time" },
+          "platform": { "type": "string", "enum": ["WorldView-1", "WorldView-2", "WorldView-3", "GeoEye-1", "WorldView-Legion"] }
+        }
+      }
+    }
+  }
+}

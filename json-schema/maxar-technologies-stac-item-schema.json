@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/maxar-technologies/main/json-schema/maxar-technologies-stac-item-schema.json",
+  "title": "Maxar STAC Item",
+  "description": "STAC Feature item returned by Vantor Hub Discovery and the Maxar Open Data STAC catalog.",
+  "type": "object",
+  "required": ["type", "id", "geometry", "properties"],
+  "properties": {
+    "type":        { "type": "string", "const": "Feature" },
+    "stac_version": { "type": "string" },
+    "id":          { "type": "string" },
+    "collection":  { "type": "string" },
+    "bbox": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 4,
+      "maxItems": 6
+    },
+    "geometry":   { "type": "object", "description": "GeoJSON geometry" },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "datetime":      { "type": "string", "format": "date-time" },
+        "platform":      { "type": "string", "examples": ["WorldView-3", "WorldView-Legion", "GeoEye-1"] },
+        "instruments":   { "type": "array",  "items": { "type": "string" } },
+        "gsd":           { "type": "number", "description": "Ground sample distance (m)" },
+        "cloud_cover":   { "type": "number", "minimum": 0, "maximum": 100 },
+        "off_nadir":     { "type": "number" },
+        "sun_elevation": { "type": "number" }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["href"],
+        "properties": {
+          "href":  { "type": "string", "format": "uri" },
+          "type":  { "type": "string" },
+          "roles": { "type": "array", "items": { "type": "string" } },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["href", "rel"],
+        "properties": {
+          "href":  { "type": "string", "format": "uri" },
+          "rel":   { "type": "string" },
+          "type":  { "type": "string" },
+          "title": { "type": "string" }
+        }
+      }
+    }
+  }
+}

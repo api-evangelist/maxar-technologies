@@ -1,0 +1,69 @@
+apiCommonsPlansVersion: '0.1'
+provider: maxar-technologies
+generated: '2026-05-23'
+notes: >-
+  Vantor / Maxar Intelligence does not publish per-image or per-seat pricing on
+  vantor.com or hub.vantor.com — access is gated through a "Contact Sales"
+  funnel at vantor.com/get-started and the Hub developer portal (login at
+  hub.vantor.com). The Maxar Open Data Program is free under CC-BY-NC 4.0.
+  Plans below capture the publicly visible access tiers; commercial prices
+  must be obtained directly from Vantor sales.
+
+plans:
+  - id: open-data
+    name: Maxar Open Data
+    description: Free public STAC catalog of pre-/post-event high-resolution imagery hosted on AWS Open Data.
+    pricingModel: Free
+    cost: 0.00
+    currency: USD
+    license: CC-BY-NC 4.0
+    audience: Researchers, NGOs, disaster responders, students
+    contains:
+      - Maxar Open Data STAC Catalog
+    via: https://github.com/opengeos/maxar-open-data
+
+  - id: hub-trial
+    name: Vantor Hub Trial / Free Tier
+    description: Self-serve developer access via the Vantor Hub login (hub.vantor.com). Quotas and entitlements are tied to the account; no public pricing.
+    pricingModel: ContactSales
+    cost: null
+    currency: USD
+    audience: Commercial developers evaluating Vantor Hub
+    contains:
+      - Vantor Hub Authentication API
+      - Vantor Hub Discovery API
+      - Vantor Hub Account Services API
+    via: https://hub.vantor.com/
+
+  - id: mgp-commercial
+    name: Maxar Geospatial Platform (Commercial)
+    description: Paid commercial subscription to the Maxar Geospatial Platform (Streaming, Discovery, Ordering, Tasking, Monitoring, Vivid basemaps). Priced per account; quoted by sales.
+    pricingModel: ContactSales
+    cost: null
+    currency: USD
+    audience: Commercial customers (energy, insurance, mapping, agriculture, finance)
+    contains:
+      - Maxar Geospatial Platform Streaming API
+      - Maxar Geospatial Platform Discovery API (via Hub)
+      - Maxar Geospatial Platform Ordering API
+      - Maxar Geospatial Platform Tasking API
+      - Maxar Geospatial Platform Monitoring API
+      - Maxar Vivid Basemap API
+    via: https://vantor.com/get-started/
+
+  - id: government-defense
+    name: Government & Defense Programs
+    description: Enterprise contracts for National Geospatial-Intelligence Agency (NGA), National Reconnaissance Office, U.S. Army (One World Terrain) and allied government partners. Priced per contract, not public.
+    pricingModel: Contract
+    cost: null
+    currency: USD
+    audience: Defense, Intelligence, Civil Government (60+ government partners globally)
+    contains:
+      - All Vantor APIs and data products
+    via: https://vantor.com/get-started/
+
+verbatimQuotes:
+  - source: https://vantor.com/
+    quote: "90% of foundational geospatial intelligence used by the U.S. Government is powered by Vantor"
+  - source: https://hub.vantor.com/
+    quote: "Explore documentation, references, and tools: everything you need to start using the Hub APIs today."

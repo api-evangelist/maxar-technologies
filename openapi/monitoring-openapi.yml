@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: Maxar Geospatial Platform Monitoring API
+  description: >-
+    Monitoring API for standing watches over user-defined areas of interest —
+    receive notifications when new imagery is collected, when collection
+    windows close and when analytic detections fire. Profile derived from
+    MGP_SDK `Interface.monitoring` surface; field shapes follow common Maxar
+    monitoring conventions.
+  version: '1.0.0'
+servers:
+  - url: https://api.maxar.com/monitoring/v1
+security:
+  - bearerAuth: []
+tags:
+  - name: Monitors
+  - name: Events
+  - name: Subscriptions
+paths:
+  /monitors:
+    get:
+      tags: [Monitors]
+      summary: List Monitors
+      operationId: listMonitors
+      responses:
+        '200':
+          description: Monitors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Monitor'
+    post:
+      tags: [Monitors]
+      summary: Create Monitor
+      operationId: createMonitor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonitorRequest'
+      responses:
+        '201':
+          description: Monitor created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+  /monitors/{monitorId}:
+    get:
+      tags: [Monitors]
+      summary: Get Monitor
+      operationId: getMonitor
+      parameters:
+        - { name: monitorId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Monitor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+    delete:
+      tags: [Monitors]
+      summary: Delete Monitor
+      operationId: deleteMonitor
+      parameters:
+        - { name: monitorId, in: path, required: true, schema: { type: string } }
+      responses:
+        '204':
+          description: Deleted
+  /monitors/{monitorId}/events:
+    get:
+      tags: [Events]
+      summary: List Events For Monitor
+      operationId: listEvents
+      parameters:
+        - { name: monitorId, in: path, required: true, schema: { type: string } }
+        - { name: since,     in: query, schema: { type: string, format: date-time } }
+        - { name: limit,     in: query, schema: { type: integer, default: 25 } }
+      responses:
+        '200':
+          description: Events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+  /subscriptions:
+    get:
+      tags: [Subscriptions]
+      summary: List Webhook Subscriptions
+      operationId: listSubscriptions
+      responses:
+        '200':
+          description: Subscriptions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+    post:
+      tags: [Subscriptions]
+      summary: Create Webhook Subscription
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [monitor_id, target_url, event_types]
+              properties:
+                monitor_id: { type: string }
+                target_url: { type: string, format: uri }
+                event_types:
+                  type: array
+                  items:
+                    type: string
+                    enum: [new_image, window_closed, detection]
+                secret: { type: string }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    MonitorRequest:
+      type: object
+      required: [name, aoi]
+      properties:
+        name: { type: string }
+        aoi:  { type: object }
+        cadence:
+          type: string
+          enum: [daily, weekly, on_new_image]
+        filters:
+          type: object
+          properties:
+            max_cloud_cover: { type: number }
+            platforms:
+              type: array
+              items: { type: string }
+    Monitor:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        status: { type: string, enum: [active, paused] }
+        created_at: { type: string, format: date-time }
+        cadence: { type: string }
+    Event:
+      type: object
+      properties:
+        id: { type: string }
+        monitor_id: { type: string }
+        type: { type: string, enum: [new_image, window_closed, detection] }
+        occurred_at: { type: string, format: date-time }
+        payload: { type: object }
+    Subscription:
+      type: object
+      properties:
+        id: { type: string }
+        monitor_id: { type: string }
+        target_url: { type: string, format: uri }
+        event_types:
+          type: array
+          items: { type: string }
+        created_at: { type: string, format: date-time }

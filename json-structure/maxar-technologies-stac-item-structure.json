@@ -1,0 +1,18 @@
+{
+  "name": "Maxar STAC Item Structure",
+  "description": "Field-level structure of a STAC Feature item returned by Vantor Hub Discovery.",
+  "fields": [
+    { "name": "type",                 "type": "string",     "description": "Always 'Feature'." },
+    { "name": "id",                   "type": "string",     "description": "Unique STAC item ID, often the Maxar catalog ID." },
+    { "name": "collection",           "type": "string",     "description": "Parent collection ID (e.g., WorldView-3, Vivid)." },
+    { "name": "geometry",             "type": "geojson",    "description": "GeoJSON footprint of the scene." },
+    { "name": "bbox",                 "type": "number[]",   "description": "Bounding box [west, south, east, north]." },
+    { "name": "properties.datetime",  "type": "datetime",   "description": "Acquisition datetime in RFC3339." },
+    { "name": "properties.platform",  "type": "string",     "description": "Source satellite platform." },
+    { "name": "properties.gsd",       "type": "number",     "description": "Ground sample distance in metres." },
+    { "name": "properties.cloud_cover","type": "number",    "description": "Percent cloud cover, 0-100." },
+    { "name": "properties.off_nadir", "type": "number",     "description": "Off-nadir angle in degrees." },
+    { "name": "assets",               "type": "object",     "description": "Map of asset keys to href/type/roles." },
+    { "name": "links",                "type": "object[]",   "description": "STAC link relations (self, parent, root, derived_from)." }
+  ]
+}

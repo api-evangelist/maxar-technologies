@@ -1,0 +1,15 @@
+{
+  "name": "Maxar Order Structure",
+  "description": "Field-level structure of an order placed against the Maxar archive.",
+  "fields": [
+    { "name": "id",         "type": "string",   "description": "Order ID." },
+    { "name": "name",       "type": "string",   "description": "Caller-supplied order name." },
+    { "name": "status",     "type": "enum",     "description": "pending | in_progress | complete | failed | cancelled." },
+    { "name": "created_at", "type": "datetime", "description": "When the order was placed." },
+    { "name": "cost",       "type": "number",   "description": "Final cost, billed in account currency." },
+    { "name": "currency",   "type": "string",   "description": "ISO currency code (e.g. USD)." },
+    { "name": "items",      "type": "object[]", "description": "Per-catalog-item status entries." },
+    { "name": "items[].catalog_id", "type": "string", "description": "Maxar catalog ID delivered for this item." },
+    { "name": "items[].status",     "type": "string", "description": "Per-item status." }
+  ]
+}

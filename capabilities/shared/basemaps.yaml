@@ -1,0 +1,25 @@
+name: maxar-basemaps
+title: Maxar Vivid Basemap Capabilities
+description: Per-API capabilities for the Vivid cloud-free basemap product.
+provider: maxar-technologies
+api: basemaps
+specification: openapi/streaming-openapi.yml
+capabilities:
+  - id: vivid-get-tile
+    title: Vivid Get Tile
+    description: Fetch a Vivid basemap tile via WMTS.
+    operation: wmtsAccess
+    method: GET
+    path: /wmtsaccess
+    inputs: [service=WMTS, request=GetTile, layer=Vivid, tilematrix, tilerow, tilecol]
+    outputs: [tile]
+    tags: [Read, Basemaps, Vivid]
+  - id: vivid-get-map
+    title: Vivid Get Map
+    description: Render a Vivid basemap image of an AOI via WMS.
+    operation: wmsAccess
+    method: GET
+    path: /wmsaccess
+    inputs: [service=WMS, request=GetMap, layers=Vivid, bbox, crs, width, height]
+    outputs: [image]
+    tags: [Read, Basemaps, Vivid]

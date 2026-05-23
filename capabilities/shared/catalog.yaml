@@ -1,0 +1,22 @@
+name: maxar-catalog
+title: Maxar Content Catalog Capabilities
+description: Per-API capabilities for the legacy Maxar Content Catalog (wrapped by the `maxarcat` Python client).
+provider: maxar-technologies
+api: catalog
+capabilities:
+  - id: search-catalog
+    title: Search Catalog
+    description: Search the legacy Maxar Content Catalog by AOI, time and filters.
+    method: GET
+    path: /search
+    inputs: [bbox, datetime, sensor, max_cloud_cover, limit]
+    outputs: [items]
+    tags: [Read, Catalog, Legacy]
+  - id: get-catalog-item
+    title: Get Catalog Item
+    description: Retrieve a single legacy catalog item by ID.
+    method: GET
+    path: /items/{itemId}
+    inputs: [itemId]
+    outputs: [item]
+    tags: [Read, Catalog, Legacy]

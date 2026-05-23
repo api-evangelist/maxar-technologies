@@ -1,0 +1,53 @@
+apiCommonsRateLimitsVersion: '0.1'
+provider: maxar-technologies
+generated: '2026-05-23'
+notes: >-
+  Vantor / Maxar Hub does not publish per-endpoint rate limits on the public
+  developer portal (hub.vantor.com / pro.maxar.com). Token expiry, per-tenant
+  concurrency caps and ordering/tasking quotas are negotiated per contract.
+  Imagery delivery is metered against the account credit balance rather than
+  by request count. Status of the Hub APIs is published at
+  hub-status.vantor.com.
+
+limits:
+  - api: authentication
+    scope: per-client
+    type: token-expiry
+    value: 3600
+    unit: seconds
+    notes: Access tokens are short-lived bearer tokens (typical OAuth value; not explicitly stated in public docs).
+
+  - api: discovery
+    scope: per-tenant
+    type: request-rate
+    value: null
+    unit: requests-per-second
+    notes: Not publicly disclosed; enforced server-side and surfaced via 429 responses.
+
+  - api: ordering
+    scope: per-tenant
+    type: quota
+    value: credit-balance
+    unit: account-credits
+    notes: Orders draw against the tenant credit balance (see Account Services /credits).
+
+  - api: tasking
+    scope: per-tenant
+    type: quota
+    value: priority-tier
+    unit: priority-tier
+    notes: Tasking concurrency is bounded by priority tier (Standard/Priority/Rush/Select); allocation is contractual.
+
+  - api: monitoring
+    scope: per-monitor
+    type: cadence
+    value: on_new_image|daily|weekly
+    unit: cadence
+    notes: Monitors fire at most once per cadence interval; webhook delivery is best-effort with retries.
+
+  - api: streaming
+    scope: per-tenant
+    type: concurrent-connections
+    value: null
+    unit: connections
+    notes: Not publicly disclosed; OGC services enforce per-tenant concurrency.

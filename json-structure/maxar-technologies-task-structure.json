@@ -1,0 +1,14 @@
+{
+  "name": "Maxar Task Structure",
+  "description": "Field-level structure of a tasking request against the Vantor Constellation.",
+  "fields": [
+    { "name": "id",         "type": "string",   "description": "Task ID." },
+    { "name": "name",       "type": "string",   "description": "Caller-supplied task name." },
+    { "name": "status",     "type": "enum",     "description": "submitted | planned | in_progress | complete | cancelled | failed." },
+    { "name": "priority",   "type": "enum",     "description": "Standard | Priority | Rush | Select." },
+    { "name": "windows",    "type": "object[]", "description": "Planned collection windows." },
+    { "name": "windows[].start",    "type": "datetime", "description": "Window start." },
+    { "name": "windows[].end",      "type": "datetime", "description": "Window end." },
+    { "name": "windows[].platform", "type": "enum",     "description": "WorldView-1/2/3 | GeoEye-1 | WorldView-Legion." }
+  ]
+}

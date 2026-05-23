@@ -1,0 +1,14 @@
+{
+  "name": "Port of Long Beach Weekly Tasking",
+  "aoi": {
+    "type": "Polygon",
+    "coordinates": [[[-118.28,33.74],[-118.18,33.74],[-118.18,33.80],[-118.28,33.80],[-118.28,33.74]]]
+  },
+  "start": "2026-06-01T00:00:00Z",
+  "end":   "2026-06-30T23:59:59Z",
+  "priority": "Priority",
+  "platforms": ["WorldView-3", "WorldView-Legion"],
+  "max_cloud_cover": 15,
+  "max_off_nadir": 25,
+  "gsd": 0.30
+}

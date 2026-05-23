@@ -1,0 +1,12 @@
+{
+  "name": "Suez Canal Daily Watch",
+  "aoi": {
+    "type": "Polygon",
+    "coordinates": [[[32.30,30.55],[32.40,30.55],[32.40,31.25],[32.30,31.25],[32.30,30.55]]]
+  },
+  "cadence": "on_new_image",
+  "filters": {
+    "max_cloud_cover": 20,
+    "platforms": ["WorldView-3", "WorldView-Legion", "GeoEye-1"]
+  }
+}
