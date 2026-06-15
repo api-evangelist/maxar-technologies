@@ -1,0 +1,921 @@
+"""
+Maxar Technologies GraphQL Schema
+Conceptual schema derived from Maxar Technologies REST API covering satellite
+imagery discovery, ordering, streaming, tasking, monitoring, analytics, and
+geospatial data processing.
+"""
+
+# ─── Scalars ─────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar GeoJSON
+scalar JSON
+scalar URL
+scalar UUID
+scalar Float64
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+"""Satellite sensor type"""
+enum SensorType {
+  ELECTRO_OPTICAL
+  SYNTHETIC_APERTURE_RADAR
+  MULTISPECTRAL
+  PANCHROMATIC
+  SHORT_WAVE_INFRARED
+  THERMAL_INFRARED
+}
+
+"""Image collection status"""
+enum CollectionStatus {
+  PENDING
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+"""Order status"""
+enum OrderStatus {
+  SUBMITTED
+  PROCESSING
+  READY
+  DELIVERED
+  FAILED
+  CANCELLED
+}
+
+"""Tasking priority level"""
+enum TaskingPriority {
+  ROUTINE
+  PRIORITY
+  RUSH
+  EMERGENCY
+}
+
+"""Output file format"""
+enum ImageFormat {
+  GEOTIFF
+  NITF
+  JP2
+  PNG
+  JPEG
+  COG
+}
+
+"""Coordinate reference system"""
+enum CoordinateReferenceSystem {
+  EPSG_4326
+  EPSG_3857
+  EPSG_32601
+  EPSG_32602
+  NATIVE
+}
+
+"""Delivery target type"""
+enum DeliveryTarget {
+  S3
+  DIRECT_DOWNLOAD
+  SFTP
+  AZURE_BLOB
+}
+
+"""Monitoring alert type"""
+enum AlertType {
+  NEW_IMAGERY
+  COLLECTION_WINDOW_CLOSED
+  ANALYTIC_DETECTION
+  CLOUD_COVER_CHANGE
+  CHANGE_DETECTED
+}
+
+"""Analytic product type"""
+enum AnalyticProductType {
+  CHANGE_DETECTION
+  OBJECT_DETECTION
+  LAND_COVER_CLASSIFICATION
+  BUILDING_FOOTPRINT
+  ROAD_EXTRACTION
+  VEGETATION_INDEX
+  WATER_DETECTION
+  CLOUD_MASK
+}
+
+"""Streaming service protocol"""
+enum StreamingProtocol {
+  WMS
+  WMTS
+  WFS
+  TMS
+  XYZ
+}
+
+"""Image processing level"""
+enum ProcessingLevel {
+  BASIC
+  STANDARD
+  ORTHORECTIFIED
+  COREGISTERED
+}
+
+"""Satellite constellation"""
+enum Constellation {
+  WORLDVIEW_1
+  WORLDVIEW_2
+  WORLDVIEW_3
+  WORLDVIEW_4
+  WORLDVIEW_LEGION
+  GEOEYE_1
+  QUICKBIRD
+  IKONOS
+}
+
+"""Basemap product family"""
+enum BasemapProduct {
+  VIVID_STANDARD
+  VIVID_ADVANCED
+  VIVID_PREMIUM
+  DYNAMIC_FOUNDATION
+}
+
+"""Basemap refresh frequency"""
+enum BasemapRefreshFrequency {
+  ANNUAL
+  SEMI_ANNUAL
+  QUARTERLY
+  MONTHLY
+  WEEKLY
+}
+
+"""Token grant type"""
+enum TokenGrantType {
+  CLIENT_CREDENTIALS
+  AUTHORIZATION_CODE
+  REFRESH_TOKEN
+}
+
+"""User role"""
+enum UserRole {
+  ADMIN
+  VIEWER
+  ANALYST
+  ORDERER
+  TASTER
+}
+
+"""Area of Interest type"""
+enum AOIType {
+  POLYGON
+  BOUNDING_BOX
+  POINT_BUFFER
+}
+
+# ─── Geometry Types ───────────────────────────────────────────────────────────
+
+"""Geographic bounding box"""
+type BoundingBox {
+  minLon: Float!
+  minLat: Float!
+  maxLon: Float!
+  maxLat: Float!
+}
+
+"""Geographic coordinate"""
+type Coordinate {
+  longitude: Float!
+  latitude: Float!
+  altitude: Float
+}
+
+"""Polygon geometry"""
+type Polygon {
+  type: String!
+  coordinates: [[[Float!]!]!]!
+}
+
+"""Point geometry"""
+type Point {
+  type: String!
+  coordinates: [Float!]!
+}
+
+"""Multi-polygon geometry"""
+type MultiPolygon {
+  type: String!
+  coordinates: [[[[Float!]!]!]!]!
+}
+
+"""Generic geometry union type"""
+union Geometry = Point | Polygon | MultiPolygon
+
+# ─── Authentication Types ─────────────────────────────────────────────────────
+
+"""OAuth access token"""
+type AccessToken {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  refreshToken: String
+  scope: String
+  issuedAt: DateTime!
+}
+
+"""API key"""
+type ApiKey {
+  id: UUID!
+  name: String!
+  keyPrefix: String!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  scopes: [String!]!
+  isActive: Boolean!
+}
+
+# ─── Organization & User Types ────────────────────────────────────────────────
+
+"""Organization account"""
+type Organization {
+  id: UUID!
+  name: String!
+  tier: String
+  creditBalance: Float
+  users: [User!]!
+  apiKeys: [ApiKey!]!
+  entitlements: [Entitlement!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""User account"""
+type User {
+  id: UUID!
+  email: String!
+  firstName: String
+  lastName: String
+  role: UserRole!
+  organization: Organization!
+  isActive: Boolean!
+  createdAt: DateTime!
+  lastLoginAt: DateTime
+}
+
+"""Subscription entitlement"""
+type Entitlement {
+  id: UUID!
+  productName: String!
+  constellation: [Constellation!]
+  maxResolutionCm: Float
+  areaQuotaSqKm: Float
+  areaUsedSqKm: Float
+  validFrom: DateTime!
+  validTo: DateTime!
+  isActive: Boolean!
+}
+
+# ─── Imagery & Catalog Types ──────────────────────────────────────────────────
+
+"""STAC-aligned imagery scene"""
+type ImageryScene {
+  id: UUID!
+  stacId: String!
+  constellation: Constellation!
+  sensor: SensorType!
+  acquisitionDate: DateTime!
+  processingLevel: ProcessingLevel!
+  groundSampleDistanceCm: Float!
+  cloudCoverPercent: Float!
+  sunElevationDeg: Float!
+  sunAzimuthDeg: Float!
+  offNadirAngleDeg: Float!
+  bbox: BoundingBox!
+  footprint: Polygon!
+  thumbnailUrl: URL
+  previewUrl: URL
+  assets: [SceneAsset!]!
+  metadata: SceneMetadata!
+}
+
+"""Scene asset (band, thumbnail, etc.)"""
+type SceneAsset {
+  key: String!
+  href: URL!
+  type: String!
+  title: String
+  roles: [String!]!
+  fileSizeMb: Float
+  checksum: String
+}
+
+"""Extended scene metadata"""
+type SceneMetadata {
+  platformName: String!
+  instrumentName: String!
+  orbitDirection: String
+  incidenceAngleDeg: Float
+  targetAzimuthDeg: Float
+  datumName: String
+  projectionName: String
+  radiometricResolutionBits: Int
+  bands: [BandInfo!]!
+}
+
+"""Spectral band information"""
+type BandInfo {
+  name: String!
+  commonName: String
+  centerWavelengthNm: Float
+  fullWidthHalfMaxNm: Float
+  description: String
+}
+
+"""Imagery search result page"""
+type ImagerySearchResult {
+  scenes: [ImageryScene!]!
+  totalCount: Int!
+  nextToken: String
+  searchId: UUID!
+}
+
+"""Content catalog item (legacy)"""
+type CatalogItem {
+  id: String!
+  legacyId: String
+  acquisitionDate: DateTime!
+  constellation: Constellation!
+  cloudCoverPercent: Float!
+  resolution: Float!
+  bbox: BoundingBox!
+  productType: String!
+  catId: String!
+}
+
+# ─── Order Types ──────────────────────────────────────────────────────────────
+
+"""Imagery order"""
+type Order {
+  id: UUID!
+  name: String
+  status: OrderStatus!
+  scenes: [ImageryScene!]!
+  outputFormat: ImageFormat!
+  processingLevel: ProcessingLevel!
+  crs: CoordinateReferenceSystem!
+  clipToAOI: Boolean!
+  aoi: Polygon
+  deliveryTarget: DeliveryTarget!
+  deliveryConfig: JSON
+  creditCost: Float
+  areaOrderedSqKm: Float
+  submittedAt: DateTime!
+  completedAt: DateTime
+  expiresAt: DateTime
+  downloadUrls: [String!]
+  user: User!
+}
+
+"""Order line item"""
+type OrderLineItem {
+  id: UUID!
+  sceneId: String!
+  productName: String!
+  quantity: Float!
+  unitCost: Float!
+  totalCost: Float!
+}
+
+# ─── Tasking Types ────────────────────────────────────────────────────────────
+
+"""Satellite tasking request"""
+type TaskingRequest {
+  id: UUID!
+  name: String!
+  status: CollectionStatus!
+  priority: TaskingPriority!
+  aoi: Polygon!
+  targetStartDate: DateTime!
+  targetEndDate: DateTime!
+  constellations: [Constellation!]!
+  maxCloudCoverPercent: Float!
+  minSunElevationDeg: Float
+  maxOffNadirAngleDeg: Float
+  collectionWindows: [CollectionWindow!]!
+  resultScenes: [ImageryScene!]!
+  creditEstimate: Float
+  submittedAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+}
+
+"""Proposed collection window"""
+type CollectionWindow {
+  id: UUID!
+  satellite: String!
+  startTime: DateTime!
+  endTime: DateTime!
+  probability: Float
+  offNadirAngle: Float
+  sunElevation: Float
+  cloudCoverForecast: Float
+}
+
+# ─── Monitoring Types ─────────────────────────────────────────────────────────
+
+"""Persistent monitoring watch"""
+type MonitoringWatch {
+  id: UUID!
+  name: String!
+  aoi: Polygon!
+  aoiType: AOIType!
+  alertTypes: [AlertType!]!
+  minCloudCoverThreshold: Float
+  notificationEmail: String
+  webhookUrl: URL
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  alerts: [MonitoringAlert!]!
+}
+
+"""Monitoring alert event"""
+type MonitoringAlert {
+  id: UUID!
+  watch: MonitoringWatch!
+  alertType: AlertType!
+  triggeredAt: DateTime!
+  scene: ImageryScene
+  message: String!
+  metadata: JSON
+  acknowledged: Boolean!
+}
+
+# ─── Streaming & Basemap Types ────────────────────────────────────────────────
+
+"""Streaming layer definition"""
+type StreamingLayer {
+  id: String!
+  name: String!
+  protocol: StreamingProtocol!
+  baseUrl: URL!
+  connectId: String!
+  availableLayers: [String!]!
+  tileMatrixSets: [String!]
+  formats: [String!]!
+  minZoom: Int
+  maxZoom: Int
+  bbox: BoundingBox
+  capabilitiesUrl: URL!
+}
+
+"""Basemap product definition"""
+type Basemap {
+  id: UUID!
+  product: BasemapProduct!
+  name: String!
+  description: String
+  vintage: String
+  refreshFrequency: BasemapRefreshFrequency!
+  resolution: Float!
+  coveragePercent: Float!
+  streamingLayer: StreamingLayer!
+  previewUrl: URL
+}
+
+# ─── Analytics Types ──────────────────────────────────────────────────────────
+
+"""Analytic processing job"""
+type AnalyticJob {
+  id: UUID!
+  productType: AnalyticProductType!
+  status: OrderStatus!
+  inputScenes: [ImageryScene!]!
+  aoi: Polygon!
+  resultUrl: URL
+  resultFormat: String
+  parameters: JSON
+  creditCost: Float
+  submittedAt: DateTime!
+  completedAt: DateTime
+  user: User!
+}
+
+"""Change detection result"""
+type ChangeDetectionResult {
+  id: UUID!
+  job: AnalyticJob!
+  beforeDate: DateTime!
+  afterDate: DateTime!
+  changeAreaSqM: Float!
+  changePercent: Float!
+  changeType: String
+  confidenceScore: Float!
+  geojson: GeoJSON
+  thumbnailUrl: URL
+}
+
+"""Object detection result"""
+type ObjectDetectionResult {
+  id: UUID!
+  job: AnalyticJob!
+  detections: [Detection!]!
+  modelVersion: String!
+  acquisitionDate: DateTime!
+}
+
+"""Individual object detection"""
+type Detection {
+  id: UUID!
+  objectClass: String!
+  confidenceScore: Float!
+  boundingBox: BoundingBox!
+  centroid: Point!
+  attributes: JSON
+}
+
+"""Vegetation index result"""
+type VegetationIndexResult {
+  id: UUID!
+  job: AnalyticJob!
+  indexType: String!
+  minValue: Float!
+  maxValue: Float!
+  meanValue: Float!
+  acquisitionDate: DateTime!
+  resultUrl: URL
+}
+
+# ─── Transform Types ──────────────────────────────────────────────────────────
+
+"""Image transform request"""
+type TransformJob {
+  id: UUID!
+  status: OrderStatus!
+  inputSceneId: String!
+  operations: [TransformOperation!]!
+  outputFormat: ImageFormat!
+  outputCrs: CoordinateReferenceSystem!
+  resultUrl: URL
+  submittedAt: DateTime!
+  completedAt: DateTime
+}
+
+"""Single transform operation"""
+type TransformOperation {
+  type: String!
+  parameters: JSON!
+}
+
+# ─── 3D Surface Types ─────────────────────────────────────────────────────────
+
+"""3D surface elevation model"""
+type ElevationModel {
+  id: UUID!
+  name: String!
+  modelType: String!
+  resolution: Float!
+  verticalAccuracyM: Float
+  horizontalAccuracyM: Float
+  bbox: BoundingBox!
+  acquisitionDateRange: DateRange!
+  sourceConstellation: [Constellation!]!
+  downloadUrl: URL
+  streamingLayer: StreamingLayer
+}
+
+"""Date range"""
+type DateRange {
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+# ─── Pagination ───────────────────────────────────────────────────────────────
+
+"""Pagination cursor info"""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int!
+}
+
+# ─── Input Types ─────────────────────────────────────────────────────────────
+
+"""Bounding box input"""
+input BoundingBoxInput {
+  minLon: Float!
+  minLat: Float!
+  maxLon: Float!
+  maxLat: Float!
+}
+
+"""Polygon geometry input"""
+input PolygonInput {
+  coordinates: [[[Float!]!]!]!
+}
+
+"""Date range filter"""
+input DateRangeInput {
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+"""Imagery search filters"""
+input ImagerySearchInput {
+  bbox: BoundingBoxInput
+  polygon: PolygonInput
+  dateRange: DateRangeInput!
+  constellations: [Constellation!]
+  sensorTypes: [SensorType!]
+  maxCloudCoverPercent: Float
+  minResolutionCm: Float
+  maxResolutionCm: Float
+  maxOffNadirAngleDeg: Float
+  processingLevels: [ProcessingLevel!]
+  limit: Int
+  nextToken: String
+}
+
+"""Order creation input"""
+input CreateOrderInput {
+  name: String
+  sceneIds: [String!]!
+  outputFormat: ImageFormat!
+  processingLevel: ProcessingLevel!
+  crs: CoordinateReferenceSystem
+  clipToAOI: Boolean
+  aoi: PolygonInput
+  deliveryTarget: DeliveryTarget!
+  deliveryConfig: JSON
+}
+
+"""Tasking request input"""
+input CreateTaskingRequestInput {
+  name: String!
+  priority: TaskingPriority!
+  aoi: PolygonInput!
+  targetStartDate: DateTime!
+  targetEndDate: DateTime!
+  constellations: [Constellation!]
+  maxCloudCoverPercent: Float
+  minSunElevationDeg: Float
+  maxOffNadirAngleDeg: Float
+}
+
+"""Monitoring watch input"""
+input CreateMonitoringWatchInput {
+  name: String!
+  aoi: PolygonInput!
+  aoiType: AOIType!
+  alertTypes: [AlertType!]!
+  minCloudCoverThreshold: Float
+  notificationEmail: String
+  webhookUrl: String
+}
+
+"""Analytic job input"""
+input CreateAnalyticJobInput {
+  productType: AnalyticProductType!
+  sceneIds: [String!]!
+  aoi: PolygonInput
+  parameters: JSON
+}
+
+"""User creation input"""
+input CreateUserInput {
+  email: String!
+  firstName: String
+  lastName: String
+  role: UserRole!
+}
+
+"""API key creation input"""
+input CreateApiKeyInput {
+  name: String!
+  scopes: [String!]!
+  expiresAt: DateTime
+}
+
+"""Token request input"""
+input TokenRequestInput {
+  grantType: TokenGrantType!
+  clientId: String!
+  clientSecret: String
+  code: String
+  refreshToken: String
+  scope: String
+}
+
+"""Update monitoring watch input"""
+input UpdateMonitoringWatchInput {
+  name: String
+  alertTypes: [AlertType!]
+  minCloudCoverThreshold: Float
+  notificationEmail: String
+  webhookUrl: String
+  isActive: Boolean
+}
+
+"""Transform job input"""
+input CreateTransformJobInput {
+  inputSceneId: String!
+  operations: [TransformOperationInput!]!
+  outputFormat: ImageFormat!
+  outputCrs: CoordinateReferenceSystem
+}
+
+"""Transform operation input"""
+input TransformOperationInput {
+  type: String!
+  parameters: JSON!
+}
+
+# ─── Query Root ───────────────────────────────────────────────────────────────
+
+type Query {
+  """Search imagery catalog by spatial and temporal filters"""
+  searchImagery(input: ImagerySearchInput!): ImagerySearchResult!
+
+  """Get a single imagery scene by ID"""
+  scene(id: String!): ImageryScene
+
+  """Search legacy content catalog"""
+  searchCatalog(
+    bbox: BoundingBoxInput
+    dateRange: DateRangeInput
+    constellation: Constellation
+    maxCloudCover: Float
+    limit: Int
+    offset: Int
+  ): [CatalogItem!]!
+
+  """List orders for the authenticated user"""
+  orders(
+    status: OrderStatus
+    limit: Int
+    nextToken: String
+  ): [Order!]!
+
+  """Get a single order by ID"""
+  order(id: UUID!): Order
+
+  """List tasking requests"""
+  taskingRequests(
+    status: CollectionStatus
+    limit: Int
+    nextToken: String
+  ): [TaskingRequest!]!
+
+  """Get a single tasking request by ID"""
+  taskingRequest(id: UUID!): TaskingRequest
+
+  """Get collection windows for a tasking request"""
+  collectionWindows(taskingRequestId: UUID!): [CollectionWindow!]!
+
+  """List monitoring watches"""
+  monitoringWatches(isActive: Boolean, limit: Int): [MonitoringWatch!]!
+
+  """Get a single monitoring watch"""
+  monitoringWatch(id: UUID!): MonitoringWatch
+
+  """List alerts for a monitoring watch"""
+  monitoringAlerts(
+    watchId: UUID
+    alertType: AlertType
+    acknowledged: Boolean
+    limit: Int
+  ): [MonitoringAlert!]!
+
+  """List available streaming layers"""
+  streamingLayers(protocol: StreamingProtocol): [StreamingLayer!]!
+
+  """Get a streaming layer by ID"""
+  streamingLayer(id: String!): StreamingLayer
+
+  """List available basemaps"""
+  basemaps(product: BasemapProduct): [Basemap!]!
+
+  """Get a basemap by ID"""
+  basemap(id: UUID!): Basemap
+
+  """List analytic jobs"""
+  analyticJobs(
+    productType: AnalyticProductType
+    status: OrderStatus
+    limit: Int
+  ): [AnalyticJob!]!
+
+  """Get a single analytic job"""
+  analyticJob(id: UUID!): AnalyticJob
+
+  """Get change detection results for a job"""
+  changeDetectionResults(jobId: UUID!): [ChangeDetectionResult!]!
+
+  """Get object detection results for a job"""
+  objectDetectionResults(jobId: UUID!): ObjectDetectionResult
+
+  """List transform jobs"""
+  transformJobs(status: OrderStatus, limit: Int): [TransformJob!]!
+
+  """Get a single transform job"""
+  transformJob(id: UUID!): TransformJob
+
+  """List elevation models"""
+  elevationModels(bbox: BoundingBoxInput): [ElevationModel!]!
+
+  """Get current organization account info"""
+  organization: Organization!
+
+  """List users in the organization"""
+  users(role: UserRole, isActive: Boolean): [User!]!
+
+  """Get a user by ID"""
+  user(id: UUID!): User
+
+  """List API keys"""
+  apiKeys(isActive: Boolean): [ApiKey!]!
+
+  """Get entitlements for the current organization"""
+  entitlements: [Entitlement!]!
+
+  """Estimate credit cost for an order"""
+  estimateOrderCost(input: CreateOrderInput!): Float!
+
+  """Estimate credit cost for a tasking request"""
+  estimateTaskingCost(input: CreateTaskingRequestInput!): Float!
+}
+
+# ─── Mutation Root ────────────────────────────────────────────────────────────
+
+type Mutation {
+  """Request an OAuth access token"""
+  requestToken(input: TokenRequestInput!): AccessToken!
+
+  """Refresh an existing access token"""
+  refreshToken(refreshToken: String!): AccessToken!
+
+  """Create a new imagery order"""
+  createOrder(input: CreateOrderInput!): Order!
+
+  """Cancel an existing order"""
+  cancelOrder(id: UUID!): Order!
+
+  """Resubmit a failed order"""
+  resubmitOrder(id: UUID!): Order!
+
+  """Create a new tasking request"""
+  createTaskingRequest(input: CreateTaskingRequestInput!): TaskingRequest!
+
+  """Cancel a tasking request"""
+  cancelTaskingRequest(id: UUID!): TaskingRequest!
+
+  """Create a new monitoring watch"""
+  createMonitoringWatch(input: CreateMonitoringWatchInput!): MonitoringWatch!
+
+  """Update an existing monitoring watch"""
+  updateMonitoringWatch(id: UUID!, input: UpdateMonitoringWatchInput!): MonitoringWatch!
+
+  """Delete a monitoring watch"""
+  deleteMonitoringWatch(id: UUID!): Boolean!
+
+  """Acknowledge a monitoring alert"""
+  acknowledgeAlert(id: UUID!): MonitoringAlert!
+
+  """Submit an analytic job"""
+  createAnalyticJob(input: CreateAnalyticJobInput!): AnalyticJob!
+
+  """Cancel an analytic job"""
+  cancelAnalyticJob(id: UUID!): AnalyticJob!
+
+  """Create an image transform job"""
+  createTransformJob(input: CreateTransformJobInput!): TransformJob!
+
+  """Create a new user in the organization"""
+  createUser(input: CreateUserInput!): User!
+
+  """Deactivate a user"""
+  deactivateUser(id: UUID!): User!
+
+  """Create a new API key"""
+  createApiKey(input: CreateApiKeyInput!): ApiKey!
+
+  """Revoke an API key"""
+  revokeApiKey(id: UUID!): Boolean!
+}
+
+# ─── Subscription Root ────────────────────────────────────────────────────────
+
+type Subscription {
+  """Subscribe to order status updates"""
+  orderStatusChanged(orderId: UUID!): Order!
+
+  """Subscribe to tasking request updates"""
+  taskingRequestUpdated(taskingRequestId: UUID!): TaskingRequest!
+
+  """Subscribe to monitoring alerts for a watch"""
+  monitoringAlertFired(watchId: UUID!): MonitoringAlert!
+
+  """Subscribe to analytic job completion"""
+  analyticJobCompleted(jobId: UUID!): AnalyticJob!
+}
