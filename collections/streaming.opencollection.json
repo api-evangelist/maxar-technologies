@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Maxar Geospatial Platform Streaming API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WMS GetCapabilities or GetMap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://securewatch.maxar.com/earthservice/wmsaccess",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "crs",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "OGC Web Map Service entry point. Use `request=GetCapabilities` to list layers or `request=GetMap` to render an image of an area of interest."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WMTS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WMTS GetCapabilities or GetTile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://securewatch.maxar.com/earthservice/wmtsaccess",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "layer",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilematrixset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilematrix",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilerow",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilecol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "WMTS GetCapabilities or GetTile"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WFS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WFS GetCapabilities or GetFeature",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://securewatch.maxar.com/earthservice/wfsaccess",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "outputFormat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "WFS GetCapabilities or GetFeature"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download Full Resolution Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://securewatch.maxar.com/earthservice/image",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "gsd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download a full-resolution image of an area of interest, intersecting one or more catalog identifiers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

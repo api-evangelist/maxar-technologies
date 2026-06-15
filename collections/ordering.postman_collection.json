@@ -1,0 +1,621 @@
+{
+  "item": [
+    {
+      "id": "63f2ce34-6b1d-4e19-9375-674bf1fdc840",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab87f550-2186-48fc-a43f-b58c7e88d0dd",
+          "name": "List Orders",
+          "request": {
+            "name": "List Orders",
+            "description": {},
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c06bbcd6-34ec-4dde-9d06-b7e34f448a30",
+              "name": "Orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"pending\",\n    \"created_at\": \"2003-06-10T13:13:27.962Z\",\n    \"updated_at\": \"1963-10-21T18:22:31.038Z\",\n    \"cost\": 6661.393917833079,\n    \"currency\": \"string\",\n    \"items\": [\n      {\n        \"catalog_id\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"catalog_id\": \"string\",\n        \"status\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"failed\",\n    \"created_at\": \"2012-06-10T11:29:17.694Z\",\n    \"updated_at\": \"1957-07-18T14:59:57.313Z\",\n    \"cost\": 3497.585421897942,\n    \"currency\": \"string\",\n    \"items\": [\n      {\n        \"catalog_id\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"catalog_id\": \"string\",\n        \"status\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25a282a2-409f-4f07-a8a0-059ed4d36ea6",
+          "name": "Place Order",
+          "request": {
+            "name": "Place Order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aoi\": \"<object>\",\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ba4ab08-d4bc-4b05-84df-e17cee22aee3",
+              "name": "Order created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aoi\": \"<object>\",\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"cancelled\",\n  \"created_at\": \"1973-05-14T22:43:09.513Z\",\n  \"updated_at\": \"1988-07-01T14:48:32.540Z\",\n  \"cost\": 4717.985350193352,\n  \"currency\": \"string\",\n  \"items\": [\n    {\n      \"catalog_id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"catalog_id\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c3d2b48-585f-4e29-be36-3b4e05c12524",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "031593db-0b2a-48ba-98ab-81e788bfad15",
+              "name": "Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"cancelled\",\n  \"created_at\": \"1973-05-14T22:43:09.513Z\",\n  \"updated_at\": \"1988-07-01T14:48:32.540Z\",\n  \"cost\": 4717.985350193352,\n  \"currency\": \"string\",\n  \"items\": [\n    {\n      \"catalog_id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"catalog_id\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7ae8ad7-cb42-4d8e-9adf-559ba7382960",
+          "name": "Cancel Order",
+          "request": {
+            "name": "Cancel Order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60f11ed8-565a-4a7d-86f5-a804f323f3cc",
+              "name": "Cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dca56bc2-d641-41e0-a778-597603167749",
+      "name": "Deliveries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea86309b-7367-4e9d-89b5-447704f7dadd",
+          "name": "List Deliveries",
+          "request": {
+            "name": "List Deliveries",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId",
+                "deliveries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9ac15b6-7f9d-4c23-be1b-fd3dfc35ca5e",
+              "name": "Deliveries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"order_id\": \"string\",\n    \"status\": \"failed\",\n    \"url\": \"string\",\n    \"format\": \"string\",\n    \"size_bytes\": 6911,\n    \"delivered_at\": \"1986-10-11T11:08:47.297Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"order_id\": \"string\",\n    \"status\": \"failed\",\n    \"url\": \"string\",\n    \"format\": \"string\",\n    \"size_bytes\": 4136,\n    \"delivered_at\": \"1964-09-14T09:18:39.551Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8525f0d6-925c-4955-a117-8153af3e1ec2",
+      "name": "Estimates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68ff2015-4106-473b-a10d-de7ac50a971c",
+          "name": "Estimate Order Cost",
+          "request": {
+            "name": "Estimate Order Cost",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aoi\": \"<object>\",\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "88c07d69-ea0a-4e9b-be20-09da0270b0de",
+              "name": "Estimate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aoi\": \"<object>\",\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"estimated_cost\": 9180.81627566463,\n  \"currency\": \"USD\",\n  \"area_km2\": 7160.307191176955,\n  \"rate_per_km2\": 8240.732799957139\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.maxar.com/order/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42acf1b0-e3a6-433a-a8b1-27cd4c3d39b6",
+    "name": "Maxar Geospatial Platform Ordering API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Order management API for placing, tracking and retrieving deliveries of Maxar archive imagery against WorldView, GeoEye and WorldView Legion sources. Profile derived from MGP_SDK `Interface.ordering` surface; field shapes follow common Maxar ordering conventions and should be confirmed against live responses.",
+      "type": "text/plain"
+    }
+  }
+}

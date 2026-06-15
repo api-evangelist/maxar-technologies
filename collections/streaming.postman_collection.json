@@ -1,0 +1,647 @@
+{
+  "item": [
+    {
+      "id": "c6f82dd0-6dac-4a21-9c0d-4bd9095645ad",
+      "name": "WMS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3105523d-a566-43e3-8d30-1e4c1a8c82e4",
+          "name": "WMS GetCapabilities or GetMap",
+          "request": {
+            "name": "WMS GetCapabilities or GetMap",
+            "description": {
+              "content": "OGC Web Map Service entry point. Use `request=GetCapabilities` to list layers or `request=GetMap` to render an image of an area of interest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wmsaccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "request",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "1.3.0"
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "crs",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a33061d-01f8-4c83-8470-3299e9ee0bc5",
+              "name": "WMS response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wmsaccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.3.0"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crs",
+                      "value": "EPSG:4326"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "image/jpeg"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "47cc43b1-adbb-4e10-b5a0-4a7326463a3e",
+      "name": "WMTS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4abe980-7499-4438-bdbb-84bf912d60b8",
+          "name": "WMTS GetCapabilities or GetTile",
+          "request": {
+            "name": "WMTS GetCapabilities or GetTile",
+            "description": {},
+            "url": {
+              "path": [
+                "wmtsaccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "request",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "layer",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilematrixset",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilematrix",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilerow",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilecol",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df691ae3-0de3-4a4e-8266-7ff4a9133bde",
+              "name": "WMTS response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wmtsaccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilematrixset",
+                      "value": "EPSG:3857"
+                    },
+                    {
+                      "key": "tilematrix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilerow",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tilecol",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "image/png"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "101a4667-b509-4b3e-bc4c-3321d63e7ddc",
+      "name": "WFS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dda4ea85-38bb-46a1-a10d-147f7bb6f18f",
+          "name": "WFS GetCapabilities or GetFeature",
+          "request": {
+            "name": "WFS GetCapabilities or GetFeature",
+            "description": {},
+            "url": {
+              "path": [
+                "wfsaccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "request",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "2.0.0"
+                },
+                {
+                  "disabled": false,
+                  "key": "typeNames",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "outputFormat",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d21b02d5-61d0-42ea-8c4b-252c55c1e397",
+              "name": "WFS response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wfsaccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "2.0.0"
+                    },
+                    {
+                      "key": "typeNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "outputFormat",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9ab9b5da-afc1-4a54-8ed0-bce3c44ca474",
+      "name": "Image",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d3b9a5e-5bd2-4116-9de9-74ddd6431be1",
+          "name": "Download Full Resolution Image",
+          "request": {
+            "name": "Download Full Resolution Image",
+            "description": {
+              "content": "Download a full-resolution image of an area of interest, intersecting one or more catalog identifiers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "image_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "geotiff"
+                },
+                {
+                  "disabled": false,
+                  "key": "gsd",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/tiff"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d52c3d0-4151-49af-b253-d171266b29c3",
+              "name": "Image binary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "image_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "geotiff"
+                    },
+                    {
+                      "key": "gsd",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/tiff"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/tiff"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://securewatch.maxar.com/earthservice",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "06b57c13-d6f7-4030-b584-c436d98fc1c5",
+    "name": "Maxar Geospatial Platform Streaming API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OGC Streaming services exposing Maxar's current and historical imagery as WMS, WMTS and WFS layers — implemented behind securewatch.maxar.com and surfaced through the MGP_SDK Python, Java and R clients. Profile derived from the MGP_SDK README (\"Open Geospatial Consortium standard protocols: WFS, WMS, WMTS\"); endpoint paths follow standard OGC URL patterns.",
+      "type": "text/plain"
+    }
+  }
+}
