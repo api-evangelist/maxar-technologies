@@ -128,7 +128,7 @@ apis:
   properties:
   - type: Documentation
     url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/maxar-geospatial-platform
   - type: OpenAPI
     url: openapi/streaming-openapi.yml
@@ -150,7 +150,7 @@ apis:
   properties:
   - type: Documentation
     url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/maxar-geospatial-platform
   - type: OpenAPI
     url: openapi/ordering-openapi.yml
@@ -173,7 +173,7 @@ apis:
   properties:
   - type: Documentation
     url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/maxar-geospatial-platform
   - type: OpenAPI
     url: openapi/tasking-openapi.yml
@@ -195,7 +195,7 @@ apis:
   properties:
   - type: Documentation
     url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/maxar-geospatial-platform
   - type: OpenAPI
     url: openapi/monitoring-openapi.yml
@@ -217,7 +217,7 @@ apis:
   properties:
   - type: Documentation
     url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/maxar-geospatial-platform
   - type: Capability
     url: capabilities/shared/basemaps.yaml
@@ -237,7 +237,7 @@ apis:
   properties:
   - type: Documentation
     url: https://doc.content.maxar.com/maxar-content-catalog.html
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/maxarcat
   - type: Package
     url: https://pypi.org/project/maxarcat
@@ -279,9 +279,9 @@ apis:
   - Reproject
   - Tiles
   properties:
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/transform-api-ts
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Maxar-Corp/transform-ol-ts
   - type: Package
     url: https://www.npmjs.com/package/@maxar/transform-api
@@ -296,13 +296,13 @@ common:
   url: https://pro.maxar.com/
 - type: Documentation
   url: https://hub.vantor.com/docs/
-- type: SDK
+- type: SDKs
   url: https://github.com/Maxar-Corp/maxar-geospatial-platform
-- type: SDK
+- type: SDKs
   url: https://github.com/Maxar-Corp/maxar-geospatial-platform-java
-- type: SDK
+- type: SDKs
   url: https://github.com/Maxar-Corp/maxar-geospatial-platform-r
-- type: SDK
+- type: SDKs
   url: https://github.com/Maxar-Corp/maxarcat
 - type: Package
   url: https://pypi.org/project/MGP-SDK/
