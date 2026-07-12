@@ -286,6 +286,10 @@ apis:
   - type: Package
     url: https://www.npmjs.com/package/@maxar/transform-api
 common:
+- type: DomainSecurity
+  url: security/maxar-technologies-domain-security.yml
+- type: Authentication
+  url: authentication/maxar-technologies-authentication.yml
 - type: Website
   url: https://vantor.com/
 - type: LegacyWebsite

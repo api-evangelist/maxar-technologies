@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/admin-openapi.yml, openapi/authentication-openapi.yml, openapi/discovery-openapi.yml,
+  openapi/monitoring-openapi.yml, openapi/ordering-openapi.yml, openapi/streaming-openapi.yml,
+  openapi/tasking-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/admin-openapi.yml
+  - openapi/authentication-openapi.yml
+  - openapi/discovery-openapi.yml
+  - openapi/monitoring-openapi.yml
+  - openapi/ordering-openapi.yml
+  - openapi/streaming-openapi.yml
+  - openapi/tasking-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: query
+  parameter: connectid
+  sources:
+  - openapi/streaming-openapi.yml
