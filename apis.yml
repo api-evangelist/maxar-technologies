@@ -286,6 +286,8 @@ apis:
   - type: Package
     url: https://www.npmjs.com/package/@maxar/transform-api
 common:
+- type: AgenticAccess
+  url: agentic-access/maxar-technologies-agentic-access.yml
 - type: DomainSecurity
   url: security/maxar-technologies-domain-security.yml
 - type: Authentication
