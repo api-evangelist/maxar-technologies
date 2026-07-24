@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Introspection API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Introspection
+  description: Inspect tokens
+paths:
+  /auth/v1/introspect:
+    post:
+      tags:
+      - Introspection
+      summary: Introspect Token
+      description: Return active/inactive status and metadata for a token.
+      operationId: introspectToken
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Token metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Introspection'
+components:
+  schemas:
+    Introspection:
+      type: object
+      properties:
+        active:
+          type: boolean
+        client_id:
+          type: string
+        username:
+          type: string
+        scope:
+          type: string
+        exp:
+          type: integer
+        iat:
+          type: integer
+        sub:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

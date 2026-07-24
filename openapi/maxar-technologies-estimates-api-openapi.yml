@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Estimates API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Estimates
+paths:
+  /estimates:
+    post:
+      tags:
+      - Estimates
+      summary: Estimate Order Cost
+      operationId: estimateOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Estimate
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  estimated_cost:
+                    type: number
+                  currency:
+                    type: string
+                    example: USD
+                  area_km2:
+                    type: number
+                  rate_per_km2:
+                    type: number
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      required:
+      - aoi
+      - items
+      properties:
+        name:
+          type: string
+        aoi:
+          type: object
+          description: GeoJSON geometry
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              catalog_id:
+                type: string
+              collection:
+                type: string
+        delivery:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - s3
+              - gcs
+              - download
+            destination:
+              type: string
+        output_format:
+          type: string
+          enum:
+          - geotiff
+          - jpeg2000
+          - nitf
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

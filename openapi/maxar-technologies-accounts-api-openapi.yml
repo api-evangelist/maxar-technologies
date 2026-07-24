@@ -1,0 +1,75 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Accounts
+paths:
+  /accounts/me:
+    get:
+      tags:
+      - Accounts
+      summary: Get My Account
+      operationId: getMyAccount
+      responses:
+        '200':
+          description: Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /accounts/{accountId}:
+    get:
+      tags:
+      - Accounts
+      summary: Get Account
+      operationId: getAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        org_type:
+          type: string
+          enum:
+          - Commercial
+          - Government
+          - Civil
+          - Defense
+        status:
+          type: string
+          enum:
+          - Active
+          - Suspended
+          - Trial
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

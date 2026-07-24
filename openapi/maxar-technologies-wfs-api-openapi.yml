@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts WFS API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: WFS
+paths:
+  /wfsaccess:
+    get:
+      tags:
+      - WFS
+      summary: WFS GetCapabilities or GetFeature
+      operationId: wfsAccess
+      parameters:
+      - name: service
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - WFS
+      - name: request
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - GetCapabilities
+          - GetFeature
+          - DescribeFeatureType
+      - name: version
+        in: query
+        schema:
+          type: string
+          default: 2.0.0
+      - name: typeNames
+        in: query
+        schema:
+          type: string
+      - name: bbox
+        in: query
+        schema:
+          type: string
+      - name: outputFormat
+        in: query
+        schema:
+          type: string
+          example: application/json
+      - name: count
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: WFS response
+          content:
+            application/json: {}
+            application/xml: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Collections API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Collections
+  description: Browse and inspect collections
+paths:
+  /collections:
+    get:
+      tags:
+      - Collections
+      summary: List Collections
+      description: Enumerate the collections available to the caller (WorldView, Legion, Vivid, etc).
+      operationId: listCollections
+      responses:
+        '200':
+          description: Collection list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+  /collections/{collectionId}:
+    get:
+      tags:
+      - Collections
+      summary: Get Collection
+      description: Retrieve metadata for a single collection.
+      operationId: getCollection
+      parameters:
+      - name: collectionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+  /tasks/{taskId}/collections:
+    get:
+      tags:
+      - Collections
+      summary: List Collections For Task
+      operationId: listTaskCollections
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Collections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection_2'
+components:
+  schemas:
+    Collection:
+      type: object
+      required:
+      - id
+      - type
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - Collection
+        title:
+          type: string
+        description:
+          type: string
+        license:
+          type: string
+        extent:
+          type: object
+        providers:
+          type: array
+          items:
+            type: object
+    Collection_2:
+      type: object
+      properties:
+        id:
+          type: string
+        task_id:
+          type: string
+        platform:
+          type: string
+        collected_at:
+          type: string
+          format: date-time
+        catalog_id:
+          type: string
+        cloud_cover:
+          type: number
+        off_nadir:
+          type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

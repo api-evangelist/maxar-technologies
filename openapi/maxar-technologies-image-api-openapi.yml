@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Image API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Image
+paths:
+  /image:
+    get:
+      tags:
+      - Image
+      summary: Download Full Resolution Image
+      description: Download a full-resolution image of an area of interest, intersecting one or more catalog identifiers.
+      operationId: getImage
+      parameters:
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: image_id
+        in: query
+        schema:
+          type: string
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - jpeg
+          - png
+          - geotiff
+          default: geotiff
+      - name: gsd
+        in: query
+        schema:
+          type: number
+          description: Ground sample distance in metres
+      responses:
+        '200':
+          description: Image binary
+          content:
+            image/tiff: {}
+            image/jpeg: {}
+            image/png: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

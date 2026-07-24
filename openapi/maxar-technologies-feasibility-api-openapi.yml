@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Feasibility API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Feasibility
+paths:
+  /feasibility:
+    post:
+      tags:
+      - Feasibility
+      summary: Check Tasking Feasibility
+      operationId: checkFeasibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeasibilityRequest'
+      responses:
+        '200':
+          description: Feasibility report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feasibility'
+components:
+  schemas:
+    Feasibility:
+      type: object
+      properties:
+        feasible:
+          type: boolean
+        windows:
+          type: array
+          items:
+            type: object
+            properties:
+              start:
+                type: string
+                format: date-time
+              end:
+                type: string
+                format: date-time
+              platform:
+                type: string
+              expected_cloud_cover:
+                type: number
+              expected_off_nadir:
+                type: number
+    FeasibilityRequest:
+      type: object
+      required:
+      - aoi
+      - start
+      - end
+      properties:
+        aoi:
+          type: object
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        platforms:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

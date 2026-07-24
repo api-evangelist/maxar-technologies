@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Events API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Events
+paths:
+  /monitors/{monitorId}/events:
+    get:
+      tags:
+      - Events
+      summary: List Events For Monitor
+      operationId: listEvents
+      parameters:
+      - name: monitorId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: since
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+        monitor_id:
+          type: string
+        type:
+          type: string
+          enum:
+          - new_image
+          - window_closed
+          - detection
+        occurred_at:
+          type: string
+          format: date-time
+        payload:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

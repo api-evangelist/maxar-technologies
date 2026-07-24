@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Credits API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Credits
+paths:
+  /accounts/{accountId}/credits:
+    get:
+      tags:
+      - Credits
+      summary: Get Credit Balance
+      operationId: getCredits
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Credit balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditBalance'
+components:
+  schemas:
+    CreditBalance:
+      type: object
+      properties:
+        account_id:
+          type: string
+        balance:
+          type: number
+        currency:
+          type: string
+          example: USD
+        plan:
+          type: string
+        renews_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

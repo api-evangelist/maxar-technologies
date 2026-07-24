@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts WMS API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: WMS
+paths:
+  /wmsaccess:
+    get:
+      tags:
+      - WMS
+      summary: WMS GetCapabilities or GetMap
+      description: OGC Web Map Service entry point. Use `request=GetCapabilities` to list layers or `request=GetMap` to render an image of an area of interest.
+      operationId: wmsAccess
+      parameters:
+      - name: service
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - WMS
+      - name: request
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - GetCapabilities
+          - GetMap
+          - GetFeatureInfo
+      - name: version
+        in: query
+        schema:
+          type: string
+          default: 1.3.0
+      - name: layers
+        in: query
+        schema:
+          type: string
+      - name: bbox
+        in: query
+        schema:
+          type: string
+      - name: crs
+        in: query
+        schema:
+          type: string
+          example: EPSG:4326
+      - name: width
+        in: query
+        schema:
+          type: integer
+      - name: height
+        in: query
+        schema:
+          type: integer
+      - name: format
+        in: query
+        schema:
+          type: string
+          example: image/jpeg
+      responses:
+        '200':
+          description: WMS response
+          content:
+            image/jpeg: {}
+            image/png: {}
+            application/xml: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

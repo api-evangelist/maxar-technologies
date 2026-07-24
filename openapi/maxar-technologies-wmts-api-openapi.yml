@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts WMTS API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: WMTS
+paths:
+  /wmtsaccess:
+    get:
+      tags:
+      - WMTS
+      summary: WMTS GetCapabilities or GetTile
+      operationId: wmtsAccess
+      parameters:
+      - name: service
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - WMTS
+      - name: request
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - GetCapabilities
+          - GetTile
+      - name: layer
+        in: query
+        schema:
+          type: string
+      - name: tilematrixset
+        in: query
+        schema:
+          type: string
+          example: EPSG:3857
+      - name: tilematrix
+        in: query
+        schema:
+          type: string
+      - name: tilerow
+        in: query
+        schema:
+          type: integer
+      - name: tilecol
+        in: query
+        schema:
+          type: integer
+      - name: format
+        in: query
+        schema:
+          type: string
+          example: image/png
+      responses:
+        '200':
+          description: WMTS response
+          content:
+            image/png: {}
+            image/jpeg: {}
+            application/xml: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

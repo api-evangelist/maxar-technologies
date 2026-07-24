@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services Accounts Search API
+  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  version: 1.0.0
+servers:
+- url: https://api.maxar.com/admin/v1
+  description: Vantor Hub production
+security:
+- bearerAuth: []
+tags:
+- name: Search
+  description: Search and filter imagery and derivatives
+paths:
+  /search:
+    post:
+      tags:
+      - Search
+      summary: Search Items
+      description: STAC-style POST search across collections by geometry, time window and filters.
+      operationId: searchItems
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Item collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+    get:
+      tags:
+      - Search
+      summary: Search Items
+      description: STAC-style GET search with query parameters.
+      operationId: searchItemsGet
+      parameters:
+      - name: bbox
+        in: query
+        schema:
+          type: array
+          items:
+            type: number
+      - name: datetime
+        in: query
+        schema:
+          type: string
+      - name: collections
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+      - name: cloud_cover
+        in: query
+        schema:
+          type: number
+      - name: max_resolution
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Item collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+components:
+  schemas:
+    Link:
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+    Asset:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        type:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+    Item:
+      type: object
+      required:
+      - type
+      - id
+      - geometry
+      - properties
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        stac_version:
+          type: string
+        id:
+          type: string
+        collection:
+          type: string
+        bbox:
+          type: array
+          items:
+            type: number
+        geometry:
+          type: object
+        properties:
+          $ref: '#/components/schemas/ItemProperties'
+        assets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Asset'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ItemCollection:
+      type: object
+      required:
+      - type
+      - features
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        numberReturned:
+          type: integer
+        numberMatched:
+          type: integer
+    SearchRequest:
+      type: object
+      properties:
+        bbox:
+          type: array
+          items:
+            type: number
+          minItems: 4
+          maxItems: 6
+        intersects:
+          type: object
+          description: GeoJSON geometry to intersect
+        datetime:
+          type: string
+          description: RFC3339 datetime or interval
+        collections:
+          type: array
+          items:
+            type: string
+        ids:
+          type: array
+          items:
+            type: string
+        limit:
+          type: integer
+          default: 25
+        query:
+          type: object
+          description: Property filters (cloud_cover, off_nadir, gsd, etc)
+    ItemProperties:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        platform:
+          type: string
+          example: WorldView-3
+        instruments:
+          type: array
+          items:
+            type: string
+        gsd:
+          type: number
+          description: Ground sample distance in metres
+        cloud_cover:
+          type: number
+        off_nadir:
+          type: number
+        sun_elevation:
+          type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
