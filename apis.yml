@@ -18,7 +18,20 @@ description: 'Maxar Technologies was a publicly traded Earth-imaging and space-s
   publish a public STAC catalog of pre-/post-event high-resolution imagery on AWS
   Open Data.'
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/maxar-technologies.png
 tags:
 - Satellite Imagery
 - Earth Observation
@@ -44,169 +57,12 @@ created: '2026-05-22'
 modified: '2026-05-23'
 specificationVersion: '0.19'
 apis:
-- aid: maxar-technologies:authentication
-  name: Vantor Hub Authentication API
-  description: OAuth-style token service that issues bearer access tokens for use
-    with every other Vantor Hub API (Discovery, Account Services, Streaming). Documented
-    at hub.vantor.com/docs/authentication and delivered via the Vantor Hub developer
-    portal (formerly developers.maxar.com).
-  humanURL: https://hub.vantor.com/docs/authentication/
-  baseURL: https://api.maxar.com
-  tags:
-  - Authentication
-  - OAuth
-  - Tokens
-  - Vantor Hub
-  properties:
-  - type: Documentation
-    url: https://hub.vantor.com/docs/authentication/
-  - type: DeveloperPortal
-    url: https://hub.vantor.com/
-  - type: OpenAPI
-    url: openapi/authentication-openapi.yml
-  - type: Capability
-    url: capabilities/shared/authentication.yaml
-  - url: graphql/maxar-technologies-graphql.md
-    type: GraphQL
-- aid: maxar-technologies:discovery
-  name: Vantor Hub Discovery API
-  description: Search and discovery API across Vantor's "125+ petabytes of imagery
-    and derivatives" — high-resolution electro-optical imagery from the WorldView
-    and GeoEye constellations, WorldView Legion (six next-generation satellites launched
-    2024-2026), basemaps and derivative analytic products. STAC-aligned search by
-    area of interest, time window, sensor, cloud cover, resolution and other filters.
-  humanURL: https://hub.vantor.com/docs/discovery/
-  baseURL: https://api.maxar.com/discovery/v1
-  tags:
-  - Discovery
-  - Search
-  - STAC
-  - Imagery
-  - Catalog
-  properties:
-  - type: Documentation
-    url: https://hub.vantor.com/docs/discovery/
-  - type: OpenAPI
-    url: openapi/discovery-openapi.yml
-  - type: Capability
-    url: capabilities/shared/discovery.yaml
-- aid: maxar-technologies:admin
-  name: Vantor Hub Account Services API
-  description: Administrative account-management API for Vantor Hub customers — manage
-    users, roles, organisation entitlements, credit balances and API keys against
-    the Vantor Hub tenant. Documented as the Account Services / Admin API under the
-    Vantor Hub developer portal.
-  humanURL: https://hub.vantor.com/docs/admin/
-  baseURL: https://api.maxar.com/admin/v1
-  tags:
-  - Admin
-  - Accounts
-  - Users
-  - Entitlements
-  properties:
-  - type: Documentation
-    url: https://hub.vantor.com/docs/admin/
-  - type: OpenAPI
-    url: openapi/admin-openapi.yml
-  - type: Capability
-    url: capabilities/shared/admin.yaml
-- aid: maxar-technologies:streaming
-  name: Maxar Geospatial Platform Streaming API
-  description: OGC-standards Streaming services exposing Maxar's current and historical
-    imagery as WMS (Web Map Service), WMTS (Web Map Tile Service) and WFS (Web Feature
-    Service) layers — supports GetCapabilities, GetMap, GetTile, GetFeature and bulk
-    image download. Surfaced through the MGP_SDK Python, Java and R clients.
-  humanURL: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  baseURL: https://securewatch.maxar.com/earthservice
-  tags:
-  - Streaming
-  - WMS
-  - WMTS
-  - WFS
-  - OGC
-  - Imagery
-  properties:
-  - type: Documentation
-    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDKs
-    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
-  - type: OpenAPI
-    url: openapi/streaming-openapi.yml
-  - type: Capability
-    url: capabilities/shared/streaming.yaml
-- aid: maxar-technologies:ordering
-  name: Maxar Geospatial Platform Ordering API
-  description: Order management API for placing, tracking and retrieving deliveries
-    of Maxar archive imagery — supports asynchronous orders against the WorldView
-    / GeoEye / WorldView Legion archive with output to S3 or direct download. Exposed
-    via the MGP_SDK Interface.ordering surface.
-  humanURL: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  baseURL: https://api.maxar.com/order/v1
-  tags:
-  - Ordering
-  - Archive
-  - Imagery
-  - Async
-  properties:
-  - type: Documentation
-    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDKs
-    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
-  - type: OpenAPI
-    url: openapi/ordering-openapi.yml
-  - type: Capability
-    url: capabilities/shared/ordering.yaml
-- aid: maxar-technologies:tasking
-  name: Maxar Geospatial Platform Tasking API
-  description: Real-time tasking API for commissioning new satellite collections over
-    an area of interest using the Vantor Constellation (WorldView-1/2/3, GeoEye-1
-    and the six-satellite WorldView Legion next-generation fleet delivering 30 cm-class
-    native resolution). Supports priority levels, collection windows and delivery
-    targets.
-  humanURL: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  baseURL: https://api.maxar.com/tasking/v1
-  tags:
-  - Tasking
-  - Collection
-  - WorldView Legion
-  - Real-Time
-  properties:
-  - type: Documentation
-    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDKs
-    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
-  - type: OpenAPI
-    url: openapi/tasking-openapi.yml
-  - type: Capability
-    url: capabilities/shared/tasking.yaml
-- aid: maxar-technologies:monitoring
-  name: Maxar Geospatial Platform Monitoring API
-  description: Monitoring API for standing watches over user-defined areas of interest
-    — receive notifications when new imagery is collected, when collection windows
-    close, and when analytic detections fire. Exposed via the MGP_SDK Interface.monitoring
-    surface.
-  humanURL: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  baseURL: https://api.maxar.com/monitoring/v1
-  tags:
-  - Monitoring
-  - Notifications
-  - AOI
-  - Webhooks
-  properties:
-  - type: Documentation
-    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
-  - type: SDKs
-    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
-  - type: OpenAPI
-    url: openapi/monitoring-openapi.yml
-  - type: Capability
-    url: capabilities/shared/monitoring.yaml
 - aid: maxar-technologies:basemaps
   name: Maxar Vivid Basemap API
-  description: Vivid is Maxar's cloud-free, color-balanced basemap product — a global
-    mosaic refreshed from the WorldView archive. The Vivid Basemap API exposes the
-    basemap as OGC tile and feature services through the MGP streaming surface. Documented
-    as part of the Vantor "Dynamic Foundation" product family.
+  description: >-
+    Vivid is Maxar's cloud-free, color-balanced basemap product — a global mosaic refreshed from the WorldView
+    archive. The Vivid Basemap API exposes the basemap as OGC tile and feature services through the MGP
+    streaming surface. Documented as part of the Vantor "Dynamic Foundation" product family.
   humanURL: https://vantor.com/
   baseURL: https://securewatch.maxar.com/earthservice
   tags:
@@ -223,10 +79,10 @@ apis:
     url: capabilities/shared/basemaps.yaml
 - aid: maxar-technologies:catalog
   name: Maxar Content Catalog API
-  description: Legacy Maxar Content Catalog API — the canonical search index against
-    the WorldView / GeoEye / IKONOS / QuickBird archive. Generated from Maxar's published
-    OpenAPI spec (doc.content.maxar.com/maxar-content- catalog.html) and wrapped by
-    the open-source `maxarcat` Python client.
+  description: >-
+    Legacy Maxar Content Catalog API — the canonical search index against the WorldView / GeoEye / IKONOS
+    / QuickBird archive. Generated from Maxar's published OpenAPI spec (doc.content.maxar.com/maxar-content-
+    catalog.html) and wrapped by the open-source `maxarcat` Python client.
   humanURL: https://doc.content.maxar.com/maxar-content-catalog.html
   baseURL: https://api.content.maxar.com/catalog
   tags:
@@ -245,11 +101,11 @@ apis:
     url: capabilities/shared/catalog.yaml
 - aid: maxar-technologies:open-data-stac
   name: Maxar Open Data STAC Catalog
-  description: Free, public STAC (SpatioTemporal Asset Catalog) of pre- and post-event
-    high-resolution Maxar imagery published in support of emergency planning, risk
-    assessment, damage assessment and recovery. Hosted on AWS Open Data as Cloud Optimized
-    GeoTIFFs (COGs) with STAC JSON metadata and mirrored via the community `opengeos/maxar-open-data`
-    index.
+  description: >-
+    Free, public STAC (SpatioTemporal Asset Catalog) of pre- and post-event high-resolution Maxar imagery
+    published in support of emergency planning, risk assessment, damage assessment and recovery. Hosted
+    on AWS Open Data as Cloud Optimized GeoTIFFs (COGs) with STAC JSON metadata and mirrored via the community
+    `opengeos/maxar-open-data` index.
   humanURL: https://github.com/opengeos/maxar-open-data
   baseURL: https://maxar-opendata.s3.amazonaws.com
   tags:
@@ -267,10 +123,10 @@ apis:
     url: https://creativecommons.org/licenses/by-nc/4.0/
 - aid: maxar-technologies:transform-api
   name: Maxar Transform API
-  description: Transform API exposes image transformation primitives (reproject, tile,
-    mosaic, format-convert) over Maxar imagery. A TypeScript client (@maxar/transform-api)
-    and OpenLayers helpers are published from github.com/Maxar-Corp/transform-api-ts
-    and transform-ol-ts.
+  description: >-
+    Transform API exposes image transformation primitives (reproject, tile, mosaic, format-convert) over
+    Maxar imagery. A TypeScript client (@maxar/transform-api) and OpenLayers helpers are published from
+    github.com/Maxar-Corp/transform-api-ts and transform-ol-ts.
   humanURL: https://github.com/Maxar-Corp/transform-api-ts
   baseURL: https://api.maxar.com/transform/v1
   tags:
@@ -285,7 +141,807 @@ apis:
     url: https://github.com/Maxar-Corp/transform-ol-ts
   - type: Package
     url: https://www.npmjs.com/package/@maxar/transform-api
+- aid: maxar-technologies:maxar-technologies-accounts-api
+  name: Maxar Technologies Accounts API
+  description: The Accounts API from Maxar Technologies — 2 operation(s) for accounts.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-api-keys-api
+  name: Maxar Technologies API Keys API
+  description: The API Keys API from Maxar Technologies — 2 operation(s) for api keys.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-collections-api
+  name: Maxar Technologies Collections API
+  description: Browse and inspect collections
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-collections-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-credits-api
+  name: Maxar Technologies Credits API
+  description: The Credits API from Maxar Technologies — 1 operation(s) for credits.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-credits-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-deliveries-api
+  name: Maxar Technologies Deliveries API
+  description: The Deliveries API from Maxar Technologies — 1 operation(s) for deliveries.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Deliveries
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-deliveries-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-estimates-api
+  name: Maxar Technologies Estimates API
+  description: The Estimates API from Maxar Technologies — 1 operation(s) for estimates.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Estimates
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-estimates-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-events-api
+  name: Maxar Technologies Events API
+  description: The Events API from Maxar Technologies — 1 operation(s) for events.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-events-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-feasibility-api
+  name: Maxar Technologies Feasibility API
+  description: The Feasibility API from Maxar Technologies — 1 operation(s) for feasibility.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Feasibility
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-feasibility-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-image-api
+  name: Maxar Technologies Image API
+  description: The Image API from Maxar Technologies — 1 operation(s) for image.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Image
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-image-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-introspection-api
+  name: Maxar Technologies Introspection API
+  description: Inspect tokens
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Introspection
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-introspection-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-items-api
+  name: Maxar Technologies Items API
+  description: Retrieve individual STAC items
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-items-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-monitors-api
+  name: Maxar Technologies Monitors API
+  description: The Monitors API from Maxar Technologies — 2 operation(s) for monitors.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Monitors
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-monitors-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-orders-api
+  name: Maxar Technologies Orders API
+  description: The Orders API from Maxar Technologies — 2 operation(s) for orders.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-orders-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-search-api
+  name: Maxar Technologies Search API
+  description: Search and filter imagery and derivatives
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-search-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-subscriptions-api
+  name: Maxar Technologies Subscriptions API
+  description: The Subscriptions API from Maxar Technologies — 1 operation(s) for subscriptions.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-tasks-api
+  name: Maxar Technologies Tasks API
+  description: The Tasks API from Maxar Technologies — 2 operation(s) for tasks.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-tokens-api
+  name: Maxar Technologies Tokens API
+  description: Issue and refresh access tokens
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-users-api
+  name: Maxar Technologies Users API
+  description: The Users API from Maxar Technologies — 2 operation(s) for users.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-users-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-wfs-api
+  name: Maxar Technologies WFS API
+  description: The WFS API from Maxar Technologies — 1 operation(s) for wfs.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - WFS
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-wfs-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-wms-api
+  name: Maxar Technologies WMS API
+  description: The WMS API from Maxar Technologies — 1 operation(s) for wms.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - WMS
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-wms-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
+- aid: maxar-technologies:maxar-technologies-wmts-api
+  name: Maxar Technologies WMTS API
+  description: The WMTS API from Maxar Technologies — 1 operation(s) for wmts.
+  humanURL: https://hub.vantor.com/docs/authentication/
+  baseURL: https://api.maxar.com
+  tags:
+  - WMTS
+  properties:
+  - type: OpenAPI
+    url: openapi/maxar-technologies-wmts-api-openapi.yml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/authentication/
+  - type: DeveloperPortal
+    url: https://hub.vantor.com/
+  - type: Capability
+    url: capabilities/shared/authentication.yaml
+  - type: GraphQL
+    url: graphql/maxar-technologies-graphql.md
+  - type: Documentation
+    url: https://hub.vantor.com/docs/discovery/
+  - type: Capability
+    url: capabilities/shared/discovery.yaml
+  - type: Documentation
+    url: https://hub.vantor.com/docs/admin/
+  - type: Capability
+    url: capabilities/shared/admin.yaml
+  - type: Documentation
+    url: https://maxar-geospatial-platform.readthedocs.io/en/latest/
+  - type: SDKs
+    url: https://github.com/Maxar-Corp/maxar-geospatial-platform
+  - type: Capability
+    url: capabilities/shared/streaming.yaml
+  - type: Capability
+    url: capabilities/shared/ordering.yaml
+  - type: Capability
+    url: capabilities/shared/tasking.yaml
+  - type: Capability
+    url: capabilities/shared/monitoring.yaml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/maxar-technologies/overview
 - type: AgenticAccess
   url: agentic-access/maxar-technologies-agentic-access.yml
 - type: DomainSecurity
