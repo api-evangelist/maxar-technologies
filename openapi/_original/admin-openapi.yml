@@ -1,0 +1,242 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Account Services API
+  description: >-
+    Administrative account-management API for Vantor Hub customers — manage
+    users, roles, organisation entitlements, credit balances and API keys.
+    Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin)
+    and Maxar Geospatial Platform `account_service` SDK conventions; field
+    shapes should be confirmed against live Hub responses.
+  version: '1.0.0'
+servers:
+  - url: https://api.maxar.com/admin/v1
+    description: Vantor Hub production
+security:
+  - bearerAuth: []
+tags:
+  - name: Accounts
+  - name: Users
+  - name: Credits
+  - name: API Keys
+paths:
+  /accounts/me:
+    get:
+      tags: [Accounts]
+      summary: Get My Account
+      operationId: getMyAccount
+      responses:
+        '200':
+          description: Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /accounts/{accountId}:
+    get:
+      tags: [Accounts]
+      summary: Get Account
+      operationId: getAccount
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /accounts/{accountId}/users:
+    get:
+      tags: [Users]
+      summary: List Users
+      operationId: listUsers
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: User list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags: [Users]
+      summary: Invite User
+      operationId: inviteUser
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteUserRequest'
+      responses:
+        '201':
+          description: User invited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /accounts/{accountId}/users/{userId}:
+    get:
+      tags: [Users]
+      summary: Get User
+      operationId: getUser
+      parameters:
+        - { name: accountId, in: path, required: true, schema: { type: string } }
+        - { name: userId,    in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags: [Users]
+      summary: Remove User
+      operationId: removeUser
+      parameters:
+        - { name: accountId, in: path, required: true, schema: { type: string } }
+        - { name: userId,    in: path, required: true, schema: { type: string } }
+      responses:
+        '204':
+          description: Removed
+  /accounts/{accountId}/credits:
+    get:
+      tags: [Credits]
+      summary: Get Credit Balance
+      operationId: getCredits
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Credit balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditBalance'
+  /accounts/{accountId}/api-keys:
+    get:
+      tags: [API Keys]
+      summary: List API Keys
+      operationId: listApiKeys
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: API keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+    post:
+      tags: [API Keys]
+      summary: Create API Key
+      operationId: createApiKey
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                scopes:
+                  type: array
+                  items: { type: string }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+  /accounts/{accountId}/api-keys/{keyId}:
+    delete:
+      tags: [API Keys]
+      summary: Revoke API Key
+      operationId: revokeApiKey
+      parameters:
+        - { name: accountId, in: path, required: true, schema: { type: string } }
+        - { name: keyId,     in: path, required: true, schema: { type: string } }
+      responses:
+        '204':
+          description: Revoked
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Account:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        org_type: { type: string, enum: [Commercial, Government, Civil, Defense] }
+        status: { type: string, enum: [Active, Suspended, Trial] }
+        created_at: { type: string, format: date-time }
+    User:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        role: { type: string, enum: [Owner, Admin, Member, Viewer] }
+        status: { type: string, enum: [Invited, Active, Disabled] }
+        created_at: { type: string, format: date-time }
+    InviteUserRequest:
+      type: object
+      required: [email, role]
+      properties:
+        email: { type: string, format: email }
+        role: { type: string, enum: [Admin, Member, Viewer] }
+    CreditBalance:
+      type: object
+      properties:
+        account_id: { type: string }
+        balance: { type: number }
+        currency: { type: string, example: USD }
+        plan: { type: string }
+        renews_at: { type: string, format: date-time }
+    ApiKey:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        prefix: { type: string }
+        secret:
+          type: string
+          description: Returned only on create
+        scopes:
+          type: array
+          items: { type: string }
+        created_at: { type: string, format: date-time }
+        last_used_at: { type: string, format: date-time }

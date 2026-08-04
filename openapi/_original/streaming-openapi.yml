@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: Maxar Geospatial Platform Streaming API
+  description: >-
+    OGC Streaming services exposing Maxar's current and historical imagery as
+    WMS, WMTS and WFS layers — implemented behind securewatch.maxar.com and
+    surfaced through the MGP_SDK Python, Java and R clients. Profile derived
+    from the MGP_SDK README ("Open Geospatial Consortium standard protocols:
+    WFS, WMS, WMTS"); endpoint paths follow standard OGC URL patterns.
+  version: '1.0.0'
+servers:
+  - url: https://securewatch.maxar.com/earthservice
+    description: Maxar SecureWatch
+security:
+  - bearerAuth: []
+  - apiKeyAuth: []
+tags:
+  - name: WMS
+  - name: WMTS
+  - name: WFS
+  - name: Image
+paths:
+  /wmsaccess:
+    get:
+      tags: [WMS]
+      summary: WMS GetCapabilities or GetMap
+      description: >-
+        OGC Web Map Service entry point. Use `request=GetCapabilities` to list
+        layers or `request=GetMap` to render an image of an area of interest.
+      operationId: wmsAccess
+      parameters:
+        - { name: service, in: query, required: true, schema: { type: string, enum: [WMS] } }
+        - { name: request, in: query, required: true, schema: { type: string, enum: [GetCapabilities, GetMap, GetFeatureInfo] } }
+        - { name: version, in: query, schema: { type: string, default: '1.3.0' } }
+        - { name: layers,  in: query, schema: { type: string } }
+        - { name: bbox,    in: query, schema: { type: string } }
+        - { name: crs,     in: query, schema: { type: string, example: EPSG:4326 } }
+        - { name: width,   in: query, schema: { type: integer } }
+        - { name: height,  in: query, schema: { type: integer } }
+        - { name: format,  in: query, schema: { type: string, example: image/jpeg } }
+      responses:
+        '200':
+          description: WMS response
+          content:
+            image/jpeg: {}
+            image/png:  {}
+            application/xml: {}
+  /wmtsaccess:
+    get:
+      tags: [WMTS]
+      summary: WMTS GetCapabilities or GetTile
+      operationId: wmtsAccess
+      parameters:
+        - { name: service,      in: query, required: true, schema: { type: string, enum: [WMTS] } }
+        - { name: request,      in: query, required: true, schema: { type: string, enum: [GetCapabilities, GetTile] } }
+        - { name: layer,        in: query, schema: { type: string } }
+        - { name: tilematrixset, in: query, schema: { type: string, example: EPSG:3857 } }
+        - { name: tilematrix,   in: query, schema: { type: string } }
+        - { name: tilerow,      in: query, schema: { type: integer } }
+        - { name: tilecol,      in: query, schema: { type: integer } }
+        - { name: format,       in: query, schema: { type: string, example: image/png } }
+      responses:
+        '200':
+          description: WMTS response
+          content:
+            image/png:  {}
+            image/jpeg: {}
+            application/xml: {}
+  /wfsaccess:
+    get:
+      tags: [WFS]
+      summary: WFS GetCapabilities or GetFeature
+      operationId: wfsAccess
+      parameters:
+        - { name: service,      in: query, required: true, schema: { type: string, enum: [WFS] } }
+        - { name: request,      in: query, required: true, schema: { type: string, enum: [GetCapabilities, GetFeature, DescribeFeatureType] } }
+        - { name: version,      in: query, schema: { type: string, default: '2.0.0' } }
+        - { name: typeNames,    in: query, schema: { type: string } }
+        - { name: bbox,         in: query, schema: { type: string } }
+        - { name: outputFormat, in: query, schema: { type: string, example: application/json } }
+        - { name: count,        in: query, schema: { type: integer } }
+      responses:
+        '200':
+          description: WFS response
+          content:
+            application/json: {}
+            application/xml:  {}
+  /image:
+    get:
+      tags: [Image]
+      summary: Download Full Resolution Image
+      description: Download a full-resolution image of an area of interest, intersecting one or more catalog identifiers.
+      operationId: getImage
+      parameters:
+        - { name: bbox,      in: query, required: true, schema: { type: string } }
+        - { name: image_id,  in: query, schema: { type: string } }
+        - { name: format,    in: query, schema: { type: string, enum: [jpeg, png, geotiff], default: geotiff } }
+        - { name: gsd,       in: query, schema: { type: number, description: "Ground sample distance in metres" } }
+      responses:
+        '200':
+          description: Image binary
+          content:
+            image/tiff: {}
+            image/jpeg: {}
+            image/png:  {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: connectid

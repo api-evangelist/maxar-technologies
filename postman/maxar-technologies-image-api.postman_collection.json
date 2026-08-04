@@ -1,0 +1,150 @@
+{
+  "info": {
+    "_postman_id": "2730e85d-bcd7-46ef-a2b5-5c10cdb2414f",
+    "name": "Vantor Hub Account Services Accounts Image API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:55.000Z",
+    "updatedAt": "2026-07-28T02:08:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2730e85d-bcd7-46ef-a2b5-5c10cdb2414f"
+  },
+  "item": [
+    {
+      "name": "image",
+      "item": [
+        {
+          "name": "Download Full Resolution Image",
+          "id": "287d45b2-59ab-4555-8493-7268b925eb9e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/tiff"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/image?bbox=<string>&image_id=<string>&format=geotiff&gsd=<number>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "image"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "bbox",
+                  "value": "<string>"
+                },
+                {
+                  "key": "image_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "format",
+                  "value": "geotiff"
+                },
+                {
+                  "key": "gsd",
+                  "value": "<number>"
+                }
+              ]
+            },
+            "description": "Download a full-resolution image of an area of interest, intersecting one or more catalog identifiers."
+          },
+          "response": [
+            {
+              "id": "6aa28771-8fba-4646-ab42-728edaa0e0a0",
+              "name": "Image binary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/tiff"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/image?bbox=<string>&image_id=<string>&format=geotiff&gsd=<number>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "image"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "image_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "geotiff"
+                    },
+                    {
+                      "key": "gsd",
+                      "value": "<number>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/tiff"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-07-28T02:08:55.000Z",
+              "updatedAt": "2026-07-28T02:08:55.000Z",
+              "uid": "35240-6aa28771-8fba-4646-ab42-728edaa0e0a0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:08:55.000Z",
+          "updatedAt": "2026-07-28T02:08:55.000Z",
+          "uid": "35240-287d45b2-59ab-4555-8493-7268b925eb9e"
+        }
+      ],
+      "id": "1be0a12a-1eba-405b-8df4-d419abfbdf2b",
+      "createdAt": "2026-07-28T02:08:55.000Z",
+      "updatedAt": "2026-07-28T02:08:55.000Z",
+      "uid": "35240-1be0a12a-1eba-405b-8df4-d419abfbdf2b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

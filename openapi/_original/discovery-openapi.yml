@@ -1,0 +1,344 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Discovery API
+  description: >-
+    Search and discovery API across Vantor Hub's "125+ petabytes of imagery
+    and derivatives" — WorldView, GeoEye, WorldView Legion archive imagery
+    plus Vivid basemaps and derivative analytic products. STAC-aligned search
+    by area of interest, time window, sensor, cloud cover and resolution.
+    Profile derived from Vantor Hub public docs (hub.vantor.com/docs/discovery)
+    and the open-source `maxarcat` Python client which wraps the published
+    OpenAPI for the Maxar Content Catalog. Endpoint paths should be confirmed
+    against live Vantor responses before production use.
+  version: '1.0.0'
+  contact:
+    name: Vantor Support
+    url: https://hub.vantor.com/docs/contact
+servers:
+  - url: https://api.maxar.com/discovery/v1
+    description: Vantor Hub Discovery production
+security:
+  - bearerAuth: []
+tags:
+  - name: Search
+    description: Search and filter imagery and derivatives
+  - name: Items
+    description: Retrieve individual STAC items
+  - name: Collections
+    description: Browse and inspect collections
+paths:
+  /search:
+    post:
+      tags:
+        - Search
+      summary: Search Items
+      description: STAC-style POST search across collections by geometry, time window and filters.
+      operationId: searchItems
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Item collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+    get:
+      tags:
+        - Search
+      summary: Search Items
+      description: STAC-style GET search with query parameters.
+      operationId: searchItemsGet
+      parameters:
+        - name: bbox
+          in: query
+          schema:
+            type: array
+            items:
+              type: number
+        - name: datetime
+          in: query
+          schema:
+            type: string
+        - name: collections
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+        - name: cloud_cover
+          in: query
+          schema:
+            type: number
+        - name: max_resolution
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Item collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+  /collections:
+    get:
+      tags:
+        - Collections
+      summary: List Collections
+      description: Enumerate the collections available to the caller (WorldView, Legion, Vivid, etc).
+      operationId: listCollections
+      responses:
+        '200':
+          description: Collection list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+  /collections/{collectionId}:
+    get:
+      tags:
+        - Collections
+      summary: Get Collection
+      description: Retrieve metadata for a single collection.
+      operationId: getCollection
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+  /collections/{collectionId}/items:
+    get:
+      tags:
+        - Items
+      summary: List Collection Items
+      description: List items belonging to a single collection.
+      operationId: listCollectionItems
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+        - name: bbox
+          in: query
+          schema:
+            type: array
+            items:
+              type: number
+        - name: datetime
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Item collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+  /collections/{collectionId}/items/{itemId}:
+    get:
+      tags:
+        - Items
+      summary: Get Item
+      description: Retrieve a single STAC item, including asset hrefs.
+      operationId: getItem
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        bbox:
+          type: array
+          items:
+            type: number
+          minItems: 4
+          maxItems: 6
+        intersects:
+          type: object
+          description: GeoJSON geometry to intersect
+        datetime:
+          type: string
+          description: RFC3339 datetime or interval
+        collections:
+          type: array
+          items:
+            type: string
+        ids:
+          type: array
+          items:
+            type: string
+        limit:
+          type: integer
+          default: 25
+        query:
+          type: object
+          description: Property filters (cloud_cover, off_nadir, gsd, etc)
+    ItemCollection:
+      type: object
+      required: [type, features]
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        numberReturned:
+          type: integer
+        numberMatched:
+          type: integer
+    Item:
+      type: object
+      required: [type, id, geometry, properties]
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        stac_version:
+          type: string
+        id:
+          type: string
+        collection:
+          type: string
+        bbox:
+          type: array
+          items:
+            type: number
+        geometry:
+          type: object
+        properties:
+          $ref: '#/components/schemas/ItemProperties'
+        assets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Asset'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ItemProperties:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        platform:
+          type: string
+          example: WorldView-3
+        instruments:
+          type: array
+          items:
+            type: string
+        gsd:
+          type: number
+          description: Ground sample distance in metres
+        cloud_cover:
+          type: number
+        off_nadir:
+          type: number
+        sun_elevation:
+          type: number
+    Asset:
+      type: object
+      required: [href]
+      properties:
+        href:
+          type: string
+        type:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+    Collection:
+      type: object
+      required: [id, type]
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [Collection]
+        title:
+          type: string
+        description:
+          type: string
+        license:
+          type: string
+        extent:
+          type: object
+        providers:
+          type: array
+          items:
+            type: object
+    Link:
+      type: object
+      required: [href, rel]
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

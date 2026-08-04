@@ -1,0 +1,400 @@
+{
+  "info": {
+    "_postman_id": "8ccd0484-85b0-4a0e-bcdd-d1ec64fe25eb",
+    "name": "Vantor Hub Account Services Accounts Tasks API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:07.000Z",
+    "updatedAt": "2026-07-28T02:09:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8ccd0484-85b0-4a0e-bcdd-d1ec64fe25eb"
+  },
+  "item": [
+    {
+      "name": "tasks",
+      "item": [
+        {
+          "name": "{taskId}",
+          "item": [
+            {
+              "name": "Get Task",
+              "id": "119db6fc-9ba9-44ec-8446-6873801c822b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:taskId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "32b2aeb8-d760-4154-af91-4ff845aaf01e",
+                      "key": "taskId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a201038f-1ecf-4a81-adc8-3baea7c0d4d4",
+                  "name": "Task",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"in_progress\",\n  \"priority\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"windows\": [\n    {\n      \"start\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"platform\": \"<string>\"\n    },\n    {\n      \"start\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"platform\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:09:07.000Z",
+                  "updatedAt": "2026-07-28T02:09:07.000Z",
+                  "uid": "35240-a201038f-1ecf-4a81-adc8-3baea7c0d4d4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:09:07.000Z",
+              "updatedAt": "2026-07-28T02:09:07.000Z",
+              "uid": "35240-119db6fc-9ba9-44ec-8446-6873801c822b"
+            },
+            {
+              "name": "Cancel Task",
+              "id": "147939fb-6ad8-48bf-9100-4a6de15d9b8e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:taskId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ede650b6-bdf0-4ff8-9ec2-b513f3f05b1a",
+                      "key": "taskId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ed164afd-1557-4687-88d8-b3a17043297b",
+                  "name": "Cancelled",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:09:07.000Z",
+                  "updatedAt": "2026-07-28T02:09:07.000Z",
+                  "uid": "35240-ed164afd-1557-4687-88d8-b3a17043297b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:09:07.000Z",
+              "updatedAt": "2026-07-28T02:09:07.000Z",
+              "uid": "35240-147939fb-6ad8-48bf-9100-4a6de15d9b8e"
+            }
+          ],
+          "id": "9b4297f1-8006-4232-af0a-67cbcf835cfc",
+          "createdAt": "2026-07-28T02:09:07.000Z",
+          "updatedAt": "2026-07-28T02:09:07.000Z",
+          "uid": "35240-9b4297f1-8006-4232-af0a-67cbcf835cfc"
+        },
+        {
+          "name": "List Tasking Requests",
+          "id": "b3dd7369-8128-45ad-b9c2-ce14c13b4387",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks?status=cancelled&limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "cancelled"
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82ded7f1-c9bf-4376-88b7-2ea2f8707425",
+              "name": "Tasks",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks?status=cancelled&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"planned\",\n    \"priority\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"windows\": [\n      {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\",\n        \"platform\": \"<string>\"\n      },\n      {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\",\n        \"platform\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"in_progress\",\n    \"priority\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"windows\": [\n      {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\",\n        \"platform\": \"<string>\"\n      },\n      {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\",\n        \"platform\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "createdAt": "2026-07-28T02:09:07.000Z",
+              "updatedAt": "2026-07-28T02:09:07.000Z",
+              "uid": "35240-82ded7f1-c9bf-4376-88b7-2ea2f8707425"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:07.000Z",
+          "updatedAt": "2026-07-28T02:09:07.000Z",
+          "uid": "35240-b3dd7369-8128-45ad-b9c2-ce14c13b4387"
+        },
+        {
+          "name": "Submit Tasking Request",
+          "id": "b41d0fb9-ea7f-4f48-8fba-0ec029f0b2f8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aoi\": {},\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"priority\": \"Priority\",\n  \"platforms\": [\n    \"GeoEye-1\",\n    \"WorldView-2\"\n  ],\n  \"max_cloud_cover\": \"<number>\",\n  \"max_off_nadir\": \"<number>\",\n  \"gsd\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "19cc4b69-8588-414c-a95d-e7f7a0cb53d5",
+              "name": "Task submitted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aoi\": {},\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"priority\": \"Priority\",\n  \"platforms\": [\n    \"GeoEye-1\",\n    \"WorldView-2\"\n  ],\n  \"max_cloud_cover\": \"<number>\",\n  \"max_off_nadir\": \"<number>\",\n  \"gsd\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"in_progress\",\n  \"priority\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"windows\": [\n    {\n      \"start\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"platform\": \"<string>\"\n    },\n    {\n      \"start\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"platform\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:09:07.000Z",
+              "updatedAt": "2026-07-28T02:09:07.000Z",
+              "uid": "35240-19cc4b69-8588-414c-a95d-e7f7a0cb53d5"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:07.000Z",
+          "updatedAt": "2026-07-28T02:09:07.000Z",
+          "uid": "35240-b41d0fb9-ea7f-4f48-8fba-0ec029f0b2f8"
+        }
+      ],
+      "id": "7f6dc670-f51c-4a5e-a686-202ac7e375dc",
+      "createdAt": "2026-07-28T02:09:07.000Z",
+      "updatedAt": "2026-07-28T02:09:07.000Z",
+      "uid": "35240-7f6dc670-f51c-4a5e-a686-202ac7e375dc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

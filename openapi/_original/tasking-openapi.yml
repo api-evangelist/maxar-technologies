@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: Maxar Geospatial Platform Tasking API
+  description: >-
+    Real-time tasking API for commissioning new satellite collections against
+    the Vantor Constellation — WorldView-1/2/3, GeoEye-1 and the six-satellite
+    WorldView Legion next-generation fleet launched 2024-2026. Profile derived
+    from MGP_SDK `Interface.tasking` surface and Vantor public product
+    descriptions; field shapes follow common Maxar tasking conventions.
+  version: '1.0.0'
+servers:
+  - url: https://api.maxar.com/tasking/v1
+security:
+  - bearerAuth: []
+tags:
+  - name: Tasks
+  - name: Collections
+  - name: Feasibility
+paths:
+  /tasks:
+    get:
+      tags: [Tasks]
+      summary: List Tasking Requests
+      operationId: listTasks
+      parameters:
+        - { name: status, in: query, schema: { type: string, enum: [submitted, planned, in_progress, complete, cancelled, failed] } }
+        - { name: limit,  in: query, schema: { type: integer, default: 25 } }
+      responses:
+        '200':
+          description: Tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      tags: [Tasks]
+      summary: Submit Tasking Request
+      operationId: submitTask
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '201':
+          description: Task submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /tasks/{taskId}:
+    get:
+      tags: [Tasks]
+      summary: Get Task
+      operationId: getTask
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    delete:
+      tags: [Tasks]
+      summary: Cancel Task
+      operationId: cancelTask
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string } }
+      responses:
+        '204':
+          description: Cancelled
+  /tasks/{taskId}/collections:
+    get:
+      tags: [Collections]
+      summary: List Collections For Task
+      operationId: listTaskCollections
+      parameters:
+        - { name: taskId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Collections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+  /feasibility:
+    post:
+      tags: [Feasibility]
+      summary: Check Tasking Feasibility
+      operationId: checkFeasibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeasibilityRequest'
+      responses:
+        '200':
+          description: Feasibility report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feasibility'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    TaskRequest:
+      type: object
+      required: [aoi, start, end]
+      properties:
+        name: { type: string }
+        aoi:
+          type: object
+          description: GeoJSON geometry
+        start: { type: string, format: date-time }
+        end:   { type: string, format: date-time }
+        priority:
+          type: string
+          enum: [Standard, Priority, Rush, Select]
+        platforms:
+          type: array
+          items:
+            type: string
+            enum: [WorldView-1, WorldView-2, WorldView-3, GeoEye-1, WorldView-Legion]
+        max_cloud_cover:
+          type: number
+        max_off_nadir:
+          type: number
+        gsd:
+          type: number
+    Task:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        status: { type: string, enum: [submitted, planned, in_progress, complete, cancelled, failed] }
+        priority: { type: string }
+        created_at: { type: string, format: date-time }
+        windows:
+          type: array
+          items:
+            type: object
+            properties:
+              start: { type: string, format: date-time }
+              end:   { type: string, format: date-time }
+              platform: { type: string }
+    FeasibilityRequest:
+      type: object
+      required: [aoi, start, end]
+      properties:
+        aoi: { type: object }
+        start: { type: string, format: date-time }
+        end:   { type: string, format: date-time }
+        platforms:
+          type: array
+          items:
+            type: string
+    Feasibility:
+      type: object
+      properties:
+        feasible: { type: boolean }
+        windows:
+          type: array
+          items:
+            type: object
+            properties:
+              start: { type: string, format: date-time }
+              end:   { type: string, format: date-time }
+              platform: { type: string }
+              expected_cloud_cover: { type: number }
+              expected_off_nadir:   { type: number }
+    Collection:
+      type: object
+      properties:
+        id: { type: string }
+        task_id: { type: string }
+        platform: { type: string }
+        collected_at: { type: string, format: date-time }
+        catalog_id: { type: string }
+        cloud_cover: { type: number }
+        off_nadir:   { type: number }

@@ -1,0 +1,218 @@
+{
+  "info": {
+    "_postman_id": "3d64e51a-72c1-43c5-922d-f9a39983396b",
+    "name": "Vantor Hub Account Services Accounts API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:47.000Z",
+    "updatedAt": "2026-07-28T02:08:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3d64e51a-72c1-43c5-922d-f9a39983396b"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "Get My Account",
+              "id": "9b06aa51-fdca-4dfb-bbfc-2bb955c16e08",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "me"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "01228cd9-52c0-4a5c-ab59-3dac99b841f4",
+                  "name": "Account",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_type\": \"Defense\",\n  \"status\": \"Suspended\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:08:48.000Z",
+                  "updatedAt": "2026-07-28T02:08:48.000Z",
+                  "uid": "35240-01228cd9-52c0-4a5c-ab59-3dac99b841f4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:08:48.000Z",
+              "updatedAt": "2026-07-28T02:08:48.000Z",
+              "uid": "35240-9b06aa51-fdca-4dfb-bbfc-2bb955c16e08"
+            }
+          ],
+          "id": "075a91f6-ce96-4cac-9b5a-0fbd179456f3",
+          "createdAt": "2026-07-28T02:08:48.000Z",
+          "updatedAt": "2026-07-28T02:08:48.000Z",
+          "uid": "35240-075a91f6-ce96-4cac-9b5a-0fbd179456f3"
+        },
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "Get Account",
+              "id": "60493145-1b9e-4cb3-b39e-43aef9417223",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1a48a0a2-f5e6-4240-a4b4-10381ac6e6f6",
+                      "key": "accountId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c2adba1e-4328-496f-a63e-7c29ffa3724b",
+                  "name": "Account",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_type\": \"Defense\",\n  \"status\": \"Suspended\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:08:48.000Z",
+                  "updatedAt": "2026-07-28T02:08:48.000Z",
+                  "uid": "35240-c2adba1e-4328-496f-a63e-7c29ffa3724b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:08:48.000Z",
+              "updatedAt": "2026-07-28T02:08:48.000Z",
+              "uid": "35240-60493145-1b9e-4cb3-b39e-43aef9417223"
+            }
+          ],
+          "id": "319e46fe-9b98-4ce7-8788-a2be5bdf1b7f",
+          "createdAt": "2026-07-28T02:08:48.000Z",
+          "updatedAt": "2026-07-28T02:08:48.000Z",
+          "uid": "35240-319e46fe-9b98-4ce7-8788-a2be5bdf1b7f"
+        }
+      ],
+      "id": "5e45eba0-2cb4-47b3-a861-11bbf8de1450",
+      "createdAt": "2026-07-28T02:08:48.000Z",
+      "updatedAt": "2026-07-28T02:08:48.000Z",
+      "uid": "35240-5e45eba0-2cb4-47b3-a861-11bbf8de1450"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

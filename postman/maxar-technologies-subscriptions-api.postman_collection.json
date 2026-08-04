@@ -1,0 +1,211 @@
+{
+  "info": {
+    "_postman_id": "faaed656-494d-4961-a331-65a731b12cd3",
+    "name": "Vantor Hub Account Services Accounts Subscriptions API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:06.000Z",
+    "updatedAt": "2026-07-28T02:09:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-faaed656-494d-4961-a331-65a731b12cd3"
+  },
+  "item": [
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "List Webhook Subscriptions",
+          "id": "fa4c8149-e278-4b55-b3d7-6c438c1737af",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8799ffc2-fed3-4212-9432-0aae1c147bdd",
+              "name": "Subscriptions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"monitor_id\": \"<string>\",\n    \"target_url\": \"<uri>\",\n    \"event_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"monitor_id\": \"<string>\",\n    \"target_url\": \"<uri>\",\n    \"event_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:09:06.000Z",
+              "updatedAt": "2026-07-28T02:09:06.000Z",
+              "uid": "35240-8799ffc2-fed3-4212-9432-0aae1c147bdd"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:06.000Z",
+          "updatedAt": "2026-07-28T02:09:06.000Z",
+          "uid": "35240-fa4c8149-e278-4b55-b3d7-6c438c1737af"
+        },
+        {
+          "name": "Create Webhook Subscription",
+          "id": "4c60ed9f-5fab-4329-ab1a-a9a92dc1ab59",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"monitor_id\": \"<string>\",\n  \"target_url\": \"<uri>\",\n  \"event_types\": [\n    \"detection\",\n    \"detection\"\n  ],\n  \"secret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4323b095-10c2-4443-a0fd-426bd52e9847",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"monitor_id\": \"<string>\",\n  \"target_url\": \"<uri>\",\n  \"event_types\": [\n    \"detection\",\n    \"detection\"\n  ],\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"monitor_id\": \"<string>\",\n  \"target_url\": \"<uri>\",\n  \"event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:09:06.000Z",
+              "updatedAt": "2026-07-28T02:09:06.000Z",
+              "uid": "35240-4323b095-10c2-4443-a0fd-426bd52e9847"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:06.000Z",
+          "updatedAt": "2026-07-28T02:09:06.000Z",
+          "uid": "35240-4c60ed9f-5fab-4329-ab1a-a9a92dc1ab59"
+        }
+      ],
+      "id": "24e3f677-d21f-45bb-97c4-e62d7d35835f",
+      "createdAt": "2026-07-28T02:09:06.000Z",
+      "updatedAt": "2026-07-28T02:09:06.000Z",
+      "uid": "35240-24e3f677-d21f-45bb-97c4-e62d7d35835f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

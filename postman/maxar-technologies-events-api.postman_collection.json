@@ -1,0 +1,166 @@
+{
+  "info": {
+    "_postman_id": "884d35fc-9361-4dc8-a49a-e4fc81b89415",
+    "name": "Vantor Hub Account Services Accounts Events API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:53.000Z",
+    "updatedAt": "2026-07-28T02:08:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-884d35fc-9361-4dc8-a49a-e4fc81b89415"
+  },
+  "item": [
+    {
+      "name": "monitors",
+      "item": [
+        {
+          "name": "{monitorId}",
+          "item": [
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "List Events For Monitor",
+                  "id": "b55ecb73-cd27-4881-b0ee-3693e4e9eab7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:monitorId/events?since=<dateTime>&limit=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":monitorId",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "25"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "9c6cf429-e33d-4b73-a87e-abaa9eab7061",
+                          "key": "monitorId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "26f36550-e058-403d-9147-28e7e49f01be",
+                      "name": "Events",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/monitors/:monitorId/events?since=<dateTime>&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "monitors",
+                            ":monitorId",
+                            "events"
+                          ],
+                          "query": [
+                            {
+                              "key": "since",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "monitorId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"monitor_id\": \"<string>\",\n    \"type\": \"new_image\",\n    \"occurred_at\": \"<dateTime>\",\n    \"payload\": {}\n  },\n  {\n    \"id\": \"<string>\",\n    \"monitor_id\": \"<string>\",\n    \"type\": \"detection\",\n    \"occurred_at\": \"<dateTime>\",\n    \"payload\": {}\n  }\n]",
+                      "createdAt": "2026-07-28T02:08:53.000Z",
+                      "updatedAt": "2026-07-28T02:08:53.000Z",
+                      "uid": "35240-26f36550-e058-403d-9147-28e7e49f01be"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:53.000Z",
+                  "updatedAt": "2026-07-28T02:08:53.000Z",
+                  "uid": "35240-b55ecb73-cd27-4881-b0ee-3693e4e9eab7"
+                }
+              ],
+              "id": "e78b1843-687c-4847-810d-fe56a0fb5664",
+              "createdAt": "2026-07-28T02:08:53.000Z",
+              "updatedAt": "2026-07-28T02:08:53.000Z",
+              "uid": "35240-e78b1843-687c-4847-810d-fe56a0fb5664"
+            }
+          ],
+          "id": "4df9da45-fd9f-4009-bbbe-06f6a14baffa",
+          "createdAt": "2026-07-28T02:08:53.000Z",
+          "updatedAt": "2026-07-28T02:08:53.000Z",
+          "uid": "35240-4df9da45-fd9f-4009-bbbe-06f6a14baffa"
+        }
+      ],
+      "id": "15fe0c95-4fd3-49f7-81f6-44d47539d89e",
+      "createdAt": "2026-07-28T02:08:53.000Z",
+      "updatedAt": "2026-07-28T02:08:53.000Z",
+      "uid": "35240-15fe0c95-4fd3-49f7-81f6-44d47539d89e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

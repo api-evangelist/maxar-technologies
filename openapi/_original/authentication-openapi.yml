@@ -1,0 +1,205 @@
+openapi: 3.0.3
+info:
+  title: Vantor Hub Authentication API
+  description: >-
+    Token-issuance service for Vantor Hub (formerly Maxar Developer Portal).
+    Exchanges client credentials for bearer access tokens that authorize every
+    other Hub API (Discovery, Account Services, Streaming). Documented at
+    hub.vantor.com/docs/authentication. Profile derived by API Evangelist from
+    Vantor Hub public docs; field shapes mirror common OAuth 2.0 client
+    credentials and Maxar/MGP_SDK conventions and should be confirmed against
+    live Vantor Hub responses before production use.
+  version: '1.0.0'
+  contact:
+    name: Vantor Support
+    url: https://hub.vantor.com/docs/contact
+  license:
+    name: Vantor Hub Terms of Service
+    url: https://vantor.com/
+servers:
+  - url: https://api.maxar.com
+    description: Vantor Hub production
+tags:
+  - name: Tokens
+    description: Issue and refresh access tokens
+  - name: Introspection
+    description: Inspect tokens
+paths:
+  /auth/v1/token:
+    post:
+      tags:
+        - Tokens
+      summary: Issue Access Token
+      description: >-
+        Exchange client credentials (or a refresh token) for a short-lived
+        bearer access token. Send `application/x-www-form-urlencoded` body
+        with `grant_type=client_credentials` plus `client_id` and
+        `client_secret`, or `grant_type=refresh_token` plus `refresh_token`.
+      operationId: issueToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Invalid client credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/v1/token/refresh:
+    post:
+      tags:
+        - Tokens
+      summary: Refresh Access Token
+      description: Exchange a refresh token for a new access token.
+      operationId: refreshToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        '200':
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid refresh token
+  /auth/v1/token/revoke:
+    post:
+      tags:
+        - Tokens
+      summary: Revoke Token
+      description: Revoke an access or refresh token.
+      operationId: revokeToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token:
+                  type: string
+                token_type_hint:
+                  type: string
+                  enum: [access_token, refresh_token]
+      responses:
+        '200':
+          description: Token revoked
+  /auth/v1/introspect:
+    post:
+      tags:
+        - Introspection
+      summary: Introspect Token
+      description: Return active/inactive status and metadata for a token.
+      operationId: introspectToken
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Token metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Introspection'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    TokenRequest:
+      type: object
+      required: [grant_type]
+      properties:
+        grant_type:
+          type: string
+          enum: [client_credentials, refresh_token, password]
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    TokenResponse:
+      type: object
+      required: [access_token, token_type, expires_in]
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 3600
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    Introspection:
+      type: object
+      properties:
+        active:
+          type: boolean
+        client_id:
+          type: string
+        username:
+          type: string
+        scope:
+          type: string
+        exp:
+          type: integer
+        iat:
+          type: integer
+        sub:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string

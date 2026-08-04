@@ -1,0 +1,183 @@
+{
+  "info": {
+    "_postman_id": "acc7ef17-72cc-43ce-bc8d-b2ab1ee8c6b6",
+    "name": "Vantor Hub Account Services Accounts WMTS API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:12.000Z",
+    "updatedAt": "2026-07-28T02:09:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-acc7ef17-72cc-43ce-bc8d-b2ab1ee8c6b6"
+  },
+  "item": [
+    {
+      "name": "wmtsaccess",
+      "item": [
+        {
+          "name": "WMTS GetCapabilities or GetTile",
+          "id": "9d498252-9ebe-41ce-b4fa-851a0dd177ef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wmtsaccess?service=WMTS&request=GetCapabilities&layer=<string>&tilematrixset=<string>&tilematrix=<string>&tilerow=<integer>&tilecol=<integer>&format=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wmtsaccess"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "service",
+                  "value": "WMTS"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "request",
+                  "value": "GetCapabilities"
+                },
+                {
+                  "key": "layer",
+                  "value": "<string>"
+                },
+                {
+                  "key": "tilematrixset",
+                  "value": "<string>"
+                },
+                {
+                  "key": "tilematrix",
+                  "value": "<string>"
+                },
+                {
+                  "key": "tilerow",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "tilecol",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd8b3699-4eec-49c4-a8f7-3217dc7881bd",
+              "name": "WMTS response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/wmtsaccess?service=WMTS&request=GetCapabilities&layer=<string>&tilematrixset=<string>&tilematrix=<string>&tilerow=<integer>&tilecol=<integer>&format=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wmtsaccess"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "service",
+                      "value": "WMTS"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "request",
+                      "value": "GetCapabilities"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilematrixset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilematrix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilerow",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tilecol",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-07-28T02:09:12.000Z",
+              "updatedAt": "2026-07-28T02:09:12.000Z",
+              "uid": "35240-bd8b3699-4eec-49c4-a8f7-3217dc7881bd"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:12.000Z",
+          "updatedAt": "2026-07-28T02:09:12.000Z",
+          "uid": "35240-9d498252-9ebe-41ce-b4fa-851a0dd177ef"
+        }
+      ],
+      "id": "a9f7c7d2-7ab7-4567-b4c9-725e4b0b0531",
+      "createdAt": "2026-07-28T02:09:12.000Z",
+      "updatedAt": "2026-07-28T02:09:12.000Z",
+      "uid": "35240-a9f7c7d2-7ab7-4567-b4c9-725e4b0b0531"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

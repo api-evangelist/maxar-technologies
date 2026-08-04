@@ -1,0 +1,643 @@
+{
+  "info": {
+    "_postman_id": "deff0ac2-80d1-4ffb-8ade-6752f8e9bbaa",
+    "name": "Vantor Hub Account Services Accounts Tokens API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:08.000Z",
+    "updatedAt": "2026-07-28T02:09:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-deff0ac2-80d1-4ffb-8ade-6752f8e9bbaa"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "refresh",
+                  "item": [
+                    {
+                      "name": "Refresh Access Token",
+                      "id": "cd4d07d2-18f1-434b-a46d-c45a351f518a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/v1/token/refresh",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "v1",
+                            "token",
+                            "refresh"
+                          ]
+                        },
+                        "description": "Exchange a refresh token for a new access token."
+                      },
+                      "response": [
+                        {
+                          "id": "1a54f5af-c93f-4a93-8b22-89af6df20eaa",
+                          "name": "Token refreshed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/v1/token/refresh",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "v1",
+                                "token",
+                                "refresh"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\",\n  \"scope\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:09:08.000Z",
+                          "updatedAt": "2026-07-28T02:09:08.000Z",
+                          "uid": "35240-1a54f5af-c93f-4a93-8b22-89af6df20eaa"
+                        },
+                        {
+                          "id": "e3812b95-e6ef-43b8-acd5-5ab4e71230ad",
+                          "name": "Invalid refresh token",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/v1/token/refresh",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "v1",
+                                "token",
+                                "refresh"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:09:08.000Z",
+                          "updatedAt": "2026-07-28T02:09:08.000Z",
+                          "uid": "35240-e3812b95-e6ef-43b8-acd5-5ab4e71230ad"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:09:08.000Z",
+                      "updatedAt": "2026-07-28T02:09:08.000Z",
+                      "uid": "35240-cd4d07d2-18f1-434b-a46d-c45a351f518a"
+                    }
+                  ],
+                  "id": "5fe00780-4b5c-42ea-a75e-b50522b58afc",
+                  "createdAt": "2026-07-28T02:09:08.000Z",
+                  "updatedAt": "2026-07-28T02:09:08.000Z",
+                  "uid": "35240-5fe00780-4b5c-42ea-a75e-b50522b58afc"
+                },
+                {
+                  "name": "revoke",
+                  "item": [
+                    {
+                      "name": "Revoke Token",
+                      "id": "41cf3704-9730-4ca3-b094-78601a93a29b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"token\": \"<string>\",\n  \"token_type_hint\": \"refresh_token\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/v1/token/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "v1",
+                            "token",
+                            "revoke"
+                          ]
+                        },
+                        "description": "Revoke an access or refresh token."
+                      },
+                      "response": [
+                        {
+                          "id": "2207bf31-2edc-49b7-bc8b-21737bd807df",
+                          "name": "Token revoked",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"token\": \"<string>\",\n  \"token_type_hint\": \"refresh_token\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/v1/token/revoke",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "v1",
+                                "token",
+                                "revoke"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:09:08.000Z",
+                          "updatedAt": "2026-07-28T02:09:08.000Z",
+                          "uid": "35240-2207bf31-2edc-49b7-bc8b-21737bd807df"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:09:08.000Z",
+                      "updatedAt": "2026-07-28T02:09:08.000Z",
+                      "uid": "35240-41cf3704-9730-4ca3-b094-78601a93a29b"
+                    }
+                  ],
+                  "id": "ce7e8232-82aa-4d3e-aa50-aaee8ea83bf1",
+                  "createdAt": "2026-07-28T02:09:08.000Z",
+                  "updatedAt": "2026-07-28T02:09:08.000Z",
+                  "uid": "35240-ce7e8232-82aa-4d3e-aa50-aaee8ea83bf1"
+                },
+                {
+                  "name": "Issue Access Token",
+                  "id": "cbe7b62d-8721-4365-bca2-3f58f0779cbb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        },
+                        {
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "username",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "password",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/v1/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "v1",
+                        "token"
+                      ]
+                    },
+                    "description": "Exchange client credentials (or a refresh token) for a short-lived bearer access token. Send `application/x-www-form-urlencoded` body with `grant_type=client_credentials` plus `client_id` and `client_secret`, or `grant_type=refresh_token` plus `refresh_token`."
+                  },
+                  "response": [
+                    {
+                      "id": "6d3939a4-65ac-4410-bf13-03abc55b5178",
+                      "name": "Token issued",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "grant_type",
+                              "value": "client_credentials"
+                            },
+                            {
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "scope",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/v1/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "v1",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\",\n  \"scope\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:09:08.000Z",
+                      "updatedAt": "2026-07-28T02:09:08.000Z",
+                      "uid": "35240-6d3939a4-65ac-4410-bf13-03abc55b5178"
+                    },
+                    {
+                      "id": "15edfd17-aa55-44ac-bec2-245b39165ace",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "grant_type",
+                              "value": "client_credentials"
+                            },
+                            {
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "scope",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/v1/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "v1",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:09:08.000Z",
+                      "updatedAt": "2026-07-28T02:09:08.000Z",
+                      "uid": "35240-15edfd17-aa55-44ac-bec2-245b39165ace"
+                    },
+                    {
+                      "id": "fb64d297-4efa-4445-94a0-d6c210bf36d3",
+                      "name": "Invalid client credentials",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "grant_type",
+                              "value": "client_credentials"
+                            },
+                            {
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "scope",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/v1/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "v1",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:09:08.000Z",
+                      "updatedAt": "2026-07-28T02:09:08.000Z",
+                      "uid": "35240-fb64d297-4efa-4445-94a0-d6c210bf36d3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:09:08.000Z",
+                  "updatedAt": "2026-07-28T02:09:08.000Z",
+                  "uid": "35240-cbe7b62d-8721-4365-bca2-3f58f0779cbb"
+                }
+              ],
+              "id": "7c0e57d1-f75e-47b3-8f8e-621805b1934f",
+              "createdAt": "2026-07-28T02:09:08.000Z",
+              "updatedAt": "2026-07-28T02:09:08.000Z",
+              "uid": "35240-7c0e57d1-f75e-47b3-8f8e-621805b1934f"
+            }
+          ],
+          "id": "0f6160e2-8030-4d86-bd8a-b0e5e01aac43",
+          "createdAt": "2026-07-28T02:09:08.000Z",
+          "updatedAt": "2026-07-28T02:09:08.000Z",
+          "uid": "35240-0f6160e2-8030-4d86-bd8a-b0e5e01aac43"
+        }
+      ],
+      "id": "405f5347-7b38-4c11-a1e1-7ffc551056fe",
+      "createdAt": "2026-07-28T02:09:08.000Z",
+      "updatedAt": "2026-07-28T02:09:08.000Z",
+      "uid": "35240-405f5347-7b38-4c11-a1e1-7ffc551056fe"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

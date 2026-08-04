@@ -1,0 +1,273 @@
+{
+  "info": {
+    "_postman_id": "98a776ef-9619-4ae9-bb52-d02f8f2725db",
+    "name": "Vantor Hub Account Services Accounts Search API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:04.000Z",
+    "updatedAt": "2026-07-28T02:09:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98a776ef-9619-4ae9-bb52-d02f8f2725db"
+  },
+  "item": [
+    {
+      "name": "search",
+      "item": [
+        {
+          "name": "Search Items",
+          "id": "adc4c836-1606-446b-9748-0a82be612d18",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bbox\": [\n    \"<number>\",\n    \"<number>\",\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"intersects\": {},\n  \"datetime\": \"<string>\",\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 25,\n  \"query\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search"
+              ]
+            },
+            "description": "STAC-style POST search across collections by geometry, time window and filters."
+          },
+          "response": [
+            {
+              "id": "1d9ec13c-0193-40f4-a45e-2008bab44488",
+              "name": "Item collection",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    \"<number>\",\n    \"<number>\",\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"intersects\": {},\n  \"datetime\": \"<string>\",\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 25,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "search"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"<string>\",\n      \"geometry\": {},\n      \"properties\": {\n        \"datetime\": \"<dateTime>\",\n        \"platform\": \"<string>\",\n        \"instruments\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"gsd\": \"<number>\",\n        \"cloud_cover\": \"<number>\",\n        \"off_nadir\": \"<number>\",\n        \"sun_elevation\": \"<number>\"\n      },\n      \"stac_version\": \"<string>\",\n      \"collection\": \"<string>\",\n      \"bbox\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"assets\": {\n        \"ad__fb\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"<string>\",\n      \"geometry\": {},\n      \"properties\": {\n        \"datetime\": \"<dateTime>\",\n        \"platform\": \"<string>\",\n        \"instruments\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"gsd\": \"<number>\",\n        \"cloud_cover\": \"<number>\",\n        \"off_nadir\": \"<number>\",\n        \"sun_elevation\": \"<number>\"\n      },\n      \"stac_version\": \"<string>\",\n      \"collection\": \"<string>\",\n      \"bbox\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"assets\": {\n        \"ipsum_375\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        },\n        \"utb\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        },\n        \"irure_b\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        },\n        \"magna_dc\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"numberReturned\": \"<integer>\",\n  \"numberMatched\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:09:05.000Z",
+              "updatedAt": "2026-07-28T02:09:05.000Z",
+              "uid": "35240-1d9ec13c-0193-40f4-a45e-2008bab44488"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:05.000Z",
+          "updatedAt": "2026-07-28T02:09:05.000Z",
+          "uid": "35240-adc4c836-1606-446b-9748-0a82be612d18"
+        },
+        {
+          "name": "Search Items",
+          "id": "cac2bd98-fc08-4740-90b1-c2ced4417c7a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/search?bbox=<number>&bbox=<number>&datetime=<string>&collections=<string>&collections=<string>&limit=25&cloud_cover=<number>&max_resolution=<number>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "bbox",
+                  "value": "<number>"
+                },
+                {
+                  "key": "bbox",
+                  "value": "<number>"
+                },
+                {
+                  "key": "datetime",
+                  "value": "<string>"
+                },
+                {
+                  "key": "collections",
+                  "value": "<string>"
+                },
+                {
+                  "key": "collections",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "key": "cloud_cover",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_resolution",
+                  "value": "<number>"
+                }
+              ]
+            },
+            "description": "STAC-style GET search with query parameters."
+          },
+          "response": [
+            {
+              "id": "dca96fb7-a032-47bb-b982-47dc6de8cb5b",
+              "name": "Item collection",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/search?bbox=<number>&datetime=<string>&collections=<string>&limit=25&cloud_cover=<number>&max_resolution=<number>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "collections",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "cloud_cover",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_resolution",
+                      "value": "<number>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"<string>\",\n      \"geometry\": {},\n      \"properties\": {\n        \"datetime\": \"<dateTime>\",\n        \"platform\": \"<string>\",\n        \"instruments\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"gsd\": \"<number>\",\n        \"cloud_cover\": \"<number>\",\n        \"off_nadir\": \"<number>\",\n        \"sun_elevation\": \"<number>\"\n      },\n      \"stac_version\": \"<string>\",\n      \"collection\": \"<string>\",\n      \"bbox\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"assets\": {\n        \"ad__fb\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"<string>\",\n      \"geometry\": {},\n      \"properties\": {\n        \"datetime\": \"<dateTime>\",\n        \"platform\": \"<string>\",\n        \"instruments\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"gsd\": \"<number>\",\n        \"cloud_cover\": \"<number>\",\n        \"off_nadir\": \"<number>\",\n        \"sun_elevation\": \"<number>\"\n      },\n      \"stac_version\": \"<string>\",\n      \"collection\": \"<string>\",\n      \"bbox\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"assets\": {\n        \"ipsum_375\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        },\n        \"utb\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        },\n        \"irure_b\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        },\n        \"magna_dc\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"title\": \"<string>\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"type\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"numberReturned\": \"<integer>\",\n  \"numberMatched\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:09:05.000Z",
+              "updatedAt": "2026-07-28T02:09:05.000Z",
+              "uid": "35240-dca96fb7-a032-47bb-b982-47dc6de8cb5b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:05.000Z",
+          "updatedAt": "2026-07-28T02:09:05.000Z",
+          "uid": "35240-cac2bd98-fc08-4740-90b1-c2ced4417c7a"
+        }
+      ],
+      "id": "b62a2bbc-4956-4bc1-b530-734bd2005c10",
+      "createdAt": "2026-07-28T02:09:05.000Z",
+      "updatedAt": "2026-07-28T02:09:05.000Z",
+      "uid": "35240-b62a2bbc-4956-4bc1-b530-734bd2005c10"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

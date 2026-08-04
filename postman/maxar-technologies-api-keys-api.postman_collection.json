@@ -1,0 +1,358 @@
+{
+  "info": {
+    "_postman_id": "3f21ccc1-e0a9-4905-a977-cff0d135b245",
+    "name": "Vantor Hub Account Services Accounts API Keys API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:48.000Z",
+    "updatedAt": "2026-07-28T02:08:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3f21ccc1-e0a9-4905-a977-cff0d135b245"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "api-keys",
+              "item": [
+                {
+                  "name": "{keyId}",
+                  "item": [
+                    {
+                      "name": "Revoke API Key",
+                      "id": "c6ecadde-fce3-40ac-b60f-da95c2e5c933",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/api-keys/:keyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "api-keys",
+                            ":keyId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "90930299-7d3b-4b6e-94ec-f5099e0c0fbd",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "2d4a3aa8-67ea-4723-89dd-e874141550a6",
+                              "key": "keyId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "bfe4009d-fcf5-4be4-affa-b2f234fafc7c",
+                          "name": "Revoked",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/api-keys/:keyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "api-keys",
+                                ":keyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "keyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:08:49.000Z",
+                          "updatedAt": "2026-07-28T02:08:49.000Z",
+                          "uid": "35240-bfe4009d-fcf5-4be4-affa-b2f234fafc7c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:49.000Z",
+                      "updatedAt": "2026-07-28T02:08:49.000Z",
+                      "uid": "35240-c6ecadde-fce3-40ac-b60f-da95c2e5c933"
+                    }
+                  ],
+                  "id": "40e4d1fa-d48f-43d8-96f3-f07cdba0be25",
+                  "createdAt": "2026-07-28T02:08:49.000Z",
+                  "updatedAt": "2026-07-28T02:08:49.000Z",
+                  "uid": "35240-40e4d1fa-d48f-43d8-96f3-f07cdba0be25"
+                },
+                {
+                  "name": "List API Keys",
+                  "id": "91c117e3-858c-4050-9e35-e28c8e2e4e4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/api-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "api-keys"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8e89ad89-96fa-44f8-90c1-f3c3c3fee700",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "bc84794c-4c8c-4f63-a6ab-e6b9139c2f70",
+                      "name": "API keys",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "api-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"scopes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"created_at\": \"<dateTime>\",\n    \"last_used_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"prefix\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"scopes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"created_at\": \"<dateTime>\",\n    \"last_used_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:08:49.000Z",
+                      "updatedAt": "2026-07-28T02:08:49.000Z",
+                      "uid": "35240-bc84794c-4c8c-4f63-a6ab-e6b9139c2f70"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:49.000Z",
+                  "updatedAt": "2026-07-28T02:08:49.000Z",
+                  "uid": "35240-91c117e3-858c-4050-9e35-e28c8e2e4e4e"
+                },
+                {
+                  "name": "Create API Key",
+                  "id": "ed9ddd75-88e4-4532-b896-bd0a9b6de298",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/api-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "api-keys"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e9d9902a-5e63-439b-9c4e-92dc303722e9",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "11867cd9-d1f9-4a36-a7ad-80f12ecfc6db",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "api-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"last_used_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:08:49.000Z",
+                      "updatedAt": "2026-07-28T02:08:49.000Z",
+                      "uid": "35240-11867cd9-d1f9-4a36-a7ad-80f12ecfc6db"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:49.000Z",
+                  "updatedAt": "2026-07-28T02:08:49.000Z",
+                  "uid": "35240-ed9ddd75-88e4-4532-b896-bd0a9b6de298"
+                }
+              ],
+              "id": "2e22e1db-5a7c-4c3f-a27a-a77c5f328121",
+              "createdAt": "2026-07-28T02:08:49.000Z",
+              "updatedAt": "2026-07-28T02:08:49.000Z",
+              "uid": "35240-2e22e1db-5a7c-4c3f-a27a-a77c5f328121"
+            }
+          ],
+          "id": "8bc0a9f6-c0d8-4472-aca6-40ca6e8f0d84",
+          "createdAt": "2026-07-28T02:08:49.000Z",
+          "updatedAt": "2026-07-28T02:08:49.000Z",
+          "uid": "35240-8bc0a9f6-c0d8-4472-aca6-40ca6e8f0d84"
+        }
+      ],
+      "id": "e58315e8-5c77-4537-abaf-72895f8adee4",
+      "createdAt": "2026-07-28T02:08:49.000Z",
+      "updatedAt": "2026-07-28T02:08:49.000Z",
+      "uid": "35240-e58315e8-5c77-4537-abaf-72895f8adee4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "info": {
+    "_postman_id": "084f9953-2e46-46e0-b4f8-35be4c109c4b",
+    "name": "Vantor Hub Account Services Accounts Estimates API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:52.000Z",
+    "updatedAt": "2026-07-28T02:08:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-084f9953-2e46-46e0-b4f8-35be4c109c4b"
+  },
+  "item": [
+    {
+      "name": "estimates",
+      "item": [
+        {
+          "name": "Estimate Order Cost",
+          "id": "d39369a1-f5a9-4830-8ba6-cec6cb6c7ba7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aoi\": {},\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"gcs\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"jpeg2000\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/estimates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "estimates"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a9df4b10-70ca-4aac-a6c1-8a2f22c709f0",
+              "name": "Estimate",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aoi\": {},\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"gcs\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"jpeg2000\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/estimates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "estimates"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"estimated_cost\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"area_km2\": \"<number>\",\n  \"rate_per_km2\": \"<number>\"\n}",
+              "createdAt": "2026-07-28T02:08:53.000Z",
+              "updatedAt": "2026-07-28T02:08:53.000Z",
+              "uid": "35240-a9df4b10-70ca-4aac-a6c1-8a2f22c709f0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:08:52.000Z",
+          "updatedAt": "2026-07-28T02:08:52.000Z",
+          "uid": "35240-d39369a1-f5a9-4830-8ba6-cec6cb6c7ba7"
+        }
+      ],
+      "id": "f9c623af-b693-419e-b742-bd7c8bee8027",
+      "createdAt": "2026-07-28T02:08:52.000Z",
+      "updatedAt": "2026-07-28T02:08:52.000Z",
+      "uid": "35240-f9c623af-b693-419e-b742-bd7c8bee8027"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "ce131a6b-2c7b-4230-8574-f92ca2bab852",
+    "name": "Vantor Hub Account Services Accounts Deliveries API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:51.000Z",
+    "updatedAt": "2026-07-28T02:08:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce131a6b-2c7b-4230-8574-f92ca2bab852"
+  },
+  "item": [
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "{orderId}",
+          "item": [
+            {
+              "name": "deliveries",
+              "item": [
+                {
+                  "name": "List Deliveries",
+                  "id": "fd061dc7-7671-4518-8f67-097a7603ffb7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId/deliveries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId",
+                        "deliveries"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f6dfe809-7244-4fe7-ae2a-2aba495c8c2a",
+                          "key": "orderId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "86b83dc8-7487-4616-9846-cd963fffb003",
+                      "name": "Deliveries",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:orderId/deliveries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":orderId",
+                            "deliveries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orderId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"order_id\": \"<string>\",\n    \"status\": \"in_progress\",\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"size_bytes\": \"<integer>\",\n    \"delivered_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"order_id\": \"<string>\",\n    \"status\": \"in_progress\",\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"size_bytes\": \"<integer>\",\n    \"delivered_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:08:52.000Z",
+                      "updatedAt": "2026-07-28T02:08:52.000Z",
+                      "uid": "35240-86b83dc8-7487-4616-9846-cd963fffb003"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:52.000Z",
+                  "updatedAt": "2026-07-28T02:08:52.000Z",
+                  "uid": "35240-fd061dc7-7671-4518-8f67-097a7603ffb7"
+                }
+              ],
+              "id": "f3207ed9-c2b9-4167-a594-016854f60078",
+              "createdAt": "2026-07-28T02:08:52.000Z",
+              "updatedAt": "2026-07-28T02:08:52.000Z",
+              "uid": "35240-f3207ed9-c2b9-4167-a594-016854f60078"
+            }
+          ],
+          "id": "d01ed038-9fc3-4c32-bdbd-355ca00ff1ef",
+          "createdAt": "2026-07-28T02:08:52.000Z",
+          "updatedAt": "2026-07-28T02:08:52.000Z",
+          "uid": "35240-d01ed038-9fc3-4c32-bdbd-355ca00ff1ef"
+        }
+      ],
+      "id": "ab2b2fde-c240-472d-b68a-67e1ad259893",
+      "createdAt": "2026-07-28T02:08:52.000Z",
+      "updatedAt": "2026-07-28T02:08:52.000Z",
+      "uid": "35240-ab2b2fde-c240-472d-b68a-67e1ad259893"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

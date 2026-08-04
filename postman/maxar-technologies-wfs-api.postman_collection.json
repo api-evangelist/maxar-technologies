@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "7941b316-0714-4be8-9544-1a5ab34e4757",
+    "name": "Vantor Hub Account Services Accounts WFS API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:10.000Z",
+    "updatedAt": "2026-07-28T02:09:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7941b316-0714-4be8-9544-1a5ab34e4757"
+  },
+  "item": [
+    {
+      "name": "wfsaccess",
+      "item": [
+        {
+          "name": "WFS GetCapabilities or GetFeature",
+          "id": "5aa8f60f-181e-4dde-bed5-eec82cbe727d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wfsaccess?service=WFS&request=GetCapabilities&version=2.0.0&typeNames=<string>&bbox=<string>&outputFormat=<string>&count=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wfsaccess"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "service",
+                  "value": "WFS"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "request",
+                  "value": "GetCapabilities"
+                },
+                {
+                  "key": "version",
+                  "value": "2.0.0"
+                },
+                {
+                  "key": "typeNames",
+                  "value": "<string>"
+                },
+                {
+                  "key": "bbox",
+                  "value": "<string>"
+                },
+                {
+                  "key": "outputFormat",
+                  "value": "<string>"
+                },
+                {
+                  "key": "count",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d88fea25-1e6d-4e5a-89d6-05361fc60550",
+              "name": "WFS response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/wfsaccess?service=WFS&request=GetCapabilities&version=2.0.0&typeNames=<string>&bbox=<string>&outputFormat=<string>&count=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wfsaccess"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "service",
+                      "value": "WFS"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "request",
+                      "value": "GetCapabilities"
+                    },
+                    {
+                      "key": "version",
+                      "value": "2.0.0"
+                    },
+                    {
+                      "key": "typeNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "outputFormat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-07-28T02:09:10.000Z",
+              "updatedAt": "2026-07-28T02:09:10.000Z",
+              "uid": "35240-d88fea25-1e6d-4e5a-89d6-05361fc60550"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:10.000Z",
+          "updatedAt": "2026-07-28T02:09:10.000Z",
+          "uid": "35240-5aa8f60f-181e-4dde-bed5-eec82cbe727d"
+        }
+      ],
+      "id": "4a7190f8-eb99-4cd3-9c57-53ddbd801971",
+      "createdAt": "2026-07-28T02:09:10.000Z",
+      "updatedAt": "2026-07-28T02:09:10.000Z",
+      "uid": "35240-4a7190f8-eb99-4cd3-9c57-53ddbd801971"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

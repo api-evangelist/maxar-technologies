@@ -1,0 +1,172 @@
+{
+  "info": {
+    "_postman_id": "d7ade6e7-2244-43a0-ad9c-25f7ebf3650a",
+    "name": "Vantor Hub Account Services Accounts Introspection API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:56.000Z",
+    "updatedAt": "2026-07-28T02:08:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d7ade6e7-2244-43a0-ad9c-25f7ebf3650a"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "introspect",
+              "item": [
+                {
+                  "name": "Introspect Token",
+                  "id": "82cc7ee5-b6dc-49a6-a7ce-1e7b2e0c84e6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/v1/introspect",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "v1",
+                        "introspect"
+                      ]
+                    },
+                    "description": "Return active/inactive status and metadata for a token."
+                  },
+                  "response": [
+                    {
+                      "id": "4177b1b5-b460-46ed-b7f0-26e591bafb35",
+                      "name": "Token metadata",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"token\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/v1/introspect",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "v1",
+                            "introspect"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"active\": \"<boolean>\",\n  \"client_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"exp\": \"<integer>\",\n  \"iat\": \"<integer>\",\n  \"sub\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:08:56.000Z",
+                      "updatedAt": "2026-07-28T02:08:56.000Z",
+                      "uid": "35240-4177b1b5-b460-46ed-b7f0-26e591bafb35"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:56.000Z",
+                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                  "uid": "35240-82cc7ee5-b6dc-49a6-a7ce-1e7b2e0c84e6"
+                }
+              ],
+              "id": "e93136f2-d4c6-4f23-bdf0-0b275c68d732",
+              "createdAt": "2026-07-28T02:08:56.000Z",
+              "updatedAt": "2026-07-28T02:08:56.000Z",
+              "uid": "35240-e93136f2-d4c6-4f23-bdf0-0b275c68d732"
+            }
+          ],
+          "id": "8283feb8-04c5-4629-ad60-3dd35c9c5304",
+          "createdAt": "2026-07-28T02:08:56.000Z",
+          "updatedAt": "2026-07-28T02:08:56.000Z",
+          "uid": "35240-8283feb8-04c5-4629-ad60-3dd35c9c5304"
+        }
+      ],
+      "id": "9da0a99a-b23e-4938-9d8c-13ba61ce8e3f",
+      "createdAt": "2026-07-28T02:08:56.000Z",
+      "updatedAt": "2026-07-28T02:08:56.000Z",
+      "uid": "35240-9da0a99a-b23e-4938-9d8c-13ba61ce8e3f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

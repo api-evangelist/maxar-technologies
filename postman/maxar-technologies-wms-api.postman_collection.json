@@ -1,0 +1,192 @@
+{
+  "info": {
+    "_postman_id": "0d2d86c2-3c95-4c7a-b6a0-8f9f889be1a4",
+    "name": "Vantor Hub Account Services Accounts WMS API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:11.000Z",
+    "updatedAt": "2026-07-28T02:09:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0d2d86c2-3c95-4c7a-b6a0-8f9f889be1a4"
+  },
+  "item": [
+    {
+      "name": "wmsaccess",
+      "item": [
+        {
+          "name": "WMS GetCapabilities or GetMap",
+          "id": "45891374-41aa-4e9f-87e4-c8af1e338283",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wmsaccess?service=WMS&request=GetFeatureInfo&version=1.3.0&layers=<string>&bbox=<string>&crs=<string>&width=<integer>&height=<integer>&format=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wmsaccess"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "service",
+                  "value": "WMS"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "request",
+                  "value": "GetFeatureInfo"
+                },
+                {
+                  "key": "version",
+                  "value": "1.3.0"
+                },
+                {
+                  "key": "layers",
+                  "value": "<string>"
+                },
+                {
+                  "key": "bbox",
+                  "value": "<string>"
+                },
+                {
+                  "key": "crs",
+                  "value": "<string>"
+                },
+                {
+                  "key": "width",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "height",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "OGC Web Map Service entry point. Use `request=GetCapabilities` to list layers or `request=GetMap` to render an image of an area of interest."
+          },
+          "response": [
+            {
+              "id": "f7fd885f-c7c7-4547-89f2-ee8b6ece65f9",
+              "name": "WMS response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/wmsaccess?service=WMS&request=GetFeatureInfo&version=1.3.0&layers=<string>&bbox=<string>&crs=<string>&width=<integer>&height=<integer>&format=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wmsaccess"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "service",
+                      "value": "WMS"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "request",
+                      "value": "GetFeatureInfo"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.3.0"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-07-28T02:09:11.000Z",
+              "updatedAt": "2026-07-28T02:09:11.000Z",
+              "uid": "35240-f7fd885f-c7c7-4547-89f2-ee8b6ece65f9"
+            }
+          ],
+          "createdAt": "2026-07-28T02:09:11.000Z",
+          "updatedAt": "2026-07-28T02:09:11.000Z",
+          "uid": "35240-45891374-41aa-4e9f-87e4-c8af1e338283"
+        }
+      ],
+      "id": "81545bcf-ce11-42df-86cf-a5f68e0f7f81",
+      "createdAt": "2026-07-28T02:09:11.000Z",
+      "updatedAt": "2026-07-28T02:09:11.000Z",
+      "uid": "35240-81545bcf-ce11-42df-86cf-a5f68e0f7f81"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

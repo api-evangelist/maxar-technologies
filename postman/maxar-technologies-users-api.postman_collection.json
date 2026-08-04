@@ -1,0 +1,458 @@
+{
+  "info": {
+    "_postman_id": "d3f69731-0655-4490-b7f4-2ed0d9c54a57",
+    "name": "Vantor Hub Account Services Accounts Users API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:09:09.000Z",
+    "updatedAt": "2026-07-28T02:09:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d3f69731-0655-4490-b7f4-2ed0d9c54a57"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "{userId}",
+                  "item": [
+                    {
+                      "name": "Get User",
+                      "id": "5f236ba7-9ece-4ad6-b080-58e682b32ca9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "884b77c3-d75c-48a0-9a7f-0b30c63594af",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "def023fa-c582-4e13-85e3-d54b5f208dfe",
+                              "key": "userId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "a0426f30-7930-449e-8a19-bce8be08dc62",
+                          "name": "User",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/users/:userId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "users",
+                                ":userId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "userId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"Owner\",\n  \"status\": \"Active\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:09:09.000Z",
+                          "updatedAt": "2026-07-28T02:09:09.000Z",
+                          "uid": "35240-a0426f30-7930-449e-8a19-bce8be08dc62"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:09:09.000Z",
+                      "updatedAt": "2026-07-28T02:09:09.000Z",
+                      "uid": "35240-5f236ba7-9ece-4ad6-b080-58e682b32ca9"
+                    },
+                    {
+                      "name": "Remove User",
+                      "id": "1edbac3e-9859-46bf-a476-5066e9b70bef",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a79c842a-7f57-4a92-b7af-3f3ea175cf58",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "66823898-3522-4ecd-99f5-8a0199b520cb",
+                              "key": "userId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "85745c1b-ea64-453f-935e-3730d4a55511",
+                          "name": "Removed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/users/:userId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "users",
+                                ":userId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "userId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:09:09.000Z",
+                          "updatedAt": "2026-07-28T02:09:09.000Z",
+                          "uid": "35240-85745c1b-ea64-453f-935e-3730d4a55511"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:09:09.000Z",
+                      "updatedAt": "2026-07-28T02:09:09.000Z",
+                      "uid": "35240-1edbac3e-9859-46bf-a476-5066e9b70bef"
+                    }
+                  ],
+                  "id": "788af072-c447-404e-93b3-fa2cbe5afef7",
+                  "createdAt": "2026-07-28T02:09:09.000Z",
+                  "updatedAt": "2026-07-28T02:09:09.000Z",
+                  "uid": "35240-788af072-c447-404e-93b3-fa2cbe5afef7"
+                },
+                {
+                  "name": "List Users",
+                  "id": "7afcb22d-b1c9-4759-ae5a-9253dcf507c3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "66d34496-e272-43bb-a969-0e05926f8fa4",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8fb180c8-cef6-4d98-978c-42e59d5a0bb2",
+                      "name": "User list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"role\": \"Owner\",\n    \"status\": \"Invited\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"role\": \"Member\",\n    \"status\": \"Active\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:09:09.000Z",
+                      "updatedAt": "2026-07-28T02:09:09.000Z",
+                      "uid": "35240-8fb180c8-cef6-4d98-978c-42e59d5a0bb2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:09:09.000Z",
+                  "updatedAt": "2026-07-28T02:09:09.000Z",
+                  "uid": "35240-7afcb22d-b1c9-4759-ae5a-9253dcf507c3"
+                },
+                {
+                  "name": "Invite User",
+                  "id": "b584bdb6-458f-41c0-be57-bf62bebbad49",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"role\": \"Viewer\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5bf9de32-8aeb-4991-b149-9c1751e8b63d",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f2c255c7-10b0-49c6-8c12-be62f26723cf",
+                      "name": "User invited",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"role\": \"Viewer\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"Owner\",\n  \"status\": \"Active\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:09:09.000Z",
+                      "updatedAt": "2026-07-28T02:09:09.000Z",
+                      "uid": "35240-f2c255c7-10b0-49c6-8c12-be62f26723cf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:09:09.000Z",
+                  "updatedAt": "2026-07-28T02:09:09.000Z",
+                  "uid": "35240-b584bdb6-458f-41c0-be57-bf62bebbad49"
+                }
+              ],
+              "id": "3eaca027-ad9f-4809-97a8-cc1f358098fb",
+              "createdAt": "2026-07-28T02:09:09.000Z",
+              "updatedAt": "2026-07-28T02:09:09.000Z",
+              "uid": "35240-3eaca027-ad9f-4809-97a8-cc1f358098fb"
+            }
+          ],
+          "id": "0bb6a1a9-da6a-4acf-a31d-a757b26abe23",
+          "createdAt": "2026-07-28T02:09:09.000Z",
+          "updatedAt": "2026-07-28T02:09:09.000Z",
+          "uid": "35240-0bb6a1a9-da6a-4acf-a31d-a757b26abe23"
+        }
+      ],
+      "id": "adcbcc03-f152-4c45-9b7d-aa304c293410",
+      "createdAt": "2026-07-28T02:09:09.000Z",
+      "updatedAt": "2026-07-28T02:09:09.000Z",
+      "uid": "35240-adcbcc03-f152-4c45-9b7d-aa304c293410"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

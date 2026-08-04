@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "62049379-c3a0-4dde-986a-4dbc701de375",
+    "name": "Vantor Hub Account Services Accounts Credits API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:50.000Z",
+    "updatedAt": "2026-07-28T02:08:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-62049379-c3a0-4dde-986a-4dbc701de375"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "credits",
+              "item": [
+                {
+                  "name": "Get Credit Balance",
+                  "id": "3f8a7983-7672-470e-bafd-60ef49515252",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/credits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "credits"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0c36a182-85d2-441a-8d92-74b0b2ed43ca",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ac74caa8-c7f3-446c-b81a-a8065ef783e5",
+                      "name": "Credit balance",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/credits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "credits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"account_id\": \"<string>\",\n  \"balance\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"plan\": \"<string>\",\n  \"renews_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:08:51.000Z",
+                      "updatedAt": "2026-07-28T02:08:51.000Z",
+                      "uid": "35240-ac74caa8-c7f3-446c-b81a-a8065ef783e5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:51.000Z",
+                  "updatedAt": "2026-07-28T02:08:51.000Z",
+                  "uid": "35240-3f8a7983-7672-470e-bafd-60ef49515252"
+                }
+              ],
+              "id": "e2312452-32e8-4c89-b7c5-7a055034d76a",
+              "createdAt": "2026-07-28T02:08:51.000Z",
+              "updatedAt": "2026-07-28T02:08:51.000Z",
+              "uid": "35240-e2312452-32e8-4c89-b7c5-7a055034d76a"
+            }
+          ],
+          "id": "e29027c7-8735-47d9-a7fe-230f465e33e1",
+          "createdAt": "2026-07-28T02:08:51.000Z",
+          "updatedAt": "2026-07-28T02:08:51.000Z",
+          "uid": "35240-e29027c7-8735-47d9-a7fe-230f465e33e1"
+        }
+      ],
+      "id": "076c7501-f35a-494b-8e6d-1a05cd516401",
+      "createdAt": "2026-07-28T02:08:51.000Z",
+      "updatedAt": "2026-07-28T02:08:51.000Z",
+      "uid": "35240-076c7501-f35a-494b-8e6d-1a05cd516401"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "info": {
+    "_postman_id": "5efc9950-e20d-4b31-a30b-70593fc6ebb9",
+    "name": "Vantor Hub Account Services Accounts Collections API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:49.000Z",
+    "updatedAt": "2026-07-28T02:08:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5efc9950-e20d-4b31-a30b-70593fc6ebb9"
+  },
+  "item": [
+    {
+      "name": "collections",
+      "item": [
+        {
+          "name": "{collectionId}",
+          "item": [
+            {
+              "name": "Get Collection",
+              "id": "e867f4a7-2cbb-41c4-81dc-d4aece683f92",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/collections/:collectionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections",
+                    ":collectionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "23eee75c-6c2e-4e03-9760-04f222831f4f",
+                      "key": "collectionId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve metadata for a single collection."
+              },
+              "response": [
+                {
+                  "id": "26109a63-b5b7-4976-991f-2333058bf541",
+                  "name": "Collection metadata",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"Collection\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {}\n}",
+                  "createdAt": "2026-07-28T02:08:50.000Z",
+                  "updatedAt": "2026-07-28T02:08:50.000Z",
+                  "uid": "35240-26109a63-b5b7-4976-991f-2333058bf541"
+                }
+              ],
+              "createdAt": "2026-07-28T02:08:50.000Z",
+              "updatedAt": "2026-07-28T02:08:50.000Z",
+              "uid": "35240-e867f4a7-2cbb-41c4-81dc-d4aece683f92"
+            }
+          ],
+          "id": "ed433d46-0a6d-4d75-8121-61d726654f3f",
+          "createdAt": "2026-07-28T02:08:50.000Z",
+          "updatedAt": "2026-07-28T02:08:50.000Z",
+          "uid": "35240-ed433d46-0a6d-4d75-8121-61d726654f3f"
+        },
+        {
+          "name": "List Collections",
+          "id": "a25d9b08-488c-437c-b22d-18c1b7682812",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/collections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections"
+              ]
+            },
+            "description": "Enumerate the collections available to the caller (WorldView, Legion, Vivid, etc)."
+          },
+          "response": [
+            {
+              "id": "096d3090-a4eb-41e0-9025-544c7f316e5c",
+              "name": "Collection list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"collections\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"Collection\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"license\": \"<string>\",\n      \"extent\": {}\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"Collection\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"license\": \"<string>\",\n      \"extent\": {}\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:08:50.000Z",
+              "updatedAt": "2026-07-28T02:08:50.000Z",
+              "uid": "35240-096d3090-a4eb-41e0-9025-544c7f316e5c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:08:50.000Z",
+          "updatedAt": "2026-07-28T02:08:50.000Z",
+          "uid": "35240-a25d9b08-488c-437c-b22d-18c1b7682812"
+        }
+      ],
+      "id": "9dbdbbbd-0870-4933-8f0d-3f1d618b8e81",
+      "createdAt": "2026-07-28T02:08:50.000Z",
+      "updatedAt": "2026-07-28T02:08:50.000Z",
+      "uid": "35240-9dbdbbbd-0870-4933-8f0d-3f1d618b8e81"
+    },
+    {
+      "name": "tasks",
+      "item": [
+        {
+          "name": "{taskId}",
+          "item": [
+            {
+              "name": "collections",
+              "item": [
+                {
+                  "name": "List Collections For Task",
+                  "id": "1a62c4e1-5848-4f53-83ae-736f3a38877c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId/collections",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId",
+                        "collections"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9c0f8a3b-05d7-412d-bf51-7d31f15b4da7",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f00602a4-1c63-4229-8af8-cffb3c7569d3",
+                      "name": "Collections",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tasks/:taskId/collections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            ":taskId",
+                            "collections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"task_id\": \"<string>\",\n    \"platform\": \"<string>\",\n    \"collected_at\": \"<dateTime>\",\n    \"catalog_id\": \"<string>\",\n    \"cloud_cover\": \"<number>\",\n    \"off_nadir\": \"<number>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"task_id\": \"<string>\",\n    \"platform\": \"<string>\",\n    \"collected_at\": \"<dateTime>\",\n    \"catalog_id\": \"<string>\",\n    \"cloud_cover\": \"<number>\",\n    \"off_nadir\": \"<number>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:08:50.000Z",
+                      "updatedAt": "2026-07-28T02:08:50.000Z",
+                      "uid": "35240-f00602a4-1c63-4229-8af8-cffb3c7569d3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:50.000Z",
+                  "updatedAt": "2026-07-28T02:08:50.000Z",
+                  "uid": "35240-1a62c4e1-5848-4f53-83ae-736f3a38877c"
+                }
+              ],
+              "id": "c4e939a9-ff0b-4bcd-ad83-896a6fe5d2aa",
+              "createdAt": "2026-07-28T02:08:50.000Z",
+              "updatedAt": "2026-07-28T02:08:50.000Z",
+              "uid": "35240-c4e939a9-ff0b-4bcd-ad83-896a6fe5d2aa"
+            }
+          ],
+          "id": "e45c513d-10a1-47e6-af17-7f27b969c3d9",
+          "createdAt": "2026-07-28T02:08:50.000Z",
+          "updatedAt": "2026-07-28T02:08:50.000Z",
+          "uid": "35240-e45c513d-10a1-47e6-af17-7f27b969c3d9"
+        }
+      ],
+      "id": "bce0a392-c377-4788-a3f7-cd754ff20399",
+      "createdAt": "2026-07-28T02:08:50.000Z",
+      "updatedAt": "2026-07-28T02:08:50.000Z",
+      "uid": "35240-bce0a392-c377-4788-a3f7-cd754ff20399"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}

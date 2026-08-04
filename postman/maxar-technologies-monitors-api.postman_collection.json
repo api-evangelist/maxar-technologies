@@ -1,0 +1,380 @@
+{
+  "info": {
+    "_postman_id": "4e0bc186-7aab-4195-8ae4-4e4354a1e6c4",
+    "name": "Vantor Hub Account Services Accounts Monitors API",
+    "description": "Administrative account-management API for Vantor Hub customers \u2014 manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:57.000Z",
+    "updatedAt": "2026-07-28T02:08:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e0bc186-7aab-4195-8ae4-4e4354a1e6c4"
+  },
+  "item": [
+    {
+      "name": "monitors",
+      "item": [
+        {
+          "name": "{monitorId}",
+          "item": [
+            {
+              "name": "Get Monitor",
+              "id": "b5b7e921-e462-4f5d-802d-b74db2ce6d91",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors/:monitorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors",
+                    ":monitorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2d4cf67f-ba2e-4c5d-a9a9-0942002de7c8",
+                      "key": "monitorId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4c539fda-7042-42b6-902f-fdf8da459347",
+                  "name": "Monitor",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:monitorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":monitorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "monitorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"active\",\n  \"created_at\": \"<dateTime>\",\n  \"cadence\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:08:58.000Z",
+                  "updatedAt": "2026-07-28T02:08:58.000Z",
+                  "uid": "35240-4c539fda-7042-42b6-902f-fdf8da459347"
+                }
+              ],
+              "createdAt": "2026-07-28T02:08:58.000Z",
+              "updatedAt": "2026-07-28T02:08:58.000Z",
+              "uid": "35240-b5b7e921-e462-4f5d-802d-b74db2ce6d91"
+            },
+            {
+              "name": "Delete Monitor",
+              "id": "39f65e51-1a50-4f1b-9715-65761cbad01c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors/:monitorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors",
+                    ":monitorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "19f26a13-87a8-4560-b42f-3d11275eea29",
+                      "key": "monitorId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ee503776-2030-467c-8de5-0c697dd81f01",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:monitorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":monitorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "monitorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:08:58.000Z",
+                  "updatedAt": "2026-07-28T02:08:58.000Z",
+                  "uid": "35240-ee503776-2030-467c-8de5-0c697dd81f01"
+                }
+              ],
+              "createdAt": "2026-07-28T02:08:58.000Z",
+              "updatedAt": "2026-07-28T02:08:58.000Z",
+              "uid": "35240-39f65e51-1a50-4f1b-9715-65761cbad01c"
+            }
+          ],
+          "id": "ebbb86ad-7b02-476c-8712-8cc5cfba7d8c",
+          "createdAt": "2026-07-28T02:08:58.000Z",
+          "updatedAt": "2026-07-28T02:08:58.000Z",
+          "uid": "35240-ebbb86ad-7b02-476c-8712-8cc5cfba7d8c"
+        },
+        {
+          "name": "List Monitors",
+          "id": "19dccb11-ed47-48f5-9ce8-274fe35863b0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/monitors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "monitors"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a5a95a83-c8ac-48ad-be7c-0adc8678cedd",
+              "name": "Monitors",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"active\",\n    \"created_at\": \"<dateTime>\",\n    \"cadence\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"active\",\n    \"created_at\": \"<dateTime>\",\n    \"cadence\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:08:58.000Z",
+              "updatedAt": "2026-07-28T02:08:58.000Z",
+              "uid": "35240-a5a95a83-c8ac-48ad-be7c-0adc8678cedd"
+            }
+          ],
+          "createdAt": "2026-07-28T02:08:58.000Z",
+          "updatedAt": "2026-07-28T02:08:58.000Z",
+          "uid": "35240-19dccb11-ed47-48f5-9ce8-274fe35863b0"
+        },
+        {
+          "name": "Create Monitor",
+          "id": "b45ce6ef-ef6e-4b6e-ba67-b671d08f1a16",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"aoi\": {},\n  \"cadence\": \"on_new_image\",\n  \"filters\": {\n    \"max_cloud_cover\": \"<number>\",\n    \"platforms\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/monitors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "monitors"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9d7a4019-88bf-42d5-9d07-7183970665a7",
+              "name": "Monitor created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"aoi\": {},\n  \"cadence\": \"on_new_image\",\n  \"filters\": {\n    \"max_cloud_cover\": \"<number>\",\n    \"platforms\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/monitors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"active\",\n  \"created_at\": \"<dateTime>\",\n  \"cadence\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:08:58.000Z",
+              "updatedAt": "2026-07-28T02:08:58.000Z",
+              "uid": "35240-9d7a4019-88bf-42d5-9d07-7183970665a7"
+            }
+          ],
+          "createdAt": "2026-07-28T02:08:58.000Z",
+          "updatedAt": "2026-07-28T02:08:58.000Z",
+          "uid": "35240-b45ce6ef-ef6e-4b6e-ba67-b671d08f1a16"
+        }
+      ],
+      "id": "308d5d57-7327-47bc-9b79-38c9fe0c6b5f",
+      "createdAt": "2026-07-28T02:08:58.000Z",
+      "updatedAt": "2026-07-28T02:08:58.000Z",
+      "uid": "35240-308d5d57-7327-47bc-9b79-38c9fe0c6b5f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.maxar.com/admin/v1"
+    }
+  ]
+}
