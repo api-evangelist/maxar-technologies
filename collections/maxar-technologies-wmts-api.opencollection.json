@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vantor Hub Account Services Accounts WMTS API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WMTS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WMTS GetCapabilities or GetTile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/wmtsaccess",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "layer",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilematrixset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilematrix",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilerow",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tilecol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "WMTS GetCapabilities or GetTile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

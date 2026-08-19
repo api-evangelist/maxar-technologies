@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vantor Hub Account Services Accounts Collections API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/collections"
+          },
+          "docs": "Enumerate the collections available to the caller (WorldView, Legion, Vivid, etc)."
+        },
+        {
+          "info": {
+            "name": "Get Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for a single collection."
+        },
+        {
+          "info": {
+            "name": "List Collections For Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/tasks/:taskId/collections",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Collections For Task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

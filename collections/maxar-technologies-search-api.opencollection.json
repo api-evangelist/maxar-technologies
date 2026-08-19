@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vantor Hub Account Services Accounts Search API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/search",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "collections",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cloud_cover",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_resolution",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "STAC-style GET search with query parameters."
+        },
+        {
+          "info": {
+            "name": "Search Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.maxar.com/admin/v1/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "STAC-style POST search across collections by geometry, time window and filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

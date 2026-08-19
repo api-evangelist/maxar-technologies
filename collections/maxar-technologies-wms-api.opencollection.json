@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vantor Hub Account Services Accounts WMS API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WMS GetCapabilities or GetMap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/wmsaccess",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "request",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "crs",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "OGC Web Map Service entry point. Use `request=GetCapabilities` to list layers or `request=GetMap` to render an image of an area of interest."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,192 @@
+{
+  "item": [
+    {
+      "id": "e086f870-348b-48c0-a19b-972c61a4b541",
+      "name": "WMTS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2eeff764-6c0d-4a56-9617-48fecd2fd889",
+          "name": "WMTS GetCapabilities or GetTile",
+          "request": {
+            "name": "WMTS GetCapabilities or GetTile",
+            "description": {},
+            "url": {
+              "path": [
+                "wmtsaccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "request",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "layer",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilematrixset",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilematrix",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilerow",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tilecol",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6da26a42-5017-44b5-9dd2-c47f7a4e678f",
+              "name": "WMTS response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wmtsaccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilematrixset",
+                      "value": "EPSG:3857"
+                    },
+                    {
+                      "key": "tilematrix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tilerow",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tilecol",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "image/png"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.maxar.com/admin/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a23ca01b-3582-4d59-93e0-1428394b8c6b",
+    "name": "Vantor Hub Account Services Accounts WMTS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+      "type": "text/plain"
+    }
+  }
+}

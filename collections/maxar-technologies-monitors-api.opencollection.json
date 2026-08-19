@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vantor Hub Account Services Accounts Monitors API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Monitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/monitors"
+          },
+          "docs": "List Monitors"
+        },
+        {
+          "info": {
+            "name": "Create Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.maxar.com/admin/v1/monitors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Monitor"
+        },
+        {
+          "info": {
+            "name": "Get Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.maxar.com/admin/v1/monitors/:monitorId",
+            "params": [
+              {
+                "name": "monitorId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Monitor"
+        },
+        {
+          "info": {
+            "name": "Delete Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.maxar.com/admin/v1/monitors/:monitorId",
+            "params": [
+              {
+                "name": "monitorId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Monitor"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

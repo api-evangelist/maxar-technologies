@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "3eab9f1c-520f-4163-bd5d-3cccd2ee88a7",
+      "name": "Feasibility",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f6eee1e-b893-4571-9491-d91b18862cf6",
+          "name": "Check Tasking Feasibility",
+          "request": {
+            "name": "Check Tasking Feasibility",
+            "description": {},
+            "url": {
+              "path": [
+                "feasibility"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aoi\": \"<object>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "879ce1f0-0565-4faa-9b5f-6a1025461dde",
+              "name": "Feasibility report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feasibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aoi\": \"<object>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feasible\": true,\n  \"windows\": [\n    {\n      \"start\": \"2005-07-16T12:59:56.301Z\",\n      \"end\": \"1989-01-06T18:37:22.873Z\",\n      \"platform\": \"string\",\n      \"expected_cloud_cover\": 4648.7924496266705,\n      \"expected_off_nadir\": 2618.5694796520843\n    },\n    {\n      \"start\": \"1957-09-11T07:50:05.955Z\",\n      \"end\": \"1991-04-14T02:05:20.284Z\",\n      \"platform\": \"string\",\n      \"expected_cloud_cover\": 668.7577736160478,\n      \"expected_off_nadir\": 3338.841943347798\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.maxar.com/admin/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "61f2bd6d-3e80-41d1-b67a-b08ae3428cc4",
+    "name": "Vantor Hub Account Services Accounts Feasibility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+      "type": "text/plain"
+    }
+  }
+}

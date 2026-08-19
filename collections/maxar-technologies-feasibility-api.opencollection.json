@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vantor Hub Account Services Accounts Feasibility API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feasibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Tasking Feasibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.maxar.com/admin/v1/feasibility",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check Tasking Feasibility"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

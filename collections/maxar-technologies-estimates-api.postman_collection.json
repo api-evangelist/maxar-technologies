@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "c52587b7-bce0-43ac-a808-ea84a1827cef",
+      "name": "Estimates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32f40249-bfa2-4c09-8dd9-d3181c3f5d93",
+          "name": "Estimate Order Cost",
+          "request": {
+            "name": "Estimate Order Cost",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aoi\": \"<object>\",\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94d4b362-e10d-453e-82bf-b06ebc89c013",
+              "name": "Estimate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aoi\": \"<object>\",\n  \"items\": [\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    },\n    {\n      \"catalog_id\": \"<string>\",\n      \"collection\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"delivery\": {\n    \"type\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"output_format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"estimated_cost\": 9560.287744192583,\n  \"currency\": \"USD\",\n  \"area_km2\": 9517.807776599417,\n  \"rate_per_km2\": 284.71041247921437\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.maxar.com/admin/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9719a8b9-104a-491c-8691-9b4a9d1cd930",
+    "name": "Vantor Hub Account Services Accounts Estimates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.",
+      "type": "text/plain"
+    }
+  }
+}
