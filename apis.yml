@@ -68,6 +68,11 @@ apis:
   tags:
   - Basemaps
   - Vivid
+  - MOSAIC
+  - Streaming
+  tags_raw:
+  - Basemaps
+  - Vivid
   - Mosaic
   - Streaming
   properties:
@@ -126,6 +131,11 @@ apis:
   humanURL: https://github.com/Maxar-Corp/transform-api-ts
   baseURL: https://api.maxar.com/transform/v1
   tags:
+  - Transforms
+  - Imagery
+  - Reproject
+  - Tiles
+  tags_raw:
   - Transform
   - Imagery
   - Reproject
@@ -143,6 +153,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -167,6 +179,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -191,6 +205,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -287,6 +303,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -383,6 +401,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
@@ -431,6 +451,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -479,6 +501,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -503,6 +527,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -551,6 +577,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
