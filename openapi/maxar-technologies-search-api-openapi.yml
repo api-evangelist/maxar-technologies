@@ -1,11 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Vantor Hub Account Services Accounts Search API
-  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  title: Vantor Hub Discovery Search API
+  description: Search and discovery API across Vantor Hub's "125+ petabytes of imagery and derivatives" — WorldView, GeoEye, WorldView Legion archive imagery plus Vivid basemaps and derivative analytic products. STAC-aligned search by area of interest, time window, sensor, cloud cover and resolution. Profile derived from Vantor Hub public docs (hub.vantor.com/docs/discovery) and the open-source `maxarcat` Python client which wraps the published OpenAPI for the Maxar Content Catalog. Endpoint paths should be confirmed against live Vantor responses before production use.
   version: 1.0.0
+  contact:
+    name: Vantor Support
+    url: https://hub.vantor.com/docs/contact
 servers:
-- url: https://api.maxar.com/admin/v1
-  description: Vantor Hub production
+- url: https://api.maxar.com/discovery/v1
+  description: Vantor Hub Discovery production
 security:
 - bearerAuth: []
 tags:
@@ -77,20 +80,28 @@ paths:
                 $ref: '#/components/schemas/ItemCollection'
 components:
   schemas:
-    Link:
+    ItemCollection:
       type: object
       required:
-      - href
-      - rel
+      - type
+      - features
       properties:
-        href:
-          type: string
-        rel:
-          type: string
         type:
           type: string
-        title:
-          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        numberReturned:
+          type: integer
+        numberMatched:
+          type: integer
     Asset:
       type: object
       required:
@@ -104,6 +115,49 @@ components:
           type: array
           items:
             type: string
+        title:
+          type: string
+    SearchRequest:
+      type: object
+      properties:
+        bbox:
+          type: array
+          items:
+            type: number
+          minItems: 4
+          maxItems: 6
+        intersects:
+          type: object
+          description: GeoJSON geometry to intersect
+        datetime:
+          type: string
+          description: RFC3339 datetime or interval
+        collections:
+          type: array
+          items:
+            type: string
+        ids:
+          type: array
+          items:
+            type: string
+        limit:
+          type: integer
+          default: 25
+        query:
+          type: object
+          description: Property filters (cloud_cover, off_nadir, gsd, etc)
+    Link:
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
         title:
           type: string
     Item:
@@ -140,57 +194,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ItemCollection:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        numberReturned:
-          type: integer
-        numberMatched:
-          type: integer
-    SearchRequest:
-      type: object
-      properties:
-        bbox:
-          type: array
-          items:
-            type: number
-          minItems: 4
-          maxItems: 6
-        intersects:
-          type: object
-          description: GeoJSON geometry to intersect
-        datetime:
-          type: string
-          description: RFC3339 datetime or interval
-        collections:
-          type: array
-          items:
-            type: string
-        ids:
-          type: array
-          items:
-            type: string
-        limit:
-          type: integer
-          default: 25
-        query:
-          type: object
-          description: Property filters (cloud_cover, off_nadir, gsd, etc)
     ItemProperties:
       type: object
       properties:

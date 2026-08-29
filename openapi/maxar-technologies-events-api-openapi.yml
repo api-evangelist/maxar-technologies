@@ -1,11 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Vantor Hub Account Services Accounts Events API
-  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  title: Maxar Geospatial Platform Monitoring Events API
+  description: Monitoring API for standing watches over user-defined areas of interest — receive notifications when new imagery is collected, when collection windows close and when analytic detections fire. Profile derived from MGP_SDK `Interface.monitoring` surface; field shapes follow common Maxar monitoring conventions.
   version: 1.0.0
 servers:
-- url: https://api.maxar.com/admin/v1
-  description: Vantor Hub production
+- url: https://api.maxar.com/monitoring/v1
 security:
 - bearerAuth: []
 tags:
@@ -66,4 +65,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT

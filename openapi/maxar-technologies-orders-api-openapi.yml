@@ -1,11 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Vantor Hub Account Services Accounts Orders API
-  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  title: Maxar Geospatial Platform Ordering Orders API
+  description: Order management API for placing, tracking and retrieving deliveries of Maxar archive imagery against WorldView, GeoEye and WorldView Legion sources. Profile derived from MGP_SDK `Interface.ordering` surface; field shapes follow common Maxar ordering conventions and should be confirmed against live responses.
   version: 1.0.0
 servers:
-- url: https://api.maxar.com/admin/v1
-  description: Vantor Hub production
+- url: https://api.maxar.com/order/v1
 security:
 - bearerAuth: []
 tags:
@@ -95,6 +94,40 @@ paths:
           description: Cancelled
 components:
   schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - complete
+          - failed
+          - cancelled
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        cost:
+          type: number
+        currency:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              catalog_id:
+                type: string
+              status:
+                type: string
     OrderRequest:
       type: object
       required:
@@ -132,42 +165,7 @@ components:
           - geotiff
           - jpeg2000
           - nitf
-    Order:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - in_progress
-          - complete
-          - failed
-          - cancelled
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        cost:
-          type: number
-        currency:
-          type: string
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              catalog_id:
-                type: string
-              status:
-                type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT

@@ -1,13 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Vantor Hub Account Services Accounts WMTS API
-  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  title: Maxar Geospatial Platform Streaming WMTS API
+  description: 'OGC Streaming services exposing Maxar''s current and historical imagery as WMS, WMTS and WFS layers — implemented behind securewatch.maxar.com and surfaced through the MGP_SDK Python, Java and R clients. Profile derived from the MGP_SDK README ("Open Geospatial Consortium standard protocols: WFS, WMS, WMTS"); endpoint paths follow standard OGC URL patterns.'
   version: 1.0.0
 servers:
-- url: https://api.maxar.com/admin/v1
-  description: Vantor Hub production
+- url: https://securewatch.maxar.com/earthservice
+  description: Maxar SecureWatch
 security:
 - bearerAuth: []
+- apiKeyAuth: []
 tags:
 - name: WMTS
 paths:
@@ -71,4 +72,7 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: connectid

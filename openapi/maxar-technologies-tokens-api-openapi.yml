@@ -1,13 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Vantor Hub Account Services Accounts Tokens API
-  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  title: Vantor Hub Authentication Tokens API
+  description: Token-issuance service for Vantor Hub (formerly Maxar Developer Portal). Exchanges client credentials for bearer access tokens that authorize every other Hub API (Discovery, Account Services, Streaming). Documented at hub.vantor.com/docs/authentication. Profile derived by API Evangelist from Vantor Hub public docs; field shapes mirror common OAuth 2.0 client credentials and Maxar/MGP_SDK conventions and should be confirmed against live Vantor Hub responses before production use.
   version: 1.0.0
+  contact:
+    name: Vantor Support
+    url: https://hub.vantor.com/docs/contact
+  license:
+    name: Vantor Hub Terms of Service
+    url: https://vantor.com/
 servers:
-- url: https://api.maxar.com/admin/v1
+- url: https://api.maxar.com
   description: Vantor Hub production
-security:
-- bearerAuth: []
 tags:
 - name: Tokens
   description: Issue and refresh access tokens
@@ -99,6 +103,13 @@ paths:
           description: Token revoked
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
     TokenRequest:
       type: object
       required:
@@ -141,13 +152,6 @@ components:
         refresh_token:
           type: string
         scope:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        error_description:
           type: string
   securitySchemes:
     bearerAuth:

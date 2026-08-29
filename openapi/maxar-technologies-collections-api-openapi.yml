@@ -1,11 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Vantor Hub Account Services Accounts Collections API
-  description: Administrative account-management API for Vantor Hub customers — manage users, roles, organisation entitlements, credit balances and API keys. Profile derived from public Vantor Hub docs (hub.vantor.com/docs/admin) and Maxar Geospatial Platform `account_service` SDK conventions; field shapes should be confirmed against live Hub responses.
+  title: Maxar Technologies Collections API
   version: 1.0.0
+  description: 'Operations tagged Collections across 2 of this provider''s published API definitions: discovery-openapi.yml, tasking-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.maxar.com/admin/v1
-  description: Vantor Hub production
+- url: https://api.maxar.com/discovery/v1
+  description: Vantor Hub Discovery production
+- url: https://api.maxar.com/tasking/v1
 security:
 - bearerAuth: []
 tags:
@@ -31,6 +32,9 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Collection'
+    servers:
+    - url: https://api.maxar.com/discovery/v1
+      description: Vantor Hub Discovery production
   /collections/{collectionId}:
     get:
       tags:
@@ -51,6 +55,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Collection'
+    servers:
+    - url: https://api.maxar.com/discovery/v1
+      description: Vantor Hub Discovery production
   /tasks/{taskId}/collections:
     get:
       tags:
@@ -72,6 +79,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Collection_2'
+    servers:
+    - url: https://api.maxar.com/tasking/v1
 components:
   schemas:
     Collection:
@@ -121,3 +130,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- discovery-openapi.yml
+- tasking-openapi.yml
