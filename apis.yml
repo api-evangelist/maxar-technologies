@@ -682,6 +682,9 @@ apis:
   - type: SDKs
     url: https://github.com/Maxar-Corp/maxar-geospatial-platform
 common:
+- type: CapabilityMap
+  url: capabilities/maxar-technologies-capability-edges.yml
+  name: Maxar Technologies Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/maxar-technologies/overview
 - type: AgenticAccess
