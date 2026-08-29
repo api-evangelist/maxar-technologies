@@ -18,6 +18,18 @@ description: 'Maxar Technologies was a publicly traded Earth-imaging and space-s
   publish a public STAC catalog of pre-/post-event high-resolution imagery on AWS
   Open Data.'
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
