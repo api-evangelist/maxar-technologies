@@ -104,6 +104,11 @@ apis:
   tags:
   - Catalog
   - Search
+  - Archives
+  - Legacy
+  tags_raw:
+  - Catalog
+  - Search
   - Archive
   - Legacy
   properties:
@@ -244,6 +249,8 @@ apis:
   humanURL: https://hub.vantor.com/docs/authentication/
   baseURL: https://api.maxar.com
   tags:
+  - Credit
+  tags_raw:
   - Credits
   properties:
   - type: OpenAPI
