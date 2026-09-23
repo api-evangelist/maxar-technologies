@@ -1,0 +1,121 @@
+openapi: 3.2.0
+info:
+  title: Maxar Geospatial Platform (Vantor Hub) Authentication API
+  version: '1'
+  description: 'REST API surface for the Maxar Geospatial Platform, branded in 2026 as
+
+    Vantor Hub.'
+  contact:
+    name: Vantor Hub Developer Portal
+    url: https://developers.maxar.com/
+servers:
+- url: https://api.maxar.com
+  description: Maxar / Vantor Hub production API
+security:
+- bearerAuth: []
+- apiKeyAuth: []
+tags:
+- name: Authentication
+paths:
+  /authentication/api/get-an-o-auth-2-bearer-token:
+    post:
+      tags:
+      - Authentication
+      summary: Obtain an OAuth2 bearer token
+      description: Exchange username and password (password flow) for a bearer token.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - password
+                username:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+      operationId: postAuthenticationApiGetAnOAuth2BearerToken
+      x-operation-id-source: derived
+  /authentication/api/create-a-new-api-key:
+    post:
+      tags:
+      - Authentication
+      summary: Create a new API key
+      description: Requires an OAuth2 bearer token.
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '201':
+          description: API key created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+      operationId: postAuthenticationApiCreateANewApiKey
+      x-operation-id-source: derived
+components:
+  schemas:
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        prefix:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the Authentication Token Service.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: MAXAR-API-KEY
+      description: 'API key for data-related APIs. Cannot be used for Admin or API Key
+
+        management endpoints, which require an OAuth2 bearer token.
+
+        '

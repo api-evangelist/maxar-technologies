@@ -1,0 +1,216 @@
+openapi: 3.2.0
+info:
+  title: Maxar Geospatial Platform (Vantor Hub) Discovery API
+  version: '1'
+  description: 'REST API surface for the Maxar Geospatial Platform, branded in 2026 as
+
+    Vantor Hub.'
+  contact:
+    name: Vantor Hub Developer Portal
+    url: https://developers.maxar.com/
+servers:
+- url: https://api.maxar.com
+  description: Maxar / Vantor Hub production API
+security:
+- bearerAuth: []
+- apiKeyAuth: []
+tags:
+- name: Discovery
+paths:
+  /discovery/stac/search:
+    get:
+      tags:
+      - Discovery
+      summary: Search STAC items
+      description: Retrieve items matching filters.
+      parameters:
+      - in: query
+        name: collections
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: false
+      - in: query
+        name: bbox
+        schema:
+          type: array
+          items:
+            type: number
+        style: form
+        explode: false
+      - in: query
+        name: datetime
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: STAC FeatureCollection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StacItemCollection'
+      operationId: getDiscoveryStacSearch
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Discovery
+      summary: Search STAC items (POST body)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: STAC FeatureCollection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StacItemCollection'
+      operationId: postDiscoveryStacSearch
+      x-operation-id-source: derived
+  /discovery/stac/collections:
+    get:
+      tags:
+      - Discovery
+      summary: List STAC collections
+      responses:
+        '200':
+          description: Collections
+      operationId: getDiscoveryStacCollections
+      x-operation-id-source: derived
+  /discovery/stac/items:
+    get:
+      tags:
+      - Discovery
+      summary: Get STAC items
+      responses:
+        '200':
+          description: Items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StacItemCollection'
+      operationId: getDiscoveryStacItems
+      x-operation-id-source: derived
+  /discovery/stac/queryables:
+    get:
+      tags:
+      - Discovery
+      summary: List discoverable / filterable queryables
+      responses:
+        '200':
+          description: Queryables JSON Schema
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: getDiscoveryStacQueryables
+      x-operation-id-source: derived
+  /discovery/stac/image-grid:
+    get:
+      tags:
+      - Discovery
+      summary: Search with filtering and return tiles
+      responses:
+        '200':
+          description: Image grid
+      operationId: getDiscoveryStacImageGrid
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Discovery
+      summary: Search with filtering and return tiles (POST body)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Image grid
+      operationId: postDiscoveryStacImageGrid
+      x-operation-id-source: derived
+components:
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            type: string
+        bbox:
+          type: array
+          items:
+            type: number
+        datetime:
+          type: string
+        intersects:
+          type: object
+        limit:
+          type: integer
+        query:
+          type: object
+    StacItem:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        id:
+          type: string
+        collection:
+          type: string
+        geometry:
+          type: object
+        bbox:
+          type: array
+          items:
+            type: number
+        properties:
+          type: object
+        assets:
+          type: object
+        links:
+          type: array
+          items:
+            type: object
+    StacItemCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/StacItem'
+        links:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the Authentication Token Service.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: MAXAR-API-KEY
+      description: 'API key for data-related APIs. Cannot be used for Admin or API Key
+
+        management endpoints, which require an OAuth2 bearer token.
+
+        '

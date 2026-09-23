@@ -44,7 +44,8 @@
     "ordering-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "streaming-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "tasking-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "tag 'Collections' spans 2 source specs (discovery-openapi.yml, tasking-openapi.yml): per-path servers applied"
+    "tag 'Collections' spans 2 source specs (discovery-openapi.yml, tasking-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "maxar-technologies-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",

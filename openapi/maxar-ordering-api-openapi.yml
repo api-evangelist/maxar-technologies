@@ -1,0 +1,206 @@
+openapi: 3.2.0
+info:
+  title: Maxar Geospatial Platform (Vantor Hub) Ordering API
+  version: '1'
+  description: 'REST API surface for the Maxar Geospatial Platform, branded in 2026 as
+
+    Vantor Hub.'
+  contact:
+    name: Vantor Hub Developer Portal
+    url: https://developers.maxar.com/
+servers:
+- url: https://api.maxar.com
+  description: Maxar / Vantor Hub production API
+security:
+- bearerAuth: []
+- apiKeyAuth: []
+tags:
+- name: Ordering
+paths:
+  /ordering/list-pipelines:
+    get:
+      tags:
+      - Ordering
+      summary: List or get content pipelines
+      parameters:
+      - in: query
+        name: pipeline_id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pipelines
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pipeline'
+      operationId: getOrderingListPipelines
+      x-operation-id-source: derived
+  /ordering/estimate-usage:
+    post:
+      tags:
+      - Ordering
+      summary: Estimate usage for an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Usage estimate
+      operationId: postOrderingEstimateUsage
+      x-operation-id-source: derived
+  /ordering/validate-order:
+    post:
+      tags:
+      - Ordering
+      summary: Validate an order before placing it
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Validation result
+      operationId: postOrderingValidateOrder
+      x-operation-id-source: derived
+  /ordering/place-order:
+    post:
+      tags:
+      - Ordering
+      summary: Place an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+      operationId: postOrderingPlaceOrder
+      x-operation-id-source: derived
+  /ordering/order-details:
+    get:
+      tags:
+      - Ordering
+      summary: Get details and status for an order
+      parameters:
+      - in: query
+        name: order_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+      operationId: getOrderingOrderDetails
+      x-operation-id-source: derived
+  /ordering/order-events:
+    get:
+      tags:
+      - Ordering
+      summary: List status events for an order
+      parameters:
+      - in: query
+        name: order_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Events
+      operationId: getOrderingOrderEvents
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Ordering
+      summary: Cancel an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                action:
+                  type: string
+                  enum:
+                  - cancel
+      responses:
+        '200':
+          description: Cancellation accepted
+      operationId: postOrderingOrderEvents
+      x-operation-id-source: derived
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: string
+        pipeline_id:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        delivery:
+          type: object
+        items:
+          type: array
+          items:
+            type: object
+    OrderRequest:
+      type: object
+      properties:
+        pipeline_id:
+          type: string
+        item_ids:
+          type: array
+          items:
+            type: string
+        delivery:
+          type: object
+        notification:
+          type: object
+    Pipeline:
+      type: object
+      properties:
+        pipeline_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the Authentication Token Service.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: MAXAR-API-KEY
+      description: 'API key for data-related APIs. Cannot be used for Admin or API Key
+
+        management endpoints, which require an OAuth2 bearer token.
+
+        '

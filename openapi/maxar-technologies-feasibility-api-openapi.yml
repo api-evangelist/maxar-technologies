@@ -31,25 +31,6 @@ paths:
                 $ref: '#/components/schemas/Feasibility'
 components:
   schemas:
-    FeasibilityRequest:
-      type: object
-      required:
-      - aoi
-      - start
-      - end
-      properties:
-        aoi:
-          type: object
-        start:
-          type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
-        platforms:
-          type: array
-          items:
-            type: string
     Feasibility:
       type: object
       properties:
@@ -72,6 +53,25 @@ components:
                 type: number
               expected_off_nadir:
                 type: number
+    FeasibilityRequest:
+      type: object
+      required:
+      - aoi
+      - start
+      - end
+      properties:
+        aoi:
+          type: object
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        platforms:
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http

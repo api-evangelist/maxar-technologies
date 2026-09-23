@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Vantor Hub Discovery Search API
-  description: Search and discovery API across Vantor Hub's "125+ petabytes of imagery and derivatives" — WorldView, GeoEye, WorldView Legion archive imagery plus Vivid basemaps and derivative analytic products. STAC-aligned search by area of interest, time window, sensor, cloud cover and resolution. Profile derived from Vantor Hub public docs (hub.vantor.com/docs/discovery) and the open-source `maxarcat` Python client which wraps the published OpenAPI for the Maxar Content Catalog. Endpoint paths should be confirmed against live Vantor responses before production use.
+  description: Search and discovery API across Vantor Hub's "125+ petabytes of imagery and derivatives" — WorldView, GeoEye, WorldView Legion archive imagery plus Vivid basemaps and derivative analytic products.
   version: 1.0.0
   contact:
     name: Vantor Support
@@ -80,43 +80,6 @@ paths:
                 $ref: '#/components/schemas/ItemCollection'
 components:
   schemas:
-    ItemCollection:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        numberReturned:
-          type: integer
-        numberMatched:
-          type: integer
-    Asset:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        type:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-        title:
-          type: string
     SearchRequest:
       type: object
       properties:
@@ -146,6 +109,50 @@ components:
         query:
           type: object
           description: Property filters (cloud_cover, off_nadir, gsd, etc)
+    ItemCollection:
+      type: object
+      required:
+      - type
+      - features
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        numberReturned:
+          type: integer
+        numberMatched:
+          type: integer
+    ItemProperties:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        platform:
+          type: string
+          example: WorldView-3
+        instruments:
+          type: array
+          items:
+            type: string
+        gsd:
+          type: number
+          description: Ground sample distance in metres
+        cloud_cover:
+          type: number
+        off_nadir:
+          type: number
+        sun_elevation:
+          type: number
     Link:
       type: object
       required:
@@ -194,28 +201,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ItemProperties:
+    Asset:
       type: object
+      required:
+      - href
       properties:
-        datetime:
+        href:
           type: string
-          format: date-time
-        platform:
+        type:
           type: string
-          example: WorldView-3
-        instruments:
+        roles:
           type: array
           items:
             type: string
-        gsd:
-          type: number
-          description: Ground sample distance in metres
-        cloud_cover:
-          type: number
-        off_nadir:
-          type: number
-        sun_elevation:
-          type: number
+        title:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

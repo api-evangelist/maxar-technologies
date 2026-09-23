@@ -78,6 +78,23 @@ paths:
           description: Deleted
 components:
   schemas:
+    Monitor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - paused
+        created_at:
+          type: string
+          format: date-time
+        cadence:
+          type: string
     MonitorRequest:
       type: object
       required:
@@ -103,23 +120,6 @@ components:
               type: array
               items:
                 type: string
-    Monitor:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - paused
-        created_at:
-          type: string
-          format: date-time
-        cadence:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

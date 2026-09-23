@@ -95,40 +95,6 @@ paths:
           description: Cancelled
 components:
   schemas:
-    Task:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - submitted
-          - planned
-          - in_progress
-          - complete
-          - cancelled
-          - failed
-        priority:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        windows:
-          type: array
-          items:
-            type: object
-            properties:
-              start:
-                type: string
-                format: date-time
-              end:
-                type: string
-                format: date-time
-              platform:
-                type: string
     TaskRequest:
       type: object
       required:
@@ -170,6 +136,40 @@ components:
           type: number
         gsd:
           type: number
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - submitted
+          - planned
+          - in_progress
+          - complete
+          - cancelled
+          - failed
+        priority:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        windows:
+          type: array
+          items:
+            type: object
+            properties:
+              start:
+                type: string
+                format: date-time
+              end:
+                type: string
+                format: date-time
+              platform:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http
