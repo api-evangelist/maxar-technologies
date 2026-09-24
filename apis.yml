@@ -181,8 +181,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -207,8 +205,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -233,8 +229,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -259,8 +253,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -283,8 +275,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -307,8 +297,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -333,8 +321,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -357,8 +343,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -381,8 +365,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -405,8 +387,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -431,8 +411,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -455,8 +433,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -481,8 +457,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -505,8 +479,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -531,8 +503,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -557,8 +527,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -581,8 +549,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -607,8 +573,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -631,8 +595,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -655,8 +617,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
@@ -679,8 +639,6 @@ apis:
     url: https://hub.vantor.com/docs/authentication/
   - type: DeveloperPortal
     url: https://hub.vantor.com/
-  - type: GraphQL
-    url: graphql/maxar-technologies-graphql.md
   - type: Documentation
     url: https://hub.vantor.com/docs/discovery/
   - type: Documentation
